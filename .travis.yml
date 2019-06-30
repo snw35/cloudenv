@@ -11,7 +11,7 @@ before_script:
 
 script:
   - travis_retry docker build -t "$image" .
-  - ~/official-images/test/run.sh "$image"
+  - ~/official-images/test/run.sh "$image" || travis_terminate 1;
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push "$image"
   - docker tag "$image" "$DOCKER_USERNAME/cloudenv:latest"
