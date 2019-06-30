@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ueEx
+set -e
 
 # If we don't have external ID's to use then exit
 if [ -z "${HOST_USER_ID}" ] || [ -z "${HOST_USER_GID}" ]; then
