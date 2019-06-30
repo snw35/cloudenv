@@ -3,7 +3,7 @@ set -ueE
 
 # Variables
 timezone=Europe/London
-image_name=cloudenv
+image_name=snw35/cloudenv
 image_tag=latest
 container_name=cloudenv
 home_directory=$HOME
