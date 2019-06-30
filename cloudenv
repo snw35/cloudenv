@@ -1,0 +1,25 @@
+#!/bin/bash
+set -ueE
+
+# Variables
+timezone=Europe/London
+image_name=cloudenv
+image_tag=latest
+container_name=cloudenv
+home_directory=$HOME
+
+if [ ! -d $home_directory ]; then
+  echo '$HOME is empty or does not exist, please update this script with the location of your home directory.'
+  exit 1
+fi
+
+if [ ! "$(docker ps -q -f name=$container_name)" ]; then
+  if [ "$(docker ps -aq -f status=exited -f name=$container_name)" ]; then
+    docker rm $container_name
+  fi
+  docker run -dit --name $container_name --hostname $container_name --mount type=bind,source=$home_directory,target=/home/user -e TZ=$timezone -e HOST_USER_ID="$(id -u)" -e HOST_USER_GID="$(id -g)" $image_name:$image_tag &> /dev/null
+fi
+
+docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" bash --rcfile /etc/bashrc
+
+docker rm -f $container_name &> /dev/null

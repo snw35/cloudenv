@@ -1,0 +1,21 @@
+services: docker
+language: bash
+
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
+before_script:
+  - export VERSION=$(date -I)
+  - env | sort
+  - image="$DOCKER_USERNAME/cloudenv:${VERSION}"
+
+script:
+  - travis_retry docker build -t "$image" .
+  - ~/official-images/test/run.sh "$image"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push "$image"
+  - docker tag "$image" "$DOCKER_USERNAME/cloudenv:latest"
+  - docker push $DOCKER_USERNAME/cloudenv:latest"
+
+after_script:
+  - docker images
