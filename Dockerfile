@@ -41,7 +41,8 @@ RUN apk --update --no-cache add \
     okta-awscli \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
-  && adduser -s bash -D user \
+  && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
+  && useradd -l -U -u 1000 -s /bin/bash user \
   && mkdir -p /etc/bash_completion.d
 
 
