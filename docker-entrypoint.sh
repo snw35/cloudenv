@@ -21,21 +21,23 @@ if [ "$1" = 'ssh-agent' ]; then
     exec su-exec $internalUser:$internalGroup "$@"
   fi
 
+  # Use internal group if one matches, or delete and re-create default group
   if id -g $HOST_USER_GID >/dev/null 2>&1; then
     echo "Matching internal group found, running as $internalGroup"
     internalGroup=$(id -gn $HOST_USER_GID)
   else
     echo "No matching internal group found, changing built-in group to match"
+    groupdel $internalGroup
     groupadd -g $HOST_USER_GID $internalGroup
   fi
 
-  # Check to see if we already have a user and group with the external ID
+  # Use internal user if one matches, or delete and re-create default user
   if id -u $HOST_USER_ID >/dev/null 2>&1; then
     echo "Matching internal user found, running as $internalUser"
     internalUser=$(id -un $HOST_USER_ID)
   else
     echo "No matching interneral user found, changing built-in user to match"
-    # To avoid issues with large UIDs, delete and re-create the user
+    # To avoid issues with large UIDs, delete and re-create the user with -l
     userdel $internalUser
     useradd -l -u $HOST_USER_ID -g $HOST_USER_GID $internalUser
   fi
