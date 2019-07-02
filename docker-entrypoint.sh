@@ -8,38 +8,43 @@ if [ "${1:0:1}" = '-' ]; then
     set -- su-exec user:user ssh-agent "$@"
 fi
 
-# check if running ssh-agent and run as appropriate user
+# check if running ssh-agent and run as appropriate user and group
 if [ "$1" = 'ssh-agent' ]; then
   # Use the 'user' user and group as default
   internalUser=user
   internalGroup=user
 
-  # If we don't have external ID's to use then run as default user
-  if [ -z "${HOST_USER_ID}" ] || [ -z "${HOST_USER_GID}" ]; then
-    echo "No HOST_USER_UID or HOST_USER_GID set, unable to map IDs to internal user and group."
-    echo "Running ssh-agent as default internal user and group $internalUser:$internalGroup instead."
-    exec su-exec $internalUser:$internalGroup "$@"
+  # Use an internal group if one matches, or create one with the correct GID if not
+  if [ -z "${HOST_GROUP_ID}" ]; then
+    echo '$HOST_GROUP_ID not set, unable to map external and internal GIDs'
+    echo 'Using default GID of 1000 instead'
+    HOST_GROUP_ID=1000
+    groupadd -g $HOST_GROUP_ID $internalGroup
+  else
+    if id -g $HOST_GROUP_ID >/dev/null 2>&1; then
+      internalGroup=$(id -gn $HOST_GROUP_ID)
+      echo "Matching internal group found, running as $internalGroup"
+    else
+      echo "No matching internal group found, creating one..."
+      groupadd -g $HOST_GROUP_ID $internalGroup
+    fi
   fi
 
-  # Use internal group if one matches, or delete and re-create default group
-  if id -g $HOST_USER_GID >/dev/null 2>&1; then
-    echo "Matching internal group found, running as $internalGroup"
-    internalGroup=$(id -gn $HOST_USER_GID)
+  # Use an internal user if one matches, or create one with the correct UID and GID if not
+  if [ -z "${HOST_USER_ID}" ]; then
+    echo '$HOST_USER_ID not set, unable to map external and internal UIDs'
+    echo 'Using default UID of 1000 instead'
+    HOST_USER_ID=1000
+    useradd -l -s /bin/bash -u $HOST_USER_ID -g $HOST_GROUP_ID $internalUser
   else
-    echo "No matching internal group found, changing built-in group to match"
-    groupdel $internalGroup
-    groupadd -g $HOST_USER_GID $internalGroup
-  fi
-
-  # Use internal user if one matches, or delete and re-create default user
-  if id -u $HOST_USER_ID >/dev/null 2>&1; then
-    echo "Matching internal user found, running as $internalUser"
-    internalUser=$(id -un $HOST_USER_ID)
-  else
-    echo "No matching interneral user found, changing built-in user to match"
-    # To avoid issues with large UIDs, delete and re-create the user with -l
-    userdel $internalUser
-    useradd -l -u $HOST_USER_ID -g $HOST_USER_GID $internalUser
+    # Use an existing internal user if one matches
+    if id -u $HOST_USER_ID >/dev/null 2>&1; then
+      internalUser=$(id -un $HOST_USER_ID)
+      echo "Matching internal user found, running as $internalUser"
+    else
+      echo "No matching interneral user found, creating one..."
+      useradd -l -s /bin/bash -u $HOST_USER_ID -g $HOST_GROUP_ID $internalUser
+    fi
   fi
 
   echo "Running ssh-agent as $internalUser:$internalGroup"
