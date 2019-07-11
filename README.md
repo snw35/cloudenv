@@ -27,6 +27,16 @@ Everything should work as you expect. The bash shell contains common utilities (
 
 If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
 
+## Image Tagging and Updates
+
+ * Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
+
+`cloudenv` images are tagged with the ISO-8601 date they were first built (Example: 2006-08-14). The versions of all bundled software packages inside an image are the latest that were available on that date. You can edit the `cloudenv` script to pin the image to a particular date if you'd like.
+
+The `latest` tag is always the last image to built, and will contain the most recent versions of all software packages that are included. Where backwards compatibility is an issue (such as with terraform), both the old and new versions will be included. By default, the `latest` tag is used in the cloudenv script. This will *not* automatically update when a new version is built, and will stay on the same version until you update it by running `docker pull snw35/cloudenv`.
+
+To update to the latest image with the latest software, run `docker pull snw35/cloudenv`.
+
 ### Included Software
 
 All of the following commands are available:
@@ -43,14 +53,15 @@ All of the following commands are available:
 - gsutil
 - hclfmt
 - helm
+- kops
 - kubectl
 - kubectx
 - kubens
 - okta-awscli
 - packer
 - terraform (v11, backwards compatible with <= v11)
-- terraform12 (v12, not backwards compatible)
 - terraform-docs
+- terraform12 (v12, not backwards compatible)
 - terragrunt (v18, backwards compatible with terraform <=v11)
 - terragrunt19 (v19, only compatible with terraform v12+)
 

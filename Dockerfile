@@ -9,27 +9,27 @@ WORKDIR /usr/bin/
 RUN apk --update --no-cache add \
     bash \
     bash-completion \
-    python2 \
-    python3 \
+    bind-tools \
     ca-certificates \
-    git \
-    openssh-client \
-    py2-pip \
+    coreutils \
     curl \
-    libusb \
-    groff \
-    ncurses \
+    diffutils \
     fzf \
     fzf-bash-completion \
-    net-tools \
-    bind-tools \
-    coreutils \
-    diffutils \
+    git \
+    groff \
     iputils \
+    libusb \
+    ncurses \
+    net-tools \
     nmap \
-    tzdata \
+    openssh-client \
+    py2-pip \
+    python2 \
+    python3 \
     shadow \
     su-exec \
+    tzdata \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
     awscli \
@@ -48,10 +48,10 @@ RUN apk --update --no-cache add \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.14.3
+ENV KUBECTL_VERSION 1.15.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 ebc8c2fadede148c2db1b974f0f7f93f39f19c8278619893fd530e20e9bec98f
+ENV KUBECTL_SHA256 ecec7fe4ffa03018ff00f14e228442af5c2284e57771e4916b977c20ba4e5b39
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -61,10 +61,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 2.13.1
+ENV HELM_VERSION 2.14.1
 ENV HELM_URL https://storage.googleapis.com/kubernetes-helm
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 c1967c1dfcd6c921694b80ededdb9bd1beb27cb076864e58957b1568bc98925a
+ENV HELM_SHA256 804f745e6884435ef1343f4de8940f9db64f935cd9a55ad3d9153d064b7f5896
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -92,10 +92,10 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.2
+ENV TERRAFORM_NEW_VERSION 0.12.3
 ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
 ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 d9a96b646420d7f0a80aa5d51bb7b2a125acead537ab13c635f76668de9b8e32
+ENV TERRAFORM_NEW_SHA256 75e4323b8514074f8c2118ea382fc677c8b1d1730eda323ada222e0fac57f7db
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
@@ -124,10 +124,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.5
+ENV TERRAGRUNT_NEW_VERSION 0.19.8
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 75ab74e726d3c3226a25361e204c2c6353197592438704034301e0526d48c5c1
+ENV TERRAGRUNT_NEW_SHA256 70e81e5cc7a7c504557103e2ba90ac4c3c90a01bceffb2a34d4419643cf09998
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -137,10 +137,10 @@ RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.4.1
+ENV PACKER_VERSION 1.4.2
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 b713ea79a6fb131e27d65ec3f2227f36932540e71820288c3c5ad770b565ecd7
+ENV PACKER_SHA256 2fcbd1662ac76dc4dec381bdc7b5e6316d5b9d48e0774a32fe6ef9ec19f47213
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -151,10 +151,11 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
-ENV AWS_IAM_AUTH_VERSION 1.12.7/2019-03-27
-ENV AWS_IAM_AUTH_URL https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTH_VERSION}/bin/linux/amd64
-ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator
-ENV AWS_IAM_AUTH_SHA256 cc35059999bad461d463141132a0e81906da6c23953ccdac59629bb532c49c83
+# https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
+ENV AWS_IAM_AUTH_VERSION 0.4.0
+ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
+ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
+ENV AWS_IAM_AUTH_SHA256 9744923781cca33dba3f48e1b8443af4d7f158748bd105134aaa68252da3b907
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -181,14 +182,27 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
   && chmod +x ./kubens
 
 
+# Install Kops
+# From https://github.com/kubernetes/kops/releases
+ENV KOPS_VERSION 1.12.2
+ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}
+ENV KOPS_FILENAME kops-linux-amd64
+ENV KOPS_SHA256 c71fa644741b4e831d417dfacd3bb4e513d8f320f1940de0a011b7dd3a9e4fcb
+
+RUN wget $KOPS_URL/$KOPS_FILENAME \
+  && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
+  && chmod +x ./${KOPS_FILENAME} \
+  && mv ./${KOPS_FILENAME} ./kops
+
+
 WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 250.0.0
+ENV GCLOUD_VERSION 253.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 fe59b988c6a8a40ae98a3b9d0ea98b98e55e5061e8cec14d71e93b7d198c133e
+ENV GCLOUD_SHA256 df3834e538025b257b7cc5d6e7518ca16f05e99aa82671dda19045e688b5268a
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
@@ -202,8 +216,8 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 # Install go binaries
 ENV GOROOT "/usr/lib/go"
 RUN apk --update --no-cache add --virtual build.deps \
-    go \
     build-base \
+    go \
     libusb-dev \
     pkgconfig \
   && echo GOROOT=/usr/lib/go > /usr/lib/go/src/all.bash \
