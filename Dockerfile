@@ -192,7 +192,8 @@ ENV KOPS_SHA256 c71fa644741b4e831d417dfacd3bb4e513d8f320f1940de0a011b7dd3a9e4fcb
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
   && chmod +x ./${KOPS_FILENAME} \
-  && mv ./${KOPS_FILENAME} ./kops
+  && mv ./${KOPS_FILENAME} ./kops \
+  && kops completion bash > /etc/bash_completion.d/kops
 
 
 WORKDIR /opt
