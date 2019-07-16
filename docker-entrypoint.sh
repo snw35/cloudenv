@@ -8,11 +8,21 @@ if [ "${1:0:1}" = '-' ]; then
     set -- su-exec user:user ssh-agent "$@"
 fi
 
+if [ -z "${HOST_USER_NAME}" ]; then
+  echo '$HOST_USER_NAME is not set, defaulting to "user"'
+  HOST_USER_NAME=user
+fi
+
+if [ -z "${HOST_GROUP_NAME}" ]; then
+  echo '$HOST_GROUP_NAME is not set, defaulting to "user"'
+  HOST_GROUP_NAME=user
+fi
+
 # check if running ssh-agent and run as appropriate user and group
 if [ "$1" = 'ssh-agent' ]; then
   # Use the 'user' user and group as default
-  internalUser=user
-  internalGroup=user
+  internalUser=$HOST_USER_NAME
+  internalGroup=$HOST_GROUP_NAME
 
   # Use an internal group if one matches, or create one with the correct GID if not
   if [ -z "${HOST_GROUP_ID}" ]; then
