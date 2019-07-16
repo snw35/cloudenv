@@ -14,13 +14,20 @@ if [ ! -d $home_directory ]; then
 fi
 
 if [ ! "$(docker ps -q -f name=$container_name)" ]; then
+
   if [ "$(docker ps -aq -f status=exited -f name=$container_name)" ]; then
     docker rm $container_name
   fi
-  docker pull $image_name:$image_tag &> /dev/null
-  docker run -dit --name $container_name --hostname $container_name --mount type=bind,source=$home_directory,target=/home/user -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" -e HOST_GROUP_NAME="$(id -g -n)" -e HOST_USER_ID="$(id -u)" -e HOST_GROUP_ID="$(id -g)" $image_name:$image_tag &> /dev/null
-fi
 
-docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" bash --rcfile /etc/bashrc
+  docker pull $image_name:$image_tag &> /dev/null
+
+  if hash id 2>/dev/null; then
+    docker run -dit --name $container_name --hostname $container_name -w="/home/$(id -u -n)" --mount type=bind,source=$home_directory,target="/home/$(id -u -n)" -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" -e HOST_GROUP_NAME="$(id -g -n)" -e HOST_USER_ID="$(id -u)" -e HOST_GROUP_ID="$(id -g)" $image_name:$image_tag &> /dev/null
+    docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" bash --rcfile /etc/bashrc
+  else
+    docker run -dit --name $container_name --hostname $container_name -w="/home/user" --mount type=bind,source=$home_directory,target="/home/user" -e TZ=$timezone $image_name:$image_tag &> /dev/null
+    docker exec -it $container_name su-exec 1000:1000 bash --rcfile /etc/bashrc
+  fi
+fi
 
 docker rm -f $container_name &> /dev/null

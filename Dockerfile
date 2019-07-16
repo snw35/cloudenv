@@ -242,11 +242,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && chmod +x /docker-entrypoint.sh
 
 
-WORKDIR /home/user
-
 COPY bashrc /etc/bashrc
-
-VOLUME /home/user
 
 ENV SSH_AUTH_SOCK /tmp/agent.sock
 
