@@ -17,6 +17,7 @@ if [ ! "$(docker ps -q -f name=$container_name)" ]; then
   if [ "$(docker ps -aq -f status=exited -f name=$container_name)" ]; then
     docker rm $container_name
   fi
+  docker pull $image_name:$image_tag &> /dev/null
   docker run -dit --name $container_name --hostname $container_name --mount type=bind,source=$home_directory,target=/home/user -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" -e HOST_GROUP_NAME="$(id -g -n)" -e HOST_USER_ID="$(id -u)" -e HOST_GROUP_ID="$(id -g)" $image_name:$image_tag &> /dev/null
 fi
 

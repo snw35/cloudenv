@@ -1,6 +1,9 @@
 services: docker
 language: bash
 
+# Only build tags
+if: tag IS present
+
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 

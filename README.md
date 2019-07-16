@@ -4,11 +4,13 @@
 
 The Cloud Environment Shell ⛅
 
-This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of tools for AWS and GCP and makes them all accessible from a single command.
+This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of infrastructure-as-code (IaC) tools for Amazon AWS, Google GCP, and Kubernetes and lets you run them with no set-up or configuration.
 
 ## How To Use
 
 The only requirement is to have Docker installed (the docker-ce package on most distros).
+
+Tested and working on Mac and Linux.
 
 Clone the repo and install the 'cloudenv' command into your path.
 
@@ -19,34 +21,28 @@ sudo chmod +x /usr/local/bin/cloudenv
 cloudenv
 ```
 
-After running 'cloudenv', the container image will be pulled down to your machine and you will be dropped into the cloudenv bash shell:
+Run the 'cloudenv' command (it may take a while to run the first time as it downloads the container image) and you will be dropped into the cloudenv shell:
 
 `⛅user@cloudenv:~$`
 
-Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) as well as all of the installed tools, and has working bash-completion for them too.
+Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion.
 
 If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
-
-## Image Tagging and Updates
-
- * Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
-
-`cloudenv` images are tagged with the ISO-8601 date they were first built (Example: 2006-08-14). The versions of all bundled software packages inside an image are the latest that were available on that date. You can edit the `cloudenv` script to pin the image to a particular date if you'd like.
-
-The `latest` tag is always the last image to built, and will contain the most recent versions of all software packages that are included. Where backwards compatibility is an issue (such as with terraform), both the old and new versions will be included. By default, the `latest` tag is used in the cloudenv script. This will *not* automatically update when a new version is built, and will stay on the same version until you update it by running `docker pull snw35/cloudenv`.
-
-To update to the latest image with the latest software, run `docker pull snw35/cloudenv`.
 
 ### Included Software
 
 All of the following commands are available:
 
+- aws
 - aws-iam-authenticator
 - aws-okta
-- awscli
 - awsebcli
+- bq
 - confd
 - container-transform
+- docker-credential-gcloud
+- eb
+- ebp
 - ecs-cli
 - ecs-compose
 - gcloud
@@ -98,7 +94,7 @@ This is fundamentally a Docker container running an interactive shell, though it
 It works in the following way:
 
 1. The script pulls and starts the cloudenv Docker container on your machine.
-2. It bind-mounts your home directory into the container, passes your user and group IDs from the host machine into the container, and ensures the UID and GID in the container match up.
+2. It bind-mounts your home directory into the container, passes your user and group from the host machine into the container, and ensures all permissions match up.
 3. It runs `ssh-agent` as your user inside the container so it is available to cache ssh credentials if needed.
 4. It starts a bash session inside the container as your user with a custom shell configuration (`/etc/bashrc`).
 5. When you terminate the bash session, it stops and removes the cloudenv container so there are no left-over processes running.
@@ -124,3 +120,13 @@ The way this is overcome is by passing the UID and GID of the host's user into t
 The timezone inside an Alpine container defaults to UTC. Normally this is fine, but when your home directory is bind-mounted into the image in read-write mode, the timestamps on files will be incorrect if anything inside the container modifies them.
 
 An environment variable (`TZ`) is used to set the timezone when the container starts up. The value is set in the cloudenv script and can be changed to match your requirements. Detecting the user's timezone cross-platform is one of those "this shouldn't be this hard" problems that is unfortunately best left out of scope.
+
+## Image Tagging and Updates
+
+- Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
+
+`cloudenv` images are tagged with the ISO-8601 date they were first built (Example: 2018-08-14). The versions of all bundled software packages inside an image are the latest that were available on that date. You can edit the `cloudenv` script to pin the image to a particular date if you'd like.
+
+The `latest` tag always points to the most recent image. Where backwards compatibility is an issue (such as with terraform), both the old and new versions will be included.
+
+The 'cloudenv' script pulls the latest version of the `latest` tag each time it is run, so you will always be running the most recent software.
