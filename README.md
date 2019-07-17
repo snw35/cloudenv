@@ -4,7 +4,7 @@
 
 The Cloud Environment Shell ⛅
 
-This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of infrastructure-as-code (IaC) tools for Amazon AWS, Google GCP, and Kubernetes and lets you run them with no set-up or configuration.
+This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of infrastructure-as-code (IaC) tools for Amazon AWS, Google GCP, and Kubernetes with no setup or configuration required.
 
 ## How To Use
 
@@ -49,7 +49,10 @@ All of the following commands are available:
 - gsutil
 - hclfmt
 - helm
+- kail
+- kompose
 - kops
+- kubebox
 - kubectl
 - kubectx
 - kubens
@@ -93,8 +96,8 @@ This is fundamentally a Docker container running an interactive shell, though it
 
 It works in the following way:
 
-1. The script pulls and starts the cloudenv Docker container on your machine.
-2. It bind-mounts your home directory into the container, passes your user and group from the host machine into the container, and ensures all permissions match up.
+1. The `cloudenv` script pulls latest version of the container and starts it.
+2. It bind-mounts your home directory into the container, passes your user and group from the host machine in with environment variables, and ensures all permissions match up.
 3. It runs `ssh-agent` as your user inside the container so it is available to cache ssh credentials if needed.
 4. It starts a bash session inside the container as your user with a custom shell configuration (`/etc/bashrc`).
 5. When you terminate the bash session, it stops and removes the cloudenv container so there are no left-over processes running.
@@ -103,17 +106,13 @@ Further information on some of these aspects is below.
 
 #### Bind-Mounting The Home Directory
 
-Your home directory is bind-mounted into the container in place of the built-in user's home directory. This allows access to your files as well as all of your dot-files and dot-directories, such as `~/.ssh`, which contain all of the configuration for those utilities.
+Your home directory is bind-mounted into the container. This allows access to your files as well as all of your dot-files and dot-directories, such as `~/.ssh`, which contain all of the configuration for those utilities.
 
 This allows the environment inside the container to behave as closely as possible to the environment on the host, and means that all of the included tools have access to the keys/credentials that they may require.
 
 #### UserID and GroupID Mapping
 
-One of the biggest problems with bind-mounting your home directory into a running container is permissions. The built-in user "user" has a default UID and GID of 1000 inside the container, but your user on the host can have any UID and GID.
-
-If they have different ID's, then you won't be able to access your files.
-
-The way this is overcome is by passing the UID and GID of the host's user into the container when it is started, and then ensuring that all processes and bash sessions started inside it have that same UID and GID. It will use an existing user inside the container if it finds one that matches, or modify the built-in user's UID and GID if it doesn't.
+Bind-mounting your home directory into a container normally creates issues with permissions, as your user on the host will not exist inside it. This is overcome by passing the IDs and names of the host's user and group into the container with environment variables, which the entrypoint script then uses to ensure that everything inside the container matches the host machine.
 
 #### Timezones
 
@@ -124,6 +123,8 @@ An environment variable (`TZ`) is used to set the timezone when the container st
 ## Image Tagging and Updates
 
 - Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
+
+The cloudenv container is basically a solid ~1GB brick of binaries. It stays as minimal as possible while packaging a *lot* of tools, some of which are large (Hashicorp ones specifically), and providing a *lot* of functionality. It is possible to provision, manage, and develop production-grade cloud infrastructure with just the contents of this container.
 
 `cloudenv` images are tagged with the ISO-8601 date they were first built (Example: 2018-08-14). The versions of all bundled software packages inside an image are the latest that were available on that date. You can edit the `cloudenv` script to pin the image to a particular date if you'd like.
 

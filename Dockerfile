@@ -1,5 +1,5 @@
 # Cloud environment container
-# Provides a complete suite of cloud tools suitable for GCP and AWS
+# Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
 FROM alpine:3.10
 
@@ -196,14 +196,56 @@ RUN wget $KOPS_URL/$KOPS_FILENAME \
   && kops completion bash > /etc/bash_completion.d/kops
 
 
+# Install kubebox
+# From https://github.com/astefanutti/kubebox/releases
+ENV KUBEBOX_VERSION 0.5.0
+ENV KUBEBOX_URL https://github.com/astefanutti/kubebox/releases/download/v${KUBEBOX_VERSION}
+ENV KUBEBOX_FILENAME kubebox-linux
+ENV KUBEBOX_SHA256 e3c7317b6830dac3b1731c58c6a0d2eb8e08704c8713afeff0468c9fdf1b6840
+
+RUN wget $KUBEBOX_URL/$KUBEBOX_FILENAME \
+  && echo "$KUBEBOX_SHA256  ./$KUBEBOX_FILENAME" | sha256sum -c - \
+  && chmod +x ./${KUBEBOX_FILENAME} \
+  && mv ./${KUBEBOX_FILENAME} ./kubebox
+
+
+# Install kail
+# From https://github.com/boz/kail/releases
+ENV KAIL_VERSION 0.10.1
+ENV KAIL_URL https://github.com/boz/kail/releases/download/v${KAIL_VERSION}
+ENV KAIL_FILENAME kail_${KAIL_VERSION}_linux_amd64.tar.gz
+ENV KAIL_SHA256 253ab06570bc3a7afc6ab163b0ac9808b1ce257d2cbcd87c09859511bcbfc138
+
+RUN wget $KAIL_URL/$KAIL_FILENAME \
+  && echo "$KAIL_SHA256  ./$KAIL_FILENAME" | sha256sum -c - \
+  && tar -xzf ./${KAIL_FILENAME} \
+  && chmod +x ./kail \
+  && rm -f LICENSE.txt \
+  && rm -f README.md \
+  && rm -f ./${KAIL_FILENAME}
+
+
+# Install kompose
+# From https://github.com/kubernetes/kompose/releases
+ENV KOMPOSE_VERSION 1.18.0
+ENV KOMPOSE_URL https://github.com/kubernetes/kompose/releases/download/v${KOMPOSE_VERSION}
+ENV KOMPOSE_FILENAME kompose-linux-amd64
+ENV KOMPOSE_SHA256 4675f1a580b2775d021f3d1777f060ffd44b5f540f956c3b68f092480af9caf4
+
+RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
+  && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
+  && chmod +x ./${KOMPOSE_FILENAME} \
+  && mv ./${KOMPOSE_FILENAME} ./kompose
+
+
 WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 253.0.0
+ENV GCLOUD_VERSION 254.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 df3834e538025b257b7cc5d6e7518ca16f05e99aa82671dda19045e688b5268a
+ENV GCLOUD_SHA256 1bb4752645889a0a6a420787d7ceb9cbaa59ae2f8f42fd2338f8c2ffdafec8ca
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \

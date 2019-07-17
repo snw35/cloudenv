@@ -14,14 +14,33 @@ if [ "$1" = 'ssh-agent' ]; then
   if [ -z "${HOST_USER_NAME}" ]; then
     echo '$HOST_USER_NAME is not set, defaulting to "user"'
     HOST_USER_NAME=user
+  else
+    # Clean user name
+    CLEAN=${HOST_USER_NAME//_/}
+    # Replace spaces with underscores
+    CLEAN=${CLEAN// /_}
+    # Clean out anything that's not alphanumeric or an underscore
+    CLEAN=${CLEAN//[^a-zA-Z0-9_]/}
+    # Lowercase with TR
+    CLEAN=`echo -n $CLEAN | tr A-Z a-z`
+    HOST_USER_NAME=$CLEAN
   fi
 
   if [ -z "${HOST_GROUP_NAME}" ]; then
-    echo '$HOST_GROUP_NAME is not set, defaulting to "user"'
-    HOST_GROUP_NAME=user
+    echo '$HOST_GROUP_NAME is not set, defaulting to "group"'
+    HOST_GROUP_NAME=group
+  else
+    # Clean group name
+    CLEAN=${HOST_GROUP_NAME//_/}
+    # Replace spaces with underscores
+    CLEAN=${CLEAN// /_}
+    # Clean out anything that's not alphanumeric or an underscore
+    CLEAN=${CLEAN//[^a-zA-Z0-9_]/}
+    # Lowercase with TR
+    CLEAN=`echo -n $CLEAN | tr A-Z a-z`
+    HOST_GROUP_NAME=$CLEAN
   fi
 
-  # Use the 'user' user and group as default
   internalUser=$HOST_USER_NAME
   internalGroup=$HOST_GROUP_NAME
 
