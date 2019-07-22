@@ -30,6 +30,9 @@ RUN apk --update --no-cache add \
     shadow \
     su-exec \
     tzdata \
+    gnupg \
+    fish \
+  && apk upgrade -a \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
     awscli \
@@ -48,10 +51,10 @@ RUN apk --update --no-cache add \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.15.0
+ENV KUBECTL_VERSION 1.15.1
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 ecec7fe4ffa03018ff00f14e228442af5c2284e57771e4916b977c20ba4e5b39
+ENV KUBECTL_SHA256 f4f4b855ab16ef295bc74f07edc77482d43e8fe81abc7cf92c476c4344788aa6
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -92,10 +95,10 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.4
+ENV TERRAFORM_NEW_VERSION 0.12.5
 ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
 ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 0231562f26262de233e8e8fac668196af21b7aff355bb04f3ee1606cca239c0a
+ENV TERRAFORM_NEW_SHA256 babb4a30b399fb6fc87a6aa7435371721310c2e2102a95a763ef2c979ab06ce2
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
@@ -124,10 +127,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.8
+ENV TERRAGRUNT_NEW_VERSION 0.19.9
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 70e81e5cc7a7c504557103e2ba90ac4c3c90a01bceffb2a34d4419643cf09998
+ENV TERRAGRUNT_NEW_SHA256 9226cffc6b67b48c78e659b8ed1228e41b01c6fa4bd55e26e3b56c4d488db7ea
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -196,35 +199,6 @@ RUN wget $KOPS_URL/$KOPS_FILENAME \
   && kops completion bash > /etc/bash_completion.d/kops
 
 
-# Install kubebox
-# From https://github.com/astefanutti/kubebox/releases
-ENV KUBEBOX_VERSION 0.5.0
-ENV KUBEBOX_URL https://github.com/astefanutti/kubebox/releases/download/v${KUBEBOX_VERSION}
-ENV KUBEBOX_FILENAME kubebox-linux
-ENV KUBEBOX_SHA256 e3c7317b6830dac3b1731c58c6a0d2eb8e08704c8713afeff0468c9fdf1b6840
-
-RUN wget $KUBEBOX_URL/$KUBEBOX_FILENAME \
-  && echo "$KUBEBOX_SHA256  ./$KUBEBOX_FILENAME" | sha256sum -c - \
-  && chmod +x ./${KUBEBOX_FILENAME} \
-  && mv ./${KUBEBOX_FILENAME} ./kubebox
-
-
-# Install kail
-# From https://github.com/boz/kail/releases
-ENV KAIL_VERSION 0.10.1
-ENV KAIL_URL https://github.com/boz/kail/releases/download/v${KAIL_VERSION}
-ENV KAIL_FILENAME kail_${KAIL_VERSION}_linux_amd64.tar.gz
-ENV KAIL_SHA256 253ab06570bc3a7afc6ab163b0ac9808b1ce257d2cbcd87c09859511bcbfc138
-
-RUN wget $KAIL_URL/$KAIL_FILENAME \
-  && echo "$KAIL_SHA256  ./$KAIL_FILENAME" | sha256sum -c - \
-  && tar -xzf ./${KAIL_FILENAME} \
-  && chmod +x ./kail \
-  && rm -f LICENSE.txt \
-  && rm -f README.md \
-  && rm -f ./${KAIL_FILENAME}
-
-
 # Install kompose
 # From https://github.com/kubernetes/kompose/releases
 ENV KOMPOSE_VERSION 1.18.0
@@ -236,6 +210,35 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
   && chmod +x ./${KOMPOSE_FILENAME} \
   && mv ./${KOMPOSE_FILENAME} ./kompose
+
+
+# Install k9s
+# From https://github.com/derailed/k9s/releases
+ENV K9S_VERSION 0.7.12
+ENV K9S_URL https://github.com/derailed/k9s/releases/download/${K9S_VERSION}
+ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
+ENV K9S_SHA256 0d4ef92c2da1aa73e8da60aeae1ae0004bcf42e5e1ed8d982ea0fca8b8633ebe
+
+RUN wget $K9S_URL/$K9S_FILENAME \
+  && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
+  && tar -xzf ./${K9S_FILENAME} \
+  && chmod +x ./k9s \
+  && rm -f LICENSE.txt \
+  && rm -f README.md \
+  && rm -f ./${K9S_FILENAME}
+
+
+# Install fluxctl
+# From https://github.com/fluxcd/flux/releases
+ENV FLUXCTL_VERSION 1.13.2
+ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
+ENV FLUXCTL_FILENAME fluxctl_linux_amd64
+ENV FLUXCTL_SHA256 2d6262591e8409550acf95ee25ababa18c01fbaa2a9f94d9279e70197027d518
+
+RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
+  && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
+  && chmod +x ./${FLUXCTL_FILENAME} \
+  && mv ./${FLUXCTL_FILENAME} ./fluxctl
 
 
 WORKDIR /opt

@@ -4,24 +4,21 @@
 
 The Cloud Environment Shell ⛅
 
-This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of infrastructure-as-code (IaC) tools for Amazon AWS, Google GCP, and Kubernetes with no setup or configuration required.
+This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of infrastructure-as-code (IaC) tools for Amazon AWS, Google GCP, and Kubernetes with no setup required.
 
 ## How To Use
 
-The only requirement is to have Docker installed (the docker-ce package on most distros).
+The only requirement is to have Docker installed.
 
-Tested and working on Mac and Linux.
+Tested and working on both Mac and Linux.
 
-Clone the repo and install the 'cloudenv' command into your path.
+Install the `cloudenv` command:
 
 ```shell
-git clone https://github.com/snw35/cloudenv.git
-sudo cp ./cloudenv/cloudenv /usr/local/bin/cloudenv
-sudo chmod +x /usr/local/bin/cloudenv
-cloudenv
+sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /usr/local/bin/cloudenv && sudo chmod +x /usr/local/bin/cloudenv;
 ```
 
-Run the 'cloudenv' command (it may take a while to run the first time as it downloads the container image) and you will be dropped into the cloudenv shell:
+Run the `cloudenv` command and it will pull the latest version of the contain image (around 1GB), start the container, and drop you into the cloudenv shell:
 
 `⛅user@cloudenv:~$`
 
@@ -49,10 +46,9 @@ All of the following commands are available:
 - gsutil
 - hclfmt
 - helm
-- kail
+- k9s
 - kompose
 - kops
-- kubebox
 - kubectl
 - kubectx
 - kubens
@@ -76,6 +72,10 @@ To run with the new and non-backwards-compatible terraform v12 and terragrunt v1
 export TERRAGRUNT_TFPATH=/usr/bin/terraform12
 terragrunt19 plan-all
 ```
+
+### Customise The Shell
+
+You can change the shell to fish or a plain bash session that will use your host machine's ~/.bashrc. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.
 
 ## Why?
 

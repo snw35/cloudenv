@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ueE
+set -u
 
 # Variables
 timezone=Europe/London
@@ -7,6 +7,11 @@ image_name=snw35/cloudenv
 image_tag=latest
 container_name=cloudenv
 home_directory=$HOME
+
+# Shell is a custom bash shell by default, or can be set to:
+# 'bash' for a plain bash shell that uses your host config
+# 'fish' for a plain fish shell that uses your host config
+user_shell="bash --rcfile /etc/bashrc"
 
 if [ ! -d $home_directory ]; then
   echo '$HOME is empty or does not exist, please update this script with the location of your home directory.'
@@ -16,17 +21,18 @@ fi
 if [ ! "$(docker ps -q -f name=$container_name)" ]; then
 
   if [ "$(docker ps -aq -f status=exited -f name=$container_name)" ]; then
-    docker rm $container_name
+    docker rm -f $container_name
+    echo $?
   fi
 
-  docker pull $image_name:$image_tag &> /dev/null
+  docker pull $image_name:$image_tag
 
   if hash id 2>/dev/null; then
     docker run -dit --name $container_name --hostname $container_name -w="/home/$(id -u -n)" --mount type=bind,source=$home_directory,target="/home/$(id -u -n)" -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" -e HOST_GROUP_NAME="$(id -g -n)" -e HOST_USER_ID="$(id -u)" -e HOST_GROUP_ID="$(id -g)" $image_name:$image_tag &> /dev/null
-    docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" bash --rcfile /etc/bashrc
+    docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" $user_shell
   else
     docker run -dit --name $container_name --hostname $container_name -w="/home/user" --mount type=bind,source=$home_directory,target="/home/user" -e TZ=$timezone $image_name:$image_tag &> /dev/null
-    docker exec -it $container_name su-exec 1000:1000 bash --rcfile /etc/bashrc
+    docker exec -it $container_name su-exec 1000:1000 $user_shell
   fi
 fi
 
