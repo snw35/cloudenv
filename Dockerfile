@@ -241,6 +241,36 @@ RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && mv ./${FLUXCTL_FILENAME} ./fluxctl
 
 
+# Install rakkess
+# From https://github.com/corneliusweig/rakkess/releases
+ENV RAKKESS_VERSION 0.4.1
+ENV RAKKESS_URL https://github.com/corneliusweig/rakkess/releases/download/v${RAKKESS_VERSION}
+ENV RAKKESS_FILENAME rakkess-linux-amd64.gz
+ENV RAKKESS_SHA256 56427bfd878a49010eb9238eb92cfefb958389e80bc790fd6cdb66ac9a363b43
+
+RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
+  && echo "$RAKKESS_SHA256  ./$RAKKESS_FILENAME" | sha256sum -c - \
+  && gunzip ./${RAKKESS_FILENAME} \
+  && mv ./rakkess-linux-amd64 ./rakkess \
+  && chmod +x ./rakkess \
+  && rm -f ./${RAKKESS_FILENAME}
+
+
+# Install kubespy
+# From https://github.com/pulumi/kubespy/releases
+ENV KUBESPY_VERSION 0.4.0
+ENV KUBESPY_URL https://github.com/pulumi/kubespy/releases/download/v${KUBESPY_VERSION}
+ENV KUBESPY_FILENAME kubespy-linux-amd64.tar.gz
+ENV KUBESPY_SHA256 04e3c2d3583e3817e95dfa5041ad97b9fca9d4349f088c3520a233cca16cac55
+
+RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
+  && echo "$KUBESPY_SHA256  ./$KUBESPY_FILENAME" | sha256sum -c - \
+  && tar -xzf ./${KUBESPY_FILENAME} \
+  && mv ./releases/kubespy-linux-amd64/kubespy ./ \
+  && chmod +x ./kubespy \
+  && rm -f ./${KUBESPY_FILENAME}
+
+
 WORKDIR /opt
 
 # Install gcloud suite

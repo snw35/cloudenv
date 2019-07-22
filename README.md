@@ -18,7 +18,7 @@ Install the `cloudenv` command:
 sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /usr/local/bin/cloudenv && sudo chmod +x /usr/local/bin/cloudenv;
 ```
 
-Run the `cloudenv` command and it will pull the latest version of the contain image (around 1GB), start the container, and drop you into the cloudenv shell:
+Run the `cloudenv` command and it will pull the latest version of the container image (around 1GB), start the container, and drop you into the cloudenv shell:
 
 `⛅user@cloudenv:~$`
 
@@ -54,8 +54,10 @@ All of the following commands are available:
 - kubectl
 - kubectx
 - kubens
+- kubespy
 - okta-awscli
 - packer
+- rakkess
 - terraform (v11, backwards compatible with <= v11)
 - terraform-docs
 - terraform12 (v12, not backwards compatible)
