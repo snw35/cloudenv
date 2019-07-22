@@ -37,11 +37,13 @@ All of the following commands are available:
 - bq
 - confd
 - container-transform
+- docker-compose
 - docker-credential-gcloud
 - eb
 - ebp
 - ecs-cli
 - ecs-compose
+- fluxctl
 - gcloud
 - gsutil
 - hclfmt
