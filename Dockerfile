@@ -14,11 +14,15 @@ RUN apk --update --no-cache add \
     coreutils \
     curl \
     diffutils \
+    fish \
     fzf \
     fzf-bash-completion \
+    gcompat \
     git \
+    gnupg \
     groff \
     iputils \
+    libc6-compat \
     libusb \
     ncurses \
     net-tools \
@@ -30,8 +34,7 @@ RUN apk --update --no-cache add \
     shadow \
     su-exec \
     tzdata \
-    gnupg \
-    fish \
+    vim \
   && apk upgrade -a \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
@@ -45,7 +48,9 @@ RUN apk --update --no-cache add \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
-  && mkdir -p /etc/bash_completion.d
+  && mkdir -p /etc/bash_completion.d \
+  && rm -f /usr/bin/vi \
+  && ln -s /usr/bin/vim /usr/bin/vi
 
 
 # Install KUBECTL
@@ -209,8 +214,8 @@ ENV KOMPOSE_SHA256 4675f1a580b2775d021f3d1777f060ffd44b5f540f956c3b68f092480af9c
 RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
   && chmod +x ./${KOMPOSE_FILENAME} \
-  && mv ./${KOMPOSE_FILENAME} ./kompose
-
+  && mv ./${KOMPOSE_FILENAME} ./kompose \
+  && kompose completion bash > /etc/bash_completion.d/kompose
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
@@ -253,7 +258,8 @@ RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
   && gunzip ./${RAKKESS_FILENAME} \
   && mv ./rakkess-linux-amd64 ./rakkess \
   && chmod +x ./rakkess \
-  && rm -f ./${RAKKESS_FILENAME}
+  && rm -f ./${RAKKESS_FILENAME} \
+  && rakkess completion bash > /etc/bash_completion.d/rakkess
 
 
 # Install kubespy
