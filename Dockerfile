@@ -22,12 +22,14 @@ RUN apk --update --no-cache add \
     gnupg \
     groff \
     iputils \
+    keychain \
     libc6-compat \
     libusb \
     ncurses \
     net-tools \
     nmap \
     openssh-client \
+    perl \
     py2-pip \
     python2 \
     python3 \
@@ -44,6 +46,7 @@ RUN apk --update --no-cache add \
   && pip3 install --no-cache-dir --upgrade \
     container-transform \
     awsebcli \
+    cookiecutter \
     okta-awscli \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
@@ -132,10 +135,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.9
+ENV TERRAGRUNT_NEW_VERSION 0.19.11
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 9226cffc6b67b48c78e659b8ed1228e41b01c6fa4bd55e26e3b56c4d488db7ea
+ENV TERRAGRUNT_NEW_SHA256 a7baea8866b304196051619c4e2f3458c30cf034e116c6f48f91bc6757918508
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -219,16 +222,16 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.7.12
+ENV K9S_VERSION 0.7.13
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/${K9S_VERSION}
 ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
-ENV K9S_SHA256 0d4ef92c2da1aa73e8da60aeae1ae0004bcf42e5e1ed8d982ea0fca8b8633ebe
+ENV K9S_SHA256 0391df9ac040d6f8d3559643468a355fbacc3096fb9c6adedd3399a6ef6a58ef
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
   && tar -xzf ./${K9S_FILENAME} \
   && chmod +x ./k9s \
-  && rm -f LICENSE.txt \
+  && rm -f LICENSE \
   && rm -f README.md \
   && rm -f ./${K9S_FILENAME}
 
@@ -274,17 +277,18 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
   && tar -xzf ./${KUBESPY_FILENAME} \
   && mv ./releases/kubespy-linux-amd64/kubespy ./ \
   && chmod +x ./kubespy \
-  && rm -f ./${KUBESPY_FILENAME}
+  && rm -f ./${KUBESPY_FILENAME} \
+  && rm -rf ./releases
 
 
 WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 254.0.0
+ENV GCLOUD_VERSION 255.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 1bb4752645889a0a6a420787d7ceb9cbaa59ae2f8f42fd2338f8c2ffdafec8ca
+ENV GCLOUD_SHA256 18fcbc81b3b095ff5ef92fd41286a045f782c18d99a976c0621140a8fde3fbad
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \

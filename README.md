@@ -37,6 +37,7 @@ All of the following commands are available:
 - bq
 - confd
 - container-transform
+- cookiecutter
 - docker-compose
 - docker-credential-gcloud
 - eb
@@ -49,6 +50,7 @@ All of the following commands are available:
 - hclfmt
 - helm
 - k9s
+- keychain
 - kompose
 - kops
 - kubectl
@@ -128,7 +130,7 @@ An environment variable (`TZ`) is used to set the timezone when the container st
 
 - Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
 
-The cloudenv container is basically a solid ~1GB brick of binaries. It stays as minimal as possible while packaging a *lot* of tools, some of which are large (Hashicorp ones specifically), and providing a *lot* of functionality. It is possible to provision, manage, and develop production-grade cloud infrastructure with just the contents of this container.
+The cloudenv container stays as minimal as possible while packaging a *lot* of tools, some of which are large (Hashicorp ones specifically), and providing a *lot* of functionality. It is possible to provision, manage, and develop production-grade cloud infrastructure with just the contents of this container.
 
 `cloudenv` images are tagged with the ISO-8601 date they were first built (Example: 2018-08-14). The versions of all bundled software packages inside an image are the latest that were available on that date. You can edit the `cloudenv` script to pin the image to a particular date if you'd like.
 
