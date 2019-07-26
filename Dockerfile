@@ -170,7 +170,8 @@ ENV AWS_IAM_AUTH_SHA256 9744923781cca33dba3f48e1b8443af4d7f158748bd105134aaa6825
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
-  && chmod +x ./${AWS_IAM_AUTH_FILENAME}
+  && chmod +x ./${AWS_IAM_AUTH_FILENAME} \
+  && mv ./${AWS_IAM_AUTH_FILENAME} ./aws-iam-authenticator
 
 
 # Install Kubectx
@@ -308,7 +309,7 @@ RUN apk --update --no-cache add --virtual build.deps \
     pkgconfig \
   && echo GOROOT=/usr/lib/go > /usr/lib/go/src/all.bash \
   && export CGO_ENABLED=0 \
-  && go get github.com/fatih/hclfmt \
+  && go get github.com/hashicorp/hcl2/cmd/hclfmt \
   && go get github.com/segmentio/terraform-docs \
   && go get github.com/kelseyhightower/confd \
   && export CGO_ENABLED=1 \
