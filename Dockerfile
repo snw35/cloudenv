@@ -36,7 +36,6 @@ RUN apk --update --no-cache add \
     shadow \
     su-exec \
     tzdata \
-    vim \
   && apk upgrade -a \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
@@ -51,9 +50,7 @@ RUN apk --update --no-cache add \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
-  && mkdir -p /etc/bash_completion.d \
-  && rm -f /usr/bin/vi \
-  && ln -s /usr/bin/vim /usr/bin/vi
+  && mkdir -p /etc/bash_completion.d
 
 
 # Install KUBECTL
@@ -299,6 +296,7 @@ RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
 
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY clearokta /usr/bin/clearokta
 
 # Install go binaries
 ENV GOROOT "/usr/lib/go"
@@ -325,8 +323,8 @@ RUN apk --update --no-cache add --virtual build.deps \
   && echo "    Host *" >> /etc/ssh/ssh_config \
   && echo "ServerAliveInterval 30" >> /etc/ssh/ssh_config \
   && echo "ServerAliveCountMax 3" >> /etc/ssh/ssh_config \
-  && chmod +x /docker-entrypoint.sh
-
+  && chmod +x /docker-entrypoint.sh \
+  && chmod +x /usr/bin/clearokta
 
 COPY bashrc /etc/bashrc
 

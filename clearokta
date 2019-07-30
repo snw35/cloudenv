@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -f ~/.okta-aws ]; then
+  sed -i '/app-link = /d' ~/.okta-aws
+  sed -i '/role = /d' ~/.okta-aws
+else
+  echo "$HOME/.okta-aws - file not found"
+fi
