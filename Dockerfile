@@ -36,6 +36,7 @@ RUN apk --update --no-cache add \
     shadow \
     su-exec \
     tzdata \
+    jq \
   && apk upgrade -a \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
@@ -69,10 +70,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 2.14.2
+ENV HELM_VERSION 2.14.3
 ENV HELM_URL https://storage.googleapis.com/kubernetes-helm
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 9f50e69cf5cfa7268b28686728ad0227507a169e52bf59c99ada872ddd9679f0
+ENV HELM_SHA256 38614a665859c0f01c9c1d84fa9a5027364f936814d1e47839b05327e400bf55
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -100,10 +101,10 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.5
+ENV TERRAFORM_NEW_VERSION 0.12.6
 ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
 ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 babb4a30b399fb6fc87a6aa7435371721310c2e2102a95a763ef2c979ab06ce2
+ENV TERRAFORM_NEW_SHA256 6544eb55b3e916affeea0a46fe785329c36de1ba1bdb51ca5239d3567101876f
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
@@ -132,10 +133,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.11
+ENV TERRAGRUNT_NEW_VERSION 0.19.14
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 a7baea8866b304196051619c4e2f3458c30cf034e116c6f48f91bc6757918508
+ENV TERRAGRUNT_NEW_SHA256 60b937ed1d1d0dc5f4d84efa1a2de6590d3df76304a3ade1df5f13933042acc8
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -236,10 +237,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.13.2
+ENV FLUXCTL_VERSION 1.13.3
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 2d6262591e8409550acf95ee25ababa18c01fbaa2a9f94d9279e70197027d518
+ENV FLUXCTL_SHA256 08d313f1812d097ffb3e1ce56c9d9e7a2e8c7af54db4e4a8542d316bbaaf7722
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -283,10 +284,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 255.0.0
+ENV GCLOUD_VERSION 256.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 18fcbc81b3b095ff5ef92fd41286a045f782c18d99a976c0621140a8fde3fbad
+ENV GCLOUD_SHA256 7237fc06ca1c0a1263bb107638e72f69539056ff7455983827cf2908dd09ed2d
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
@@ -312,8 +313,10 @@ RUN apk --update --no-cache add --virtual build.deps \
   && go get github.com/kelseyhightower/confd \
   && export CGO_ENABLED=1 \
   && go get github.com/segmentio/aws-okta \
+  && go get gopkg.in/mikefarah/yq.v2 \
   && go clean -cache \
   && mv /root/go/bin/* /usr/bin/ \
+  && mv /usr/bin/yq.v2 /usr/bin/yq \
   && apk del build.deps \
   && rm -rf /root/go/ \
   && rm -rf /root/.cache \

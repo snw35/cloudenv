@@ -8,9 +8,7 @@ This is a one-stop "install all" for modern cloud tooling that wraps seamlessly 
 
 ## How To Use
 
-The only requirement is to have Docker installed.
-
-Tested and working on both Mac and Linux.
+The only requirement is to have Docker installed. Tested and working on both Mac and Linux.
 
 Install the `cloudenv` command:
 
@@ -22,51 +20,80 @@ Run the `cloudenv` command and it will pull the latest version of the container 
 
 `⛅user@cloudenv:~$`
 
-Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion.
+Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion. If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
 
-If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
+## Included Software
 
-### Included Software
+The following software is included:
+
+ * [AWS CLI](https://aws.amazon.com/cli/)
+ * [AWS EB CLI (Elastic Beanstalk CLI)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html)
+ * [AWS ECS CLI (Elastic Container Service CLI)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html)
+ * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+ * [AWS Okta](https://github.com/segmentio/aws-okta)
+ * [Confd](http://www.confd.io/)
+ * [Container Transform](https://github.com/micahhausler/container-transform)
+ * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
+ * [Fluxctl](https://www.weave.works/docs/cloud/latest/tasks/deploy/manual-configuration/)
+ * [Gcloud Suite](https://cloud.google.com/sdk/)
+ * [Hashicorp Packer](https://www.packer.io/)
+ * [Hashicorp Terraform](https://www.terraform.io/)
+ * [HCL Format](https://github.com/hashicorp/hcl2)
+ * [Helm](https://github.com/helm/helm)
+ * [K9s](https://k9ss.io/)
+ * [Kompose](http://kompose.io/)
+ * [Kops](https://github.com/kubernetes/kops)
+ * [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
+ * [Kubectx](https://github.com/ahmetb/kubectx)
+ * [Kubespy](https://github.com/pulumi/kubespy)
+ * [Okta AWS CLI](https://github.com/jmhale/okta-awscli)
+ * [Rakkess](https://github.com/corneliusweig/rakkess)
+ * [Terraform Docs](https://github.com/segmentio/terraform-docs)
+ * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
+ * [YQ](https://mikefarah.github.io/yq/)
+
+### Available Commands
 
 All of the following commands are available:
 
-- aws
-- aws-iam-authenticator
-- aws-okta
-- awsebcli
-- bq
-- confd
-- container-transform
-- cookiecutter
-- docker-compose
-- docker-credential-gcloud
-- eb
-- ebp
-- ecs-cli
-- ecs-compose
-- fluxctl
-- gcloud
-- gsutil
-- hclfmt
-- helm
-- k9s
-- keychain
-- kompose
-- kops
-- kubectl
-- kubectx
-- kubens
-- kubespy
-- okta-awscli
-- packer
-- rakkess
-- terraform (v11, backwards compatible with <= v11)
-- terraform-docs
-- terraform12 (v12, not backwards compatible)
-- terragrunt (v18, backwards compatible with terraform <=v11)
-- terragrunt19 (v19, only compatible with terraform v12+)
+ - aws
+ - aws-iam-authenticator
+ - aws-okta
+ - awsebcli
+ - bq
+ - clearokta
+ - confd
+ - container-transform
+ - cookiecutter
+ - docker-compose
+ - docker-credential-gcloud
+ - eb
+ - ebp
+ - ecs-cli
+ - ecs-compose
+ - fluxctl
+ - gcloud
+ - gsutil
+ - hclfmt
+ - helm
+ - k9s
+ - keychain
+ - kompose
+ - kops
+ - kubectl
+ - kubectx
+ - kubens
+ - kubespy
+ - okta-awscli
+ - packer
+ - rakkess
+ - terraform
+ - terraform-docs
+ - terraform12
+ - terragrunt
+ - terragrunt19
 
-If something you want is missing, please open an issue or submit a PR, both are welcome!
+ If something you want is missing, please open an issue or submit a PR, both are welcome!
 
 #### Terraform 12 and Terragrunt 19
 
@@ -79,9 +106,9 @@ export TERRAGRUNT_TFPATH=/usr/bin/terraform12
 terragrunt19 plan-all
 ```
 
-### Customise The Shell
+### Change The Shell
 
-You can change the shell to fish or a plain bash session that will use your host machine's ~/.bashrc. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.
+By default, a custom bash shell is run inside the container. You can change this to a plain fish or a bash session that will use your host machine's shell configuration. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.
 
 ## Why?
 
