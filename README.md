@@ -16,11 +16,11 @@ Install the `cloudenv` command:
 sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /usr/local/bin/cloudenv && sudo chmod +x /usr/local/bin/cloudenv;
 ```
 
-Run the `cloudenv` command and it will pull the latest version of the container image (around 1GB), start the container, and drop you into the cloudenv shell:
+Run the `cloudenv` command and it will pull the latest version of the container image (around 1GB), start the container, and drop you into the shell:
 
 `⛅user@cloudenv:~$`
 
-Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion. If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
+Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
 
 ## Included Software
 
@@ -106,7 +106,7 @@ export TERRAGRUNT_TFPATH=/usr/bin/terraform12
 terragrunt19 plan-all
 ```
 
-### Change The Shell
+### Changing The Shell
 
 By default, a custom bash shell is run inside the container. You can change this to a plain fish or a bash session that will use your host machine's shell configuration. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.
 

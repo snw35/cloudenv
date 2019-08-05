@@ -133,10 +133,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.14
+ENV TERRAGRUNT_NEW_VERSION 0.19.16
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 60b937ed1d1d0dc5f4d84efa1a2de6590d3df76304a3ade1df5f13933042acc8
+ENV TERRAGRUNT_NEW_SHA256 c5187d23dc536631fc21b69d05a977b5ddceccaa79c4f096f6abd1c526bc6b6b
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -194,10 +194,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.12.2
+ENV KOPS_VERSION 1.13.0
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 c71fa644741b4e831d417dfacd3bb4e513d8f320f1940de0a011b7dd3a9e4fcb
+ENV KOPS_SHA256 2c6adb2d38a06009a4981a507d315f70e71207974adec159d10021a9f5264fcf
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -321,6 +321,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && rm -rf /root/go/ \
   && rm -rf /root/.cache \
   && rm -rf /usr/lib/go/src/all.bash \
+  && terraform-docs completion bash > /etc/bash_completion.d/terraform-docs \
   && aws-okta completion bash > /etc/bash_completion.d/aws-okta \
   && echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
   && echo "    Host *" >> /etc/ssh/ssh_config \
