@@ -57,10 +57,10 @@ RUN apk --update --no-cache add \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.15.1
+ENV KUBECTL_VERSION 1.15.2
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 f4f4b855ab16ef295bc74f07edc77482d43e8fe81abc7cf92c476c4344788aa6
+ENV KUBECTL_SHA256 a737000af13f9c8c347945bc581b819659c464eae92056424bdddae735e2e888
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -133,10 +133,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.16
+ENV TERRAGRUNT_NEW_VERSION 0.19.19
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 c5187d23dc536631fc21b69d05a977b5ddceccaa79c4f096f6abd1c526bc6b6b
+ENV TERRAGRUNT_NEW_SHA256 e73646a0d40c68b0a1500615d587ecf0595aceafeda21d561cbff1afeaecc67e
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -221,10 +221,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.7.13
+ENV K9S_VERSION 0.8.1
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/${K9S_VERSION}
 ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
-ENV K9S_SHA256 0391df9ac040d6f8d3559643468a355fbacc3096fb9c6adedd3399a6ef6a58ef
+ENV K9S_SHA256 3ece8ad1c613d9a97401d6a4b0b4cf97a1f0f56f635cb15cdc7d65a7a4e2c732
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -284,10 +284,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 256.0.0
+ENV GCLOUD_VERSION 257.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 7237fc06ca1c0a1263bb107638e72f69539056ff7455983827cf2908dd09ed2d
+ENV GCLOUD_SHA256 2b9eb732206f9c171b6eb9a22083efb98006cc09f1e53f09468626160d3a7cf8
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
