@@ -45,6 +45,12 @@ if hash docker 2>/dev/null; then
       fi
       docker exec -it $container_name su-exec 1000:1000 $user_shell
     fi
+  else
+    if hash id 2>/dev/null; then
+      docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" $user_shell
+    else
+      docker exec -it $container_name su-exec 1000:1000 $user_shell
+    fi
   fi
 
   docker rm -f $container_name &> /dev/null
