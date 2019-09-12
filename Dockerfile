@@ -279,6 +279,7 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
   && rm -f ./${KUBESPY_FILENAME} \
   && rm -rf ./releases
 
+
 # Install Porter
 # From https://github.com/deislab&& ./porter/releases
 ENV PORTER_VERSION v0.14.1-beta.1
@@ -298,6 +299,20 @@ RUN wget $PORTER_URL/$PORTER_FILENAME \
   && ./porter mixin install az --version canary \
   && ./porter mixin install aws --version canary \
   && ./porter mixin install gcloud --version canary
+
+
+# Install eksctl
+# From https://github.com/weaveworks/eksctl/releases
+ENV EKSCTL_VERSION 0.5.3
+ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
+ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
+ENV EKSCTL_SHA256 7a85a89b9fb9870f6858b7dea0aa21e1b9084756aca7fcd10407b9020bffda95
+
+RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
+  && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
+  && tar -xzf ./${EKSCTL_FILENAME} \
+  && chmod +x ./eksctl \
+  && rm -f ./${EKSCTL_FILENAME}
 
 
 WORKDIR /opt
