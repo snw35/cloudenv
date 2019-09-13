@@ -37,6 +37,7 @@ RUN apk --update --no-cache add \
     su-exec \
     tzdata \
     jq \
+    tmux \
   && apk upgrade -a \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
@@ -363,7 +364,8 @@ RUN apk --update --no-cache add --virtual build.deps \
   && echo "ServerAliveInterval 30" >> /etc/ssh/ssh_config \
   && echo "ServerAliveCountMax 3" >> /etc/ssh/ssh_config \
   && chmod +x /docker-entrypoint.sh \
-  && chmod +x /usr/bin/clearokta
+  && chmod +x /usr/bin/clearokta \
+  && apk upgrade -a
 
 COPY bashrc /etc/bashrc
 

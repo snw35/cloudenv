@@ -114,6 +114,12 @@ terragrunt19 plan-all
 
 By default, a custom bash shell is run inside the container. You can change this to a plain fish or a bash session that will use your host machine's shell configuration. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.
 
+
+### Remove The Container
+
+The container is left running in the background after you run the command for the first time. It won't re-start itself after a reboot, but will be in the stopped state. If you'd like to clean it up, then you can run the following: `docker rm -f cloudenv`
+
+
 ## Why?
 
 If you deal with infrastructure as code, or simply work with AWS and GCP from the command line, then you will have quickly realised:
@@ -137,7 +143,7 @@ It works in the following way:
 2. It bind-mounts your home directory into the container, passes your user and group from the host machine in with environment variables, and ensures all permissions match up.
 3. If the host has an ssh-agent running, it bind-mounts the auth socket into the container. If not, it runs a separate ssh-agent as your user.
 4. It starts a bash session inside the container as your user with a custom shell configuration (`/etc/bashrc`).
-5. When you terminate the bash session, it stops and removes the cloudenv container so there are no left-over processes running.
+5. The container runs in the background and can be connected to with multiple sessions. It also has tmux installed for multi-session support.
 
 Further information on some of these aspects is below.
 

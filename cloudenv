@@ -113,8 +113,6 @@ if hash docker 2>/dev/null; then
     fi
   fi
 
-  docker rm -f $container_name &> /dev/null
-
 else
   echo "docker command not found, you must install docker first."
 fi
