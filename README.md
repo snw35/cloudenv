@@ -20,7 +20,7 @@ Run the `cloudenv` command and it will pull the latest version of the container 
 
 `⛅user@cloudenv:~$`
 
-Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If you're using ssh or git, run `ssh-add` and enter your password. This will prevent you from having to enter it every time.
+Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If your session has an ssh-agent running with cached credentials, then these should continue to work and be available for git/ssh etc.
 
 ## Included Software
 
@@ -34,6 +34,7 @@ The following software is included:
  * [Confd](http://www.confd.io/)
  * [Container Transform](https://github.com/micahhausler/container-transform)
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
+ * [EKS CLI (Elastic Kubernetes Service CLI)](https://eksctl.io/)
  * [Fluxctl](https://www.weave.works/docs/cloud/latest/tasks/deploy/manual-configuration/)
  * [Gcloud Suite](https://cloud.google.com/sdk/)
  * [Hashicorp Packer](https://www.packer.io/)
@@ -47,6 +48,7 @@ The following software is included:
  * [Kubectx](https://github.com/ahmetb/kubectx)
  * [Kubespy](https://github.com/pulumi/kubespy)
  * [Okta AWS CLI](https://github.com/jmhale/okta-awscli)
+ * [Porter](https://porter.sh/)
  * [Rakkess](https://github.com/corneliusweig/rakkess)
  * [Terraform Docs](https://github.com/segmentio/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
@@ -71,6 +73,7 @@ All of the following commands are available:
  - ebp
  - ecs-cli
  - ecs-compose
+ - eksctl
  - fluxctl
  - gcloud
  - gsutil
@@ -86,6 +89,7 @@ All of the following commands are available:
  - kubespy
  - okta-awscli
  - packer
+ - porter
  - rakkess
  - terraform
  - terraform-docs
@@ -131,7 +135,7 @@ It works in the following way:
 
 1. The `cloudenv` script pulls latest version of the container and starts it.
 2. It bind-mounts your home directory into the container, passes your user and group from the host machine in with environment variables, and ensures all permissions match up.
-3. It runs `ssh-agent` as your user inside the container so it is available to cache ssh credentials if needed.
+3. If the host has an ssh-agent running, it bind-mounts the auth socket into the container. If not, it runs a separate ssh-agent as your user.
 4. It starts a bash session inside the container as your user with a custom shell configuration (`/etc/bashrc`).
 5. When you terminate the bash session, it stops and removes the cloudenv container so there are no left-over processes running.
 
@@ -163,4 +167,4 @@ The cloudenv container stays as minimal as possible while packaging a *lot* of t
 
 The `latest` tag always points to the most recent image. Where backwards compatibility is an issue (such as with terraform), both the old and new versions will be included.
 
-The 'cloudenv' script pulls the latest version of the `latest` tag each time it is run, so you will always be running the most recent software.
+The 'cloudenv' script pulls the `latest` tag each time it is run, so you will always be running the most recent software.
