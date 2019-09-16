@@ -316,6 +316,22 @@ RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && rm -f ./${EKSCTL_FILENAME}
 
 
+# Install the AWS session manager plugin
+ENV AWSSMP_VERSION 1.1.31.0
+ENV AWSSMP_URL https://s3.amazonaws.com/session-manager-downloads/plugin/${AWSSMP_VERSION}/linux_64bit
+ENV AWSSMP_FILENAME session-manager-plugin.rpm
+ENV AWSSMP_SHA256 6a4abafaa921a5ff242bb8dfff18d528f1544e22571ba03b3a5d7d4d3cf28072
+
+RUN apk --update --no-cache add --virtual build.deps \
+    rpm2cpio \
+  && wget $AWSSMP_URL/$AWSSMP_FILENAME \
+  && echo "$AWSSMP_SHA256  ./$AWSSMP_FILENAME" | sha256sum -c - \
+  && rpm2cpio ./session-manager-plugin.rpm | cpio -idmv \
+  && mv ./usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/ \
+  && rm -rf ./etc ./usr ./var ./$AWSSMP_FILENAME \
+  && apk del build.deps
+
+
 WORKDIR /opt
 
 # Install gcloud suite
@@ -364,8 +380,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && echo "ServerAliveInterval 30" >> /etc/ssh/ssh_config \
   && echo "ServerAliveCountMax 3" >> /etc/ssh/ssh_config \
   && chmod +x /docker-entrypoint.sh \
-  && chmod +x /usr/bin/clearokta \
-  && apk upgrade -a
+  && chmod +x /usr/bin/clearokta
 
 COPY bashrc /etc/bashrc
 

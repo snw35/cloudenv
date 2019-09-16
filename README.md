@@ -31,6 +31,7 @@ The following software is included:
  * [AWS ECS CLI (Elastic Container Service CLI)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
+ * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
  * [Confd](http://www.confd.io/)
  * [Container Transform](https://github.com/micahhausler/container-transform)
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
@@ -91,6 +92,7 @@ All of the following commands are available:
  - packer
  - porter
  - rakkess
+ - session-manager-plugin
  - terraform
  - terraform-docs
  - terraform12
