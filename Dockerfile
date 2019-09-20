@@ -59,10 +59,10 @@ RUN apk --update --no-cache upgrade -a \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.15.3
+ENV KUBECTL_VERSION 1.16.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 6e805054a1fb2280abb53f75b57a1b92bf9c66ffe0d2cdcd46e81b079d93c322
+ENV KUBECTL_SHA256 4fc8a7024ef17b907820890f11ba7e59a6a578fa91ea593ce8e58b3260f7fb88
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -103,10 +103,10 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.8
+ENV TERRAFORM_NEW_VERSION 0.12.9
 ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
 ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 43806e68f7af396449dd4577c6e5cb63c6dc4a253ae233e1dddc46cf423d808b
+ENV TERRAFORM_NEW_SHA256 69712c6216cc09b7eca514b9fb137d4b1fead76559c66f338b4185e1c347ace5
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
@@ -135,10 +135,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.23
+ENV TERRAGRUNT_NEW_VERSION 0.19.25
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 affff017c8a51843c3c0923c38bcf4bdaddbaa8dcb50dd7c089e4e08b0093874
+ENV TERRAGRUNT_NEW_SHA256 f55164e7a53df18d2feebe8cd93a86b53f83b60a5ffd1104b4c7c819f376dfc4
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -220,6 +220,7 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && chmod +x ./${KOMPOSE_FILENAME} \
   && mv ./${KOMPOSE_FILENAME} ./kompose \
   && kompose completion bash > /etc/bash_completion.d/kompose
+
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
