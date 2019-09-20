@@ -25,7 +25,7 @@ fi
 if hash docker 2>/dev/null; then
 
   # Always pull latest image
-  ImagePullOutput=$(docker pull $image_name:$image_tag | tee)
+  ImagePullOutput=$(docker pull $image_name:$image_tag | tee /dev/tty)
 
   # If new image has been pulled AND container is running, stop and remove it
   if [[ $ImagePullOutput != *"up to date"* ]] && [[ "$(docker ps -q -f name=$container_name)" ]]; then
