@@ -19,20 +19,27 @@ if [ ! -d $home_directory ]; then
 fi
 
 if [ -z "${SSH_AGENT_PID:-}" ] || [ -z "${SSH_AUTH_SOCK:-}" ]; then
-  echo '$SSH_AGENT_PID or $SSH_AUTH_SOCK are empty, unable to use host SSH agent.'
   declare -r SSH_AGENT_PID='0'
 fi
 
 if hash docker 2>/dev/null; then
 
+  # Always pull latest image
+  ImagePullOutput=$(docker pull $image_name:$image_tag | tee)
+
+  # If new image has been pulled AND container is running, stop and remove it
+  if [[ $ImagePullOutput != *"up to date"* ]] && [[ "$(docker ps -q -f name=$container_name)" ]]; then
+    docker stop $container_name
+    docker rm -f $container_name
+  fi
+
   if [ ! "$(docker ps -q -f name=$container_name)" ]; then
+    # Container is not running
 
     if [ "$(docker ps -aq -f status=exited -f name=$container_name)" ]; then
+      # Container exists and is stopped or exited, so remove it
       docker rm -f $container_name
     fi
-
-    # Always pull latest image
-    docker pull $image_name:$image_tag
 
     if hash id 2>/dev/null; then
 
@@ -41,9 +48,9 @@ if hash docker 2>/dev/null; then
         docker run -dit \
           --name $container_name \
           --hostname $container_name \
-          -w="$HOME" \
+          --workdir "$HOME" \
           --mount type=bind,source=$home_directory,target="$HOME" \
-          --mount type=bind,source="`dirname $SSH_AUTH_SOCK`",target="`dirname $SSH_AUTH_SOCK`" \
+          --publish 5555:5555 \
           -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" \
           -e HOST_GROUP_NAME="$(id -g -n)" \
           -e HOST_USER_ID="$(id -u)" \
@@ -56,9 +63,10 @@ if hash docker 2>/dev/null; then
         docker run -dit \
           --name $container_name \
           --hostname $container_name \
-          -w="$HOME" \
+          --workdir "$HOME" \
           --mount type=bind,source=$home_directory,target="$HOME" \
           --mount type=bind,source="`dirname $SSH_AUTH_SOCK`",target="`dirname $SSH_AUTH_SOCK`" \
+          --publish 5555:5555 \
           -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" \
           -e HOST_GROUP_NAME="$(id -g -n)" \
           -e HOST_USER_ID="$(id -u)" \
@@ -80,9 +88,9 @@ if hash docker 2>/dev/null; then
         docker run -dit \
           --name $container_name \
           --hostname $container_name \
-          -w="/home/user" \
+          --workdir "/home/user" \
           --mount type=bind,source=$home_directory,target="/home/user" \
-          --mount type=bind,source="`dirname $SSH_AUTH_SOCK`",target="`dirname $SSH_AUTH_SOCK`" \
+          --publish 5555:5555 \
           -e TZ=$timezone \
           $image_name:$image_tag &> /dev/null
         retVal=$?
@@ -91,9 +99,10 @@ if hash docker 2>/dev/null; then
         docker run -dit \
           --name $container_name \
           --hostname $container_name \
-          -w="/home/user" \
+          --workdir "/home/user" \
           --mount type=bind,source=$home_directory,target="/home/user" \
           --mount type=bind,source="`dirname $SSH_AUTH_SOCK`",target="`dirname $SSH_AUTH_SOCK`" \
+          --publish 5555:5555 \
           -e TZ=$timezone \
           -e SSH_AUTH_SOCK="${SSH_AUTH_SOCK}" \
           $image_name:$image_tag &> /dev/null
