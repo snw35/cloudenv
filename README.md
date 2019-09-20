@@ -49,7 +49,6 @@ The following software is included:
  * [Kubectx](https://github.com/ahmetb/kubectx)
  * [Kubespy](https://github.com/pulumi/kubespy)
  * [Okta AWS CLI](https://github.com/jmhale/okta-awscli)
- * [Porter](https://porter.sh/)
  * [Rakkess](https://github.com/corneliusweig/rakkess)
  * [Terraform Docs](https://github.com/segmentio/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
@@ -90,7 +89,6 @@ All of the following commands are available:
  - kubespy
  - okta-awscli
  - packer
- - porter
  - rakkess
  - session-manager-plugin
  - terraform
@@ -111,6 +109,13 @@ To run with the new and non-backwards-compatible terraform v12 and terragrunt v1
 export TERRAGRUNT_TFPATH=/usr/bin/terraform12
 terragrunt19 plan-all
 ```
+
+### Connecting to Published Ports
+
+Port `5555` is exposed from the container to the host and can be reached at `http://localhost:5555`. This can be used for e.g authentication programs that serve a web page on localhost. If a different port is required, it can be added or edited in the `cloudenv` script.
+
+__Note:__ Host mode networking is not used because it cannot be used on Macs, as docker runs inside a VM.
+
 
 ### Changing The Shell
 
@@ -143,9 +148,9 @@ It works in the following way:
 
 1. The `cloudenv` script pulls latest version of the container and starts it.
 2. It bind-mounts your home directory into the container, passes your user and group from the host machine in with environment variables, and ensures all permissions match up.
-3. If the host has an ssh-agent running, it bind-mounts the auth socket into the container. If not, it runs a separate ssh-agent as your user.
+3. If the host has an ssh-agent running, it bind-mounts the auth socket into the container. If not, it runs a separate ssh-agent as your user. This lets ssh commands access stored credentials as though they were running on the host.
 4. It starts a bash session inside the container as your user with a custom shell configuration (`/etc/bashrc`).
-5. The container runs in the background and can be connected to with multiple sessions. It also has tmux installed for multi-session support.
+5. The container runs in the background and can be connected to with multiple sessions.
 
 Further information on some of these aspects is below.
 

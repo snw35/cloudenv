@@ -6,7 +6,8 @@ FROM alpine:3.10
 WORKDIR /usr/bin/
 
 # Install base deps and pip modules
-RUN apk --update --no-cache add \
+RUN apk --update --no-cache upgrade -a \
+  && apk --no-cache add \
     bash \
     bash-completion \
     bind-tools \
@@ -281,27 +282,6 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
   && rm -rf ./releases
 
 
-# Install Porter
-# From https://github.com/deislab&& ./porter/releases
-ENV PORTER_VERSION v0.14.1-beta.1
-ENV PORTER_URL https://deislabs.blob.core.windows.net/porter/${PORTER_VERSION}
-ENV PORTER_FILENAME porter-linux-amd64
-ENV PORTER_SHA256 5e78beab3f5176fa5f714e953961a4a70e9707cc9b9a3dd895ef5f937f135ccb
-
-RUN wget $PORTER_URL/$PORTER_FILENAME \
-  && echo "$PORTER_SHA256  ./$PORTER_FILENAME" | sha256sum -c - \
-  && chmod +x ./${PORTER_FILENAME} \
-  && mv ./${PORTER_FILENAME} ./porter \
-  && ./porter mixin install exec --version canary \
-  && ./porter mixin install kubernetes --version canary \
-  && ./porter mixin install helm --version canary \
-  && ./porter mixin install azure --version canary \
-  && ./porter mixin install terraform --version canary \
-  && ./porter mixin install az --version canary \
-  && ./porter mixin install aws --version canary \
-  && ./porter mixin install gcloud --version canary
-
-
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
 ENV EKSCTL_VERSION 0.5.3
@@ -385,6 +365,8 @@ RUN apk --update --no-cache add --virtual build.deps \
 COPY bashrc /etc/bashrc
 
 ENV SSH_AUTH_SOCK /tmp/agent.sock
+
+EXPOSE 5555
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
