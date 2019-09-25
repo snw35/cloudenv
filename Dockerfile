@@ -89,7 +89,6 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform 11 as default and do not upgrade
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_OLD_UPGRADE false
 ENV TERRAFORM_OLD_VERSION 0.11.14
 ENV TERRAFORM_OLD_URL https://releases.hashicorp.com/terraform/$TERRAFORM_OLD_VERSION
 ENV TERRAFORM_OLD_FILENAME terraform_${TERRAFORM_OLD_VERSION}_linux_amd64.zip
@@ -122,7 +121,6 @@ RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
 
 # Install terragrunt 18 as default and do not upgrade
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_OLD_UPGRADE false
 ENV TERRAGRUNT_OLD_VERSION 0.18.7
 ENV TERRAGRUNT_OLD_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_OLD_VERSION
 ENV TERRAGRUNT_OLD_FILENAME terragrunt_linux_amd64
@@ -294,7 +292,8 @@ RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
   && tar -xzf ./${EKSCTL_FILENAME} \
   && chmod +x ./eksctl \
-  && rm -f ./${EKSCTL_FILENAME}
+  && rm -f ./${EKSCTL_FILENAME} \
+  && eksctl completion bash > /etc/bash_completion.d/eksctl
 
 
 # Install the AWS session manager plugin
