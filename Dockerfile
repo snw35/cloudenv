@@ -7,7 +7,7 @@ WORKDIR /usr/bin/
 
 # Install base deps and pip modules
 RUN apk --update --no-cache upgrade -a \
-  && apk --no-cache add \
+  && apk --update --no-cache add \
     bash \
     bash-completion \
     bind-tools \
@@ -39,7 +39,6 @@ RUN apk --update --no-cache upgrade -a \
     tzdata \
     jq \
     tmux \
-  && apk upgrade -a \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --upgrade \
     awscli \
