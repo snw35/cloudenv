@@ -193,10 +193,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.13.2
+ENV KOPS_VERSION 1.14.0
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 d49c6cc1cf30e7b431ae825730dc46db66807ff2d7fd720b8d2768b96c390af3
+ENV KOPS_SHA256 01f246ba1eb27af09736993bb708b908a240410b216b5d11f979e6b52df48ff0
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -315,10 +315,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 264.0.0
+ENV GCLOUD_VERSION 265.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 7a1644dc98348ca515f78eac54f4b777e9840f47d597b59e30bb85c64744b9f4
+ENV GCLOUD_SHA256 9633769d58d757ac7888efbe704772bc41113004c428222cad692e69b8fb27b1
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
