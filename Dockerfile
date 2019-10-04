@@ -58,10 +58,10 @@ RUN apk --update --no-cache upgrade -a \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.16.0
+ENV KUBECTL_VERSION 1.16.1
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 4fc8a7024ef17b907820890f11ba7e59a6a578fa91ea593ce8e58b3260f7fb88
+ENV KUBECTL_SHA256 69cfb3eeaa0b77cc4923428855acdfc9ca9786544eeaff9c21913be830869d29
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -132,10 +132,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.27
+ENV TERRAGRUNT_NEW_VERSION 0.19.28
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 2731342af7e528242bdbd1b88be338df187635cea840d9183eddd0b06c6edf02
+ENV TERRAGRUNT_NEW_SHA256 88b52ccb729817d4785c9fae5b36e10bdb5e27b4983df1661f56db16a039bff8
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -221,10 +221,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.8.4
+ENV K9S_VERSION 0.9.0
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/${K9S_VERSION}
 ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
-ENV K9S_SHA256 083a951e308589ec99e332639695bcc1ec6bfc281a482b282369652a4dbbaf9e
+ENV K9S_SHA256 28deb4381353bd23bd0be5fbe5a16ed6234e49c5338528020ea1b19f1ddb5a8a
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -237,10 +237,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.14.2
+ENV FLUXCTL_VERSION 1.15.0
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 542a693a1c1601cf19aa0834e9af7ec303380ca62bfdaf063444e99bbec8bb00
+ENV FLUXCTL_SHA256 d6ca90f6edaf5a770127ceb8fca63e1eafc2bfff8e382df255ffe16dce4fd099
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -309,6 +309,18 @@ RUN apk --update --no-cache add --virtual build.deps \
   && mv ./usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/ \
   && rm -rf ./etc ./usr ./var ./$AWSSMP_FILENAME \
   && apk del build.deps
+
+
+# Install cloud-nuke
+ENV CLOUD_NUKE_VERSION 0.1.9
+ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
+ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
+ENV CLOUD_NUKE_SHA256 c08f7b830f3041f024c3d6cfc7b45d35873a5a479ae18e37aa841a79e271619f
+
+RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
+  && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
+  && chmod +x ./${CLOUD_NUKE_FILENAME} \
+  && mv ./${CLOUD_NUKE_FILENAME} ./cloud-nuke
 
 
 WORKDIR /opt
