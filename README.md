@@ -32,6 +32,7 @@ The following software is included:
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
+ * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)
  * [Confd](http://www.confd.io/)
  * [Container Transform](https://github.com/micahhausler/container-transform)
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
@@ -64,6 +65,7 @@ All of the following commands are available:
  - awsebcli
  - bq
  - clearokta
+ - cloud-nuke
  - confd
  - container-transform
  - cookiecutter
