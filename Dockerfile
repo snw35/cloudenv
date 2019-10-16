@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.10
+FROM alpine:3.10.2
 
 WORKDIR /usr/bin/
 
@@ -58,10 +58,10 @@ RUN apk --update --no-cache upgrade -a \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.16.1
+ENV KUBECTL_VERSION 1.16.2
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 69cfb3eeaa0b77cc4923428855acdfc9ca9786544eeaff9c21913be830869d29
+ENV KUBECTL_SHA256 3ff48e12f9c768ad548e4221d805281ea28dfcda5c18b3cd1797fe37aee3012e
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -101,10 +101,10 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.9
+ENV TERRAFORM_NEW_VERSION 0.12.10
 ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
 ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 69712c6216cc09b7eca514b9fb137d4b1fead76559c66f338b4185e1c347ace5
+ENV TERRAFORM_NEW_SHA256 2215208822f1a183fb57e24289de417c9b3157affbe8a5e520b768edbcb420b4
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
@@ -132,10 +132,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.19.29
+ENV TERRAGRUNT_NEW_VERSION 0.20.4
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 1b2b15f383089a49e84a073cc81ed67d959c80adc343be3776020b40f65e49e2
+ENV TERRAGRUNT_NEW_SHA256 6fca4db39a191ee898a38fce201936324c6cf84bd3ba0fce8ecbddbdfc25d82a
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -145,10 +145,10 @@ RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.4.3
+ENV PACKER_VERSION 1.4.4
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 c89367c7ccb50ca3fa10129bbbe89273fba0fa6a75b44e07692a32f92b1cbf55
+ENV PACKER_SHA256 b4dc37877a0fd00fc72ebda98977c2133be9ba6b26bcdd13b1b14a369e508948
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -327,10 +327,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 265.0.0
+ENV GCLOUD_VERSION 267.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 9633769d58d757ac7888efbe704772bc41113004c428222cad692e69b8fb27b1
+ENV GCLOUD_SHA256 e1900f12c0dffaa96fb1435afb342e829fd814bcffba96b8c3b58d55c518f4d3
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
