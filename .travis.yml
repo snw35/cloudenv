@@ -1,24 +1,60 @@
 services: docker
 language: bash
-
-# Only build tags
-if: tag IS present
-
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 
 before_script:
-  - export VERSION=$(date -I)
   - env | sort
-  - image="$DOCKER_USERNAME/cloudenv:${VERSION}"
+  - docker run -it --rm --name nvchecker --mount type=bind,source=${PWD},target=/data/ -w /data snw35/nvchecker:latest nvchecker nvchecker.ini
+  - docker run -it --rm --name dfupdate --mount type=bind,source=${PWD},target=/data/ -w /data snw35/dfupdate:latest
+  - if [[ $(git status --porcelain | wc -l) -eq 0 ]]; then
+      echo "No local changes detected, nothing to build, exiting.";
+      travis_terminate 0;
+    else
+      echo "Local changes detected, continuing...";
+      cp new_ver.txt old_ver.txt;
+    fi
 
 script:
-  - travis_retry docker build -t "$image" .
-  - ~/official-images/test/run.sh "$image" || travis_terminate 1;
+  - TRAVIS_TAG=`date -I`
+  - BASE_VERSION=`grep "FROM" Dockerfile | cut -d " " -f 2 | cut -d ":" -f 2`
+  - IMAGE="${TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
+  - env | sort
+  - travis_retry docker build -t "$IMAGE" .
+  - ~/official-images/test/run.sh "$IMAGE" || travis_terminate 1;
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push "$image"
-  - docker tag "$image" "$DOCKER_USERNAME/cloudenv:latest"
-  - docker push "$DOCKER_USERNAME/cloudenv:latest"
+  - docker push "$IMAGE"
+  - docker tag "$IMAGE" "${TRAVIS_REPO_SLUG}:latest"
+  - docker push "${TRAVIS_REPO_SLUG}:latest"
 
 after_script:
   - docker images
+
+before_deploy:
+  - git config --local user.name "${DOCKER_USERNAME}"
+  - git config --local user.email "snw35@use.startmail.com"
+  - git remote add upstream https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
+  - git checkout master
+  - git add -A
+  - git commit --message "Software Updated"
+  - git tag $TRAVIS_TAG
+  - git push --quiet --set-upstream upstream
+  - git push --tags --quiet --set-upstream upstream
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  skip_cleanup: true
+  body: >
+    base image version: $BASE_VERSION
+    image deployed: $IMAGE
+
+branches:
+  except:
+    - /^untagged/
+
+env:
+  global:
+  - secure: h4jYIkmPTlmdhP2/Qy6RQx8zQOhl1IGu+pPKgFGb/DyEPWX2nZoarMWgBMtKrw4iSy9SMUZUAtsNTcWLwsIWi8kSL9NsrQsqtwSgy+FCASsq3Iza2PW8b2X3SHzwMWi9nwo3mYYsxD7K3uEymIl03xUdvlq4dhFTkB1XbxMxc+rEAKBmEekp0N9Dp+uMe6RrCboLnINmcTP1TDT8VTFTfWg/6p+bQlxE2GueIUKjuZV3PhyPj6eOC1NDoq35ebQ24b3ieWvX8Z38x+CD2PVk0m5pvheXEslPD04AaGnQj8hahuOCmdmyGbwgyf8UoThu2G0DhOwxdtFdLqN9SRqdemtwRRaJw08U2zW18Va8srI24RxHTcXW5ruSFVv0RE9ocljmBsjSDmWTRHBd1tv/JPqbSDG/U2wbBqVtozO/0Kfo9cf3iMVYKAUb4PBnfEpafLiwxcsr/fSQZ2yZzphJJJC1oiASn7dJOH3qeFoUL6oaf5QDjZkL5tgcTYouvUVPNNNoR9DU3MT0b0t24j4tGu5ztSejjAzzeU9RubxL3WHeCLj0GL/aUiKY5vpeb8dP69o7vSeWPeYpDQ/SxO0F0CH5Z4Z3ug3X9aU6g7VFstnUsGHkiVAgaciQZzMQ566VzSHPpYgFFbjuBue5+dGdMfxSNN0yfiIktL4JK2TtA3g=
+  - secure: ttmNukGXlUCLY1JOzkLHKHXK+KCtJc30mrw/myYFAEkzKwipIPnLS6vyfE4gGj/Eww4PtDDlv9kTGgQCza4gn8eOhvabLX647OBC0pO+Nb03a57JJD9AVIjMTR8T0B5oneG4adQn109bnMxFQ935DCc2CZwQmVh5BiUYKVHmT8tfqQv+znkUvzrr/S2OhY6m18LUbdcM+w/MWHGG9doWSZiGeSXkaQv6mHCeZPodH/Mg+TM9sdGmqbsaIWvXx3fx/WlvFoCblSX+J7VuouAOIZvEpyQpK6tdVK+x9lNiYZVI2yohryYKhZU16dnz0Co3FyH73H5GynuDa69/agJro6Q1QyCKWGPEDbVt/vhFfdL9oiSfAXTbO61eB5Oik447xD+MeWuCxtAoekvxtSga/+S3ZyYH7VJem3xUY0lQVxqyCylU8AHV1h6xFFevApEet6Bs3dSFc8N8BZ5NjwPfFunfffYgCOyzh7EVMFUHZnLm6hZ79buWIJWDI/79ld1HWjZN8R3hEc6fF81n32+R8GdK/pbhK1Kv3U9YqQEWQB8oBUXJBZMUjtuEJrdsZ9NhZ+3+vn3zVCjsreyBG5XCQgEjXiZo7tP6AZHNolyoW+qYCYemY06lLz0rratvPOQTDCUTM+ojd60J8ck494WhTYHEdTVjXBDWZoS2o0w+uxE=
+  - secure: eDJ6fYGKpJCBhGYyZSeJhi90jEAZ9YxUJnxfwp5TzTwtqT44AOUs1s/oQ0SBMdZsNCphd87+uet87rwuIQK1XlQRWhSDG+fwIOA7VITR9Ddm/YomSAZDL15aX5ai42wAezijtt80of7yXBfNUZ0yzJVP0W0v4KDCtYYG2VsMm7JpykUg0GPy6TWh5NLyJqB94f3Xe1HkInSsmEiyUE6BLPxmEnevYfYMdH/jf7t7Xi80sFOwk879ekTXD56nHu4J4z1ORoiWlyge+xEa24PdQSUVC7AVFmXdQHC2C3ENiNW8yPih/FPeHXg6qq+1+XNQR3JMqkMEfuENHxYUgozUvvC8rwAjr8dMj9gk/KLaD0wq5aKDwLaRLAw7pTgD2ToyvrQMXuQIfM3gCTXy9tZCoeuXTUZe/Z4vewFktHLPOMtGU4H4TN0MnO/2CZkCNOygsp5OlZX/xLQDom1zj1EjyULEsczgf5Gqhla7xeij+MzDA0TlPgZ/ItPy7jt6eWDTJBzc21zIfoJBmopnlA0q0GBtGkHJrbovTA7NVnj7nFE6XApk8ipF9tUf65uhILF2oTQRwky5OJqIzklY/6IJXoMDA92MO06+72PnrsBiVwZs1EbpRmHLmrZ/Uk+Rg39ROizoHUM7AtfTS4RHcshDRv5Ptqh2ee/3BGMyWPzKJwQ=

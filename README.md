@@ -24,7 +24,7 @@ Everything should work as you expect. The bash shell contains common utilities (
 
 ## Included Software
 
-The following software is included:
+The following software is installed and automatically checked for updates once per week:
 
  * [AWS CLI](https://aws.amazon.com/cli/)
  * [AWS EB CLI (Elastic Beanstalk CLI)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html)
@@ -54,50 +54,6 @@ The following software is included:
  * [Terraform Docs](https://github.com/segmentio/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
  * [YQ](https://mikefarah.github.io/yq/)
-
-### Available Commands
-
-All of the following commands are available:
-
- - aws
- - aws-iam-authenticator
- - aws-okta
- - awsebcli
- - bq
- - clearokta
- - cloud-nuke
- - confd
- - container-transform
- - cookiecutter
- - docker-compose
- - docker-credential-gcloud
- - eb
- - ebp
- - ecs-cli
- - ecs-compose
- - eksctl
- - fluxctl
- - gcloud
- - gsutil
- - hclfmt
- - helm
- - k9s
- - keychain
- - kompose
- - kops
- - kubectl
- - kubectx
- - kubens
- - kubespy
- - okta-awscli
- - packer
- - rakkess
- - session-manager-plugin
- - terraform
- - terraform-docs
- - terraform12
- - terragrunt
- - terragrunt19
 
  If something you want is missing, please open an issue or submit a PR, both are welcome!
 
@@ -175,6 +131,8 @@ An environment variable (`TZ`) is used to set the timezone when the container st
 ## Image Tagging and Updates
 
 - Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
+
+Travis CI automatically runs once per week and builds a new image if any updates are found to either the included software or the container base image.
 
 The cloudenv container stays as minimal as possible while packaging a *lot* of tools, some of which are large (Hashicorp ones specifically), and providing a *lot* of functionality. It is possible to provision, manage, and develop production-grade cloud infrastructure with just the contents of this container.
 
