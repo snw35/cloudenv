@@ -5,7 +5,7 @@ install:
 
 before_script:
   - env | sort
-  - docker run -it --rm --name nvchecker --mount type=bind,source=${PWD},target=/data/ -w /data snw35/nvchecker:latest nvchecker nvchecker.ini
+  - docker run -it --rm --name nvchecker --mount type=bind,source=${PWD},target=/data/ -w /data -e NVCHECKER_GITHUB_TOKEN=${GH_TOKEN} snw35/nvchecker:latest nvchecker nvchecker.ini
   - docker run -it --rm --name dfupdate --mount type=bind,source=${PWD},target=/data/ -w /data snw35/dfupdate:latest
   - if [[ $(git status --porcelain | wc -l) -eq 0 ]]; then
       echo "No local changes detected, nothing to build, exiting.";
