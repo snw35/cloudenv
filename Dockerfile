@@ -207,10 +207,10 @@ RUN wget $KOPS_URL/$KOPS_FILENAME \
 
 # Install kompose
 # From https://github.com/kubernetes/kompose/releases
-ENV KOMPOSE_VERSION 1.18.0
+ENV KOMPOSE_VERSION 1.19.0
 ENV KOMPOSE_URL https://github.com/kubernetes/kompose/releases/download/v${KOMPOSE_VERSION}
 ENV KOMPOSE_FILENAME kompose-linux-amd64
-ENV KOMPOSE_SHA256 4675f1a580b2775d021f3d1777f060ffd44b5f540f956c3b68f092480af9caf4
+ENV KOMPOSE_SHA256 d73aa4242102884bc5589e7a6777461b7b2e0ddc20b63f2812bfbfcbaa4659d9
 
 RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
@@ -282,10 +282,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.6.0
+ENV EKSCTL_VERSION 0.7.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 95d3087c6d84d9451ea68b1fc76e16c7ee57a6e1d644c9e02cdb9e83bdc2ce8c
+ENV EKSCTL_SHA256 b36bff0b4c6a3d9e2614a4727850ca2c5bc7a84ecb0fefdb7707b3080e8d2ab5
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -312,10 +312,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.1.9
+ENV CLOUD_NUKE_VERSION 0.1.11
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 c08f7b830f3041f024c3d6cfc7b45d35873a5a479ae18e37aa841a79e271619f
+ENV CLOUD_NUKE_SHA256 afe7eaaddabfa9ca25edfe1af1436bbf09dbf1f791dec23930ac3c02758fa074
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
