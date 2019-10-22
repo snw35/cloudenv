@@ -19,10 +19,12 @@ before_script:
   - git config --local user.name "${DOCKER_USERNAME}"
   - git config --local user.email "snw35@use.startmail.com"
   - git remote add upstream https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
-  - if [ "`git ls-remote --exit-code --tags upstream ${PROPOSED_TAG}`" ]; then
+  - if [ $(git ls-remote --tags upstream "${PROPOSED_TAG}" | wc -l) -eq 0 ]; then
+      echo "Propsoed tag does not exist on remote, continuing.";
+    else
       echo "Proposed tag already exists on remote, skipping container build.";
       travis_terminate 0;
-  - fi
+    fi
 
 script:
   - env | sort
