@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.10.2
+FROM alpine:3.10.3
 
 WORKDIR /usr/bin/
 
