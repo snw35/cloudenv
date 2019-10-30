@@ -71,10 +71,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 2.15.1
+ENV HELM_VERSION 2.15.2
 ENV HELM_URL https://storage.googleapis.com/kubernetes-helm
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 b4d366bd6625477b2954941aeb7b601946aa4226af6728e3a84eac4e62a84042
+ENV HELM_SHA256 a9d2db920bd4b3d824729bbe1ff3fa57ad27760487581af6e5d3156d1b3c2511
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -221,10 +221,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.9.2
+ENV K9S_VERSION 0.9.3
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/${K9S_VERSION}
 ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
-ENV K9S_SHA256 6c92f8e1a9c7db49598c63bc9eb5ea3389b02e044a275bebd2f9a3d8abb57921
+ENV K9S_SHA256 af3608517684e59de94573ad123486edd6f392c8c319ddbde6223d3ac2d37bd9
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -327,10 +327,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 268.0.0
+ENV GCLOUD_VERSION 269.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 bc8fa3a096421659d557b408d46dbbd565420d2f2cab99198ca0e8791f4d59a0
+ENV GCLOUD_SHA256 f152815d05a2f9374c87be1325a7d3bdbf62720d8fad9acb42dc2312d2e33f4a
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
