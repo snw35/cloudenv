@@ -23,6 +23,7 @@ RUN apk --update --no-cache upgrade -a \
     gnupg \
     groff \
     iputils \
+    jq \
     keychain \
     libc6-compat \
     libusb \
@@ -31,22 +32,15 @@ RUN apk --update --no-cache upgrade -a \
     nmap \
     openssh-client \
     perl \
-    py2-pip \
-    python2 \
     python3 \
     shadow \
     su-exec \
-    tzdata \
-    jq \
     tmux \
-  && pip install --no-cache-dir --upgrade pip \
-  && pip install --no-cache-dir --upgrade \
+    tzdata \
+  && pip3 install --no-cache-dir  \
+    pyyaml==3.10 \
     awscli \
-    ecs-compose \
-  && pip3 install --no-cache-dir --upgrade pip \
-  && pip3 install --no-cache-dir --upgrade \
     container-transform \
-    awsebcli \
     cookiecutter \
     okta-awscli \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
@@ -356,10 +350,8 @@ RUN apk --update --no-cache add --virtual build.deps \
   && go get github.com/kelseyhightower/confd \
   && export CGO_ENABLED=1 \
   && go get github.com/segmentio/aws-okta \
-  && go get gopkg.in/mikefarah/yq.v2 \
   && go clean -cache \
   && mv /root/go/bin/* /usr/bin/ \
-  && mv /usr/bin/yq.v2 /usr/bin/yq \
   && apk del build.deps \
   && rm -rf /root/go/ \
   && rm -rf /root/.cache \
@@ -372,6 +364,28 @@ RUN apk --update --no-cache add --virtual build.deps \
   && echo "ServerAliveCountMax 3" >> /etc/ssh/ssh_config \
   && chmod +x /docker-entrypoint.sh \
   && chmod +x /usr/bin/clearokta
+
+RUN echo "Test Layer" \
+  && session-manager-plugin --version \
+  && aws-iam-authenticator \
+  && cloud-nuke \
+  && eksctl \
+  && fluxctl \
+  && /opt/google-cloud-sdk/bin/gcloud version \
+  && helm \
+  && kompose \
+  && kops \
+  && kubectl \
+  && kubectx --help \
+  && kubens --help \
+  && aws --version \
+  && container-transform -h \
+  && cookiecutter -h \
+  && okta-awscli --help \
+  && hclfmt -version \
+  && terraform-docs \
+  && confd -version \
+  && aws-okta
 
 COPY bashrc /etc/bashrc
 

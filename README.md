@@ -27,8 +27,6 @@ Everything should work as you expect. The bash shell contains common utilities (
 The following software is installed and automatically checked for updates once per week:
 
  * [AWS CLI](https://aws.amazon.com/cli/)
- * [AWS EB CLI (Elastic Beanstalk CLI)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html)
- * [AWS ECS CLI (Elastic Container Service CLI)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
@@ -53,7 +51,6 @@ The following software is installed and automatically checked for updates once p
  * [Rakkess](https://github.com/corneliusweig/rakkess)
  * [Terraform Docs](https://github.com/segmentio/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
- * [YQ](https://mikefarah.github.io/yq/)
 
  If something you want is missing, please open an issue or submit a PR, both are welcome!
 
