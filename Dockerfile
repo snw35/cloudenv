@@ -126,10 +126,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.21.2
+ENV TERRAGRUNT_NEW_VERSION 0.21.4
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 6a9601960183ff25ebb6eac672cf9ad5c794198e97bd5573aca5da427d6bc2ad
+ENV TERRAGRUNT_NEW_SHA256 4250db3b9bfef840404f67a4e272ec2ae411b3b361634abcea807290e3298798
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -321,10 +321,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 269.0.0
+ENV GCLOUD_VERSION 270.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 f152815d05a2f9374c87be1325a7d3bdbf62720d8fad9acb42dc2312d2e33f4a
+ENV GCLOUD_SHA256 0cd052d2f71e6a70ccd42a526cc6870f9b59dbc1528026ee82dfd785643bae16
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
