@@ -126,10 +126,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.21.4
+ENV TERRAGRUNT_NEW_VERSION 0.21.5
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 4250db3b9bfef840404f67a4e272ec2ae411b3b361634abcea807290e3298798
+ENV TERRAGRUNT_NEW_SHA256 aff4a5947ea5acf6a04c47d313c208bd8b1a63976ae6b5732fa1b77d50525af9
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
 
 # Install rakkess
 # From https://github.com/corneliusweig/rakkess/releases
-ENV RAKKESS_VERSION 0.4.1
+ENV RAKKESS_VERSION 0.4.2
 ENV RAKKESS_URL https://github.com/corneliusweig/rakkess/releases/download/v${RAKKESS_VERSION}
 ENV RAKKESS_FILENAME rakkess-amd64-linux.tar.gz
-ENV RAKKESS_SHA256 56427bfd878a49010eb9238eb92cfefb958389e80bc790fd6cdb66ac9a363b43
+ENV RAKKESS_SHA256 72c80ae636711d8a42d53ee5bcd70956a69752575e0d7ce2e4afe6cfe6775636
 
 RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
   && echo "$RAKKESS_SHA256  ./$RAKKESS_FILENAME" | sha256sum -c - \
@@ -277,10 +277,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.8.0
+ENV EKSCTL_VERSION 0.9.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 422d5d67176d8cf3b9dda7814e2d105529704bf95ef5a98e879481bd384ef354
+ENV EKSCTL_SHA256 2c2f55a7df99b986d5431a287a3ba198efab71271e2b80989bfc5d926ce4ae17
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
