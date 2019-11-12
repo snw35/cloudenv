@@ -246,15 +246,16 @@ RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
 # From https://github.com/corneliusweig/rakkess/releases
 ENV RAKKESS_VERSION 0.4.1
 ENV RAKKESS_URL https://github.com/corneliusweig/rakkess/releases/download/v${RAKKESS_VERSION}
-ENV RAKKESS_FILENAME rakkess-linux-amd64.gz
+ENV RAKKESS_FILENAME rakkess-amd64-linux.tar.gz
 ENV RAKKESS_SHA256 56427bfd878a49010eb9238eb92cfefb958389e80bc790fd6cdb66ac9a363b43
 
 RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
   && echo "$RAKKESS_SHA256  ./$RAKKESS_FILENAME" | sha256sum -c - \
-  && gunzip ./${RAKKESS_FILENAME} \
-  && mv ./rakkess-linux-amd64 ./rakkess \
+  && tar -xzf ./${RAKKESS_FILENAME} \
+  && mv ./rakkess-amd64-linux ./rakkess \
   && chmod +x ./rakkess \
   && rm -f ./${RAKKESS_FILENAME} \
+  && rm -f ./LICENSE \
   && rakkess completion bash > /etc/bash_completion.d/rakkess
 
 
