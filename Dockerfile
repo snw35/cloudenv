@@ -67,7 +67,7 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 # Install HELM
 # From https://github.com/helm/helm/releases
 ENV HELM_VERSION 2.16.1
-ENV HELM_URL https://storage.googleapis.com/kubernetes-helm
+ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
 ENV HELM_SHA256 7eebaaa2da4734242bbcdced62cc32ba8c7164a18792c8acdf16c77abffce202
 
