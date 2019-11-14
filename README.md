@@ -34,6 +34,7 @@ The following software is installed and automatically checked for updates once p
  * [Confd](http://www.confd.io/)
  * [Container Transform](https://github.com/micahhausler/container-transform)
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
+ * [Datadog CLI](https://github.com/DataDog/datadogpy)
  * [EKS CLI (Elastic Kubernetes Service CLI)](https://eksctl.io/)
  * [Fluxctl](https://www.weave.works/docs/cloud/latest/tasks/deploy/manual-configuration/)
  * [Gcloud Suite](https://cloud.google.com/sdk/)

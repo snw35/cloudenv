@@ -43,6 +43,7 @@ RUN apk --update --no-cache upgrade -a \
     container-transform \
     cookiecutter \
     okta-awscli \
+    datadog \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
