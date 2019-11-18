@@ -308,10 +308,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.1.11
+ENV CLOUD_NUKE_VERSION 0.1.12
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 afe7eaaddabfa9ca25edfe1af1436bbf09dbf1f791dec23930ac3c02758fa074
+ENV CLOUD_NUKE_SHA256 10aa114a2ad470aceb6609384f760be99ff6de19b5adac32905756351dc94184
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
