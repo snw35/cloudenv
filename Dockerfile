@@ -92,7 +92,8 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
   && echo "$TERRAFORM_OLD_SHA256  ./$TERRAFORM_OLD_FILENAME" | sha256sum -c - \
   && unzip ./$TERRAFORM_OLD_FILENAME \
   && rm ./$TERRAFORM_OLD_FILENAME \
-  && chmod +x ./terraform
+  && chmod +x ./terraform \
+  && mv ./terraform ./terraform11
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
@@ -103,14 +104,9 @@ ENV TERRAFORM_NEW_SHA256 fcc719314660adc66cbd688918d13baa1095301e2e507f9ac92c9e2
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
-  && mkdir tf12 \
-  && cd tf12 \
-  && unzip ../$TERRAFORM_NEW_FILENAME \
-  && mv ./terraform ../terraform12 \
-  && cd .. \
-  && rm -rf ./tf12 \
+  && unzip ./$TERRAFORM_NEW_FILENAME \
   && rm ./$TERRAFORM_NEW_FILENAME \
-  && chmod +x ./terraform12
+  && chmod +x ./terraform
 
 
 # Install terragrunt 18 as default and do not upgrade
@@ -122,10 +118,10 @@ ENV TERRAGRUNT_OLD_SHA256 3a45138e77fb41e0884b9491c67dcdeacd06418cd10a1e16ea0cc0
 
 RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
   && echo "$TERRAGRUNT_OLD_SHA256  ./$TERRAGRUNT_OLD_FILENAME" | sha256sum -c - \
-  && mv ./$TERRAGRUNT_OLD_FILENAME ./terragrunt \
-  && chmod +x ./terragrunt
+  && mv ./$TERRAGRUNT_OLD_FILENAME ./terragrunt18 \
+  && chmod +x ./terragrunt18
 
-# Install terragrunt 19
+# Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
 ENV TERRAGRUNT_NEW_VERSION 0.21.6
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
@@ -134,8 +130,8 @@ ENV TERRAGRUNT_NEW_SHA256 f988c8705000533d812adae12222d330f61d1f16e812805eccb83e
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
-  && mv ./$TERRAGRUNT_NEW_FILENAME ./terragrunt19 \
-  && chmod +x ./terragrunt19
+  && mv ./$TERRAGRUNT_NEW_FILENAME ./terragrunt \
+  && chmod +x ./terragrunt
 
 
 # Install packer

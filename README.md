@@ -55,15 +55,15 @@ The following software is installed and automatically checked for updates once p
 
  If something you want is missing, please open an issue or submit a PR, both are welcome!
 
-#### Terraform 12 and Terragrunt 19
+#### Terraform 11/12 and Terragrunt 18/19
 
-By default, running `terragrunt` will give you the terraform v11 and terragrunt v18 stack, which is backwards-compatible with previous versions of both and will work for the majority of existing code.
+Terraform 12 and Terragrunt 19 are not backwards compatible with 11/18, so both sets of versions are included. By default, the latest 12/19+ versions are used.
 
-To run with the new and non-backwards-compatible terraform v12 and terragrunt v19 stack instead, run the following:
+To run with the previous 11/18 versions, which must be used for code that hasn't been updated yet, run the following:
 
 ```shell
-export TERRAGRUNT_TFPATH=/usr/bin/terraform12
-terragrunt19 plan-all
+export TERRAGRUNT_TFPATH=/usr/bin/terraform11
+terragrunt18 plan-all
 ```
 
 ### Connecting to Published Ports
