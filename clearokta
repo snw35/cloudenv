@@ -6,3 +6,7 @@ if [ -f ~/.okta-aws ]; then
 else
   echo "$HOME/.okta-aws - file not found"
 fi
+
+if [ -d ~/.aws-okta ]; then
+  find ~/.aws-okta -maxdepth 1 -name "*session\ \(*" -type f -delete
+fi
