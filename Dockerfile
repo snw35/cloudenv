@@ -198,10 +198,10 @@ RUN wget $KOPS_URL/$KOPS_FILENAME \
 
 # Install kompose
 # From https://github.com/kubernetes/kompose/releases
-ENV KOMPOSE_VERSION 1.19.0
+ENV KOMPOSE_VERSION 1.20.0
 ENV KOMPOSE_URL https://github.com/kubernetes/kompose/releases/download/v${KOMPOSE_VERSION}
 ENV KOMPOSE_FILENAME kompose-linux-amd64
-ENV KOMPOSE_SHA256 d73aa4242102884bc5589e7a6777461b7b2e0ddc20b63f2812bfbfcbaa4659d9
+ENV KOMPOSE_SHA256 449ad5ccd5e0ead98d3efab57b0dc427e5825d1260139025d3a3b8696cf36831
 
 RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
