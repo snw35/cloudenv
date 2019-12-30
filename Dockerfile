@@ -341,6 +341,9 @@ RUN apk --update --no-cache add --virtual build.deps \
     go \
     libusb-dev \
     pkgconfig \
+    libffi-dev \
+    python3-dev \
+    openssl-dev \
   && echo GOROOT=/usr/lib/go > /usr/lib/go/src/all.bash \
   && export CGO_ENABLED=0 \
   && go get github.com/hashicorp/hcl2/cmd/hclfmt \
@@ -350,6 +353,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && go get github.com/segmentio/aws-okta \
   && go clean -cache \
   && mv /root/go/bin/* /usr/bin/ \
+  && pip3 install --no-cache-dir ec2instanceconnectcli \
   && apk del build.deps \
   && rm -rf /root/go/ \
   && rm -rf /root/.cache \
@@ -364,26 +368,27 @@ RUN apk --update --no-cache add --virtual build.deps \
   && chmod +x /usr/bin/clearokta
 
 RUN echo "Test Layer" \
-  && session-manager-plugin --version \
+  && /opt/google-cloud-sdk/bin/gcloud version \
+  && aws --version \
   && aws-iam-authenticator \
+  && aws-okta \
   && cloud-nuke \
+  && confd -version \
+  && container-transform -h \
+  && cookiecutter -h \
   && eksctl \
   && fluxctl \
-  && /opt/google-cloud-sdk/bin/gcloud version \
+  && hclfmt -version \
   && helm \
   && kompose \
   && kops \
   && kubectl \
   && kubectx --help \
   && kubens --help \
-  && aws --version \
-  && container-transform -h \
-  && cookiecutter -h \
+  && mssh --help \
   && okta-awscli --help \
-  && hclfmt -version \
-  && terraform-docs \
-  && confd -version \
-  && aws-okta
+  && session-manager-plugin --version \
+  && terraform-docs
 
 COPY bashrc /etc/bashrc
 

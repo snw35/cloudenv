@@ -30,6 +30,7 @@ The following software is installed and automatically checked for updates once p
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
+ * [AWS EC2 Instance Connect CLI](https://github.com/aws/aws-ec2-instance-connect-cli)
  * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)
  * [Confd](http://www.confd.io/)
  * [Container Transform](https://github.com/micahhausler/container-transform)
