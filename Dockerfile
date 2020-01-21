@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.12.0
-ENV K9S_URL https://github.com/derailed/k9s/releases/download/${K9S_VERSION}
+ENV K9S_VERSION 0.13.2
+ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
-ENV K9S_SHA256 2d7fedcf5335fae0569826121f5ff5e6c23122d30685684e0de5b83b65059f9c
+ENV K9S_SHA256 02b009a0ec12d9ee20aeeb98141724472b41e00345dae9a05cac063f983c2d7a
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -274,10 +274,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.12.0
+ENV EKSCTL_VERSION 0.13.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 4b48fc81f2c02dcfe3b9056c024891eb0a5d292231845274e8a3725bcd3c5fff
+ENV EKSCTL_SHA256 73328372c14e8c0fb0571882a0497ee2e33d9c3d0e3d4987f035f07e4c4cd4a6
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -346,7 +346,6 @@ RUN apk --update --no-cache add --virtual build.deps \
     openssl-dev \
   && echo GOROOT=/usr/lib/go > /usr/lib/go/src/all.bash \
   && export CGO_ENABLED=0 \
-  && go get github.com/hashicorp/hcl2/cmd/hclfmt \
   && go get github.com/segmentio/terraform-docs \
   && go get github.com/kelseyhightower/confd \
   && export CGO_ENABLED=1 \
@@ -378,7 +377,6 @@ RUN echo "Test Layer" \
   && cookiecutter -h \
   && eksctl \
   && fluxctl \
-  && hclfmt -version \
   && helm \
   && kompose \
   && kops \
