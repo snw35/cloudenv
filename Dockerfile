@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.13.5
+ENV K9S_VERSION 0.13.6
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_${K9S_VERSION}_Linux_x86_64.tar.gz
-ENV K9S_SHA256 0715c375d1408cad920555acdff08d539d2b581e8f9dc7d87fa6ef80fbd0d6fe
+ENV K9S_SHA256 efa8b90912c793876b8a57c8066a586e7d3866c17821eab577cd2ca367c12dbb
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
