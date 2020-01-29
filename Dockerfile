@@ -319,10 +319,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 277.0.0
+ENV GCLOUD_VERSION 278.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 b158894c427712d006fac235daf8d288db110ecfbcf649ed11cdf36ac2b2ff2a
+ENV GCLOUD_SHA256 696773e338682cec8f4b36760de8d6e3bfd5bc126b9504d35aecfe9034e0dffd
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
