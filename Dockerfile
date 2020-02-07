@@ -228,10 +228,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.17.1
+ENV FLUXCTL_VERSION 1.18.0
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 8fa357e21f63118a52ff2ba70be1471816ddec620c6668992742d1c7c35eaf19
+ENV FLUXCTL_SHA256 0d2cc4bb529b3c1cc48f93ea3f3ab08bf25b706e3c55bcfcc1210d770dd2613b
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
