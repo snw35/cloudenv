@@ -184,10 +184,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.15.1
+ENV KOPS_VERSION 1.15.2
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 b1f91bd3d97e00a2753a1f2c45366fb2e79d3dcb7d19692a0a8ee38bfe0229a6
+ENV KOPS_SHA256 9df6390f5effbc9aff2b8319a651dee9d7773882f5c60ecbd8058176992a0286
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
