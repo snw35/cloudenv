@@ -66,10 +66,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.0.3
+ENV HELM_VERSION 2.16.3
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 fc75d62bafec2c3addc87b715ce2512820375ab812e6647dc724123b616586d6
+ENV HELM_SHA256 9678eb726d6870e8eded204190357a0f494ed9d1803781b4bb80dde6427b086e
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.14.0
+ENV K9S_VERSION 0.15.1
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 1161a14b979f731421d1316043450f0f6474c4d4156973c1d554a94578efd502
+ENV K9S_SHA256 516798e11bf5f2e54a2a009813781e12e749467ba7a922d74b9d946806ef8083
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -304,10 +304,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.1.13
+ENV CLOUD_NUKE_VERSION 0.1.14
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 646fe7467a8cfd6707b13a04ade91a4b26d2cce673caeea10e1390ba1772ccf3
+ENV CLOUD_NUKE_SHA256 c81c128b1a548d05efc0b2966d7a75f9a1c17e838e7f7c448a6f9c07435d8ff2
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
