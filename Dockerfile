@@ -66,10 +66,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 2.16.3
+ENV HELM_VERSION 3.1.1
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 9678eb726d6870e8eded204190357a0f494ed9d1803781b4bb80dde6427b086e
+ENV HELM_SHA256 cdd7ad304e2615c583dde0ffb0cb38fc1336cd7ce8ff3b5f237434dcadb28c98
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -123,10 +123,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.22.3
+ENV TERRAGRUNT_NEW_VERSION 0.22.4
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 47604aaeeeb7bb18d963d6829a2846e2fe824d335bc7fc3a12bfbbc7ff7f6c17
+ENV TERRAGRUNT_NEW_SHA256 931b19970cd8962b2af361f58a41bdce3cc75153c39c4cf14c5992ea09a19cb2
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -164,10 +164,10 @@ RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
 
 # Install Kubectx
 # From https://github.com/ahmetb/kubectx/releases
-ENV KUBECTX_VERSION 0.7.1
+ENV KUBECTX_VERSION 0.8.0
 ENV KUBECTX_URL https://github.com/ahmetb/kubectx/archive
 ENV KUBECTX_FILENAME v${KUBECTX_VERSION}.tar.gz
-ENV KUBECTX_SHA256 6df4def2caf5a9c291310124098ad6c4c3123936ddd4080b382b9f7930a233ec
+ENV KUBECTX_SHA256 7acbb574f2b9cb82c03b2ceaf1d5cf312eddf1cefa12ecf6bc6bf0478511f809
 
 RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
   && echo "$KUBECTX_SHA256  ./$KUBECTX_FILENAME" | sha256sum -c - \
@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.15.2
+ENV K9S_VERSION 0.16.1
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 98811175233d218a470512eaea2ac616b1d83ab865903902b8eba392041116f1
+ENV K9S_SHA256 9e6e00acd19b7a2a284c16a7c842c3c328fb321d191abc618f0dc2b0d6fbef3e
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
