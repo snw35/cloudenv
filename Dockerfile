@@ -386,7 +386,7 @@ RUN echo "Test Layer" \
   && mssh --help \
   && okta-awscli --help \
   && session-manager-plugin --version \
-  && terraform-docs
+  && terraform-docs -h
 
 COPY bashrc /etc/bashrc
 
