@@ -378,7 +378,7 @@ RUN echo "Test Layer" \
   && eksctl \
   && fluxctl \
   && helm \
-  && kompose \
+  && kompose -h \
   && kops \
   && kubectl \
   && kubectx --help \
