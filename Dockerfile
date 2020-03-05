@@ -303,7 +303,8 @@ RUN apk --update --no-cache add --virtual build.deps \
   && apk del build.deps
 
 
-# Install cloud-nuke
+# Install cloud-nuke - TEMPORARY disable upgrade until they release assets for new versions
+ENV CLOUD_NUKE_UPGRADE false
 ENV CLOUD_NUKE_VERSION 0.1.14
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
