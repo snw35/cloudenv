@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.17.5
+ENV K9S_VERSION 0.17.6
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 4b2e593eadf01fc64aa63f78310f54fb8440cadbb9dfa1c7208f7dfe028c074f
+ENV K9S_SHA256 83861bfd61633ff2995ccd980e41464e130c40a1f15f444164771cda36d31697
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -320,10 +320,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 283.0.0
+ENV GCLOUD_VERSION 284.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 13b4bbe79238e35a975e21514caca9ce77a8359800d85c5afb9ca188cef8341c
+ENV GCLOUD_SHA256 0496f03d1ab83a2d2b3b846601929b3b9c91bc348b268b78d257ea826d2f412d
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
