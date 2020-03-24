@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.11.3
+FROM alpine:3.11.5
 
 WORKDIR /usr/bin/
 
@@ -66,10 +66,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.1.2
+ENV HELM_VERSION 2.16.4
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 e6be589df85076108c33e12e60cfb85dcd82c5d756a6f6ebc8de0ee505c9fd4c
+ENV HELM_SHA256 dad9d2ff275eda0a795269b54298af5209d55d2ae51ff8f5b64bcee92b31bb05
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.17.7
+ENV K9S_VERSION 0.18.0
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 b3330c86046922c1d09a03887fac73408be91378bad1aaaeb1d0086444aa29d1
+ENV K9S_SHA256 d35e518e275189cd7ce6ede17dc847741af2908255e175e7c87ca29582daba15
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
