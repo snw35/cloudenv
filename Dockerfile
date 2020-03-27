@@ -66,10 +66,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 2.16.4
+ENV HELM_VERSION 2.16.5
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 dad9d2ff275eda0a795269b54298af5209d55d2ae51ff8f5b64bcee92b31bb05
+ENV HELM_SHA256 7cd54f56f787d62fd7311d5ae2c26e31310d37d27e3622014e5c769bec008cab
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
