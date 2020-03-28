@@ -16,7 +16,7 @@ Install the `cloudenv` command:
 sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /usr/local/bin/cloudenv && sudo chmod +x /usr/local/bin/cloudenv;
 ```
 
-Run the `cloudenv` command and it will pull the latest version of the container image (around 1GB), start the container, and drop you into the shell:
+Run the `cloudenv` command as your own user (not as root, you may need to add your user to the docker group first). It will pull the latest version of the container image (around 1.5GB), start the container, and drop you into the shell:
 
 `⛅user@cloudenv:~$`
 

@@ -25,21 +25,11 @@ fi
 if hash docker 2>/dev/null; then
 
   # Always pull latest image
-  ImagePullOutput=$(docker pull $image_name:$image_tag | tee /dev/tty)
+  docker pull $image_name:$image_tag
 
-  # If new image has been pulled AND container is running, stop and remove it
-  if [[ $ImagePullOutput != *"up to date"* ]] && [[ "$(docker ps -q -f name=$container_name)" ]]; then
-    docker stop $container_name
-    docker rm -f $container_name
-  fi
-
+  # If container is not running, remove it so the latest image is used
   if [ ! "$(docker ps -q -f name=$container_name)" ]; then
-    # Container is not running
-
-    if [ "$(docker ps -aq -f status=exited -f name=$container_name)" ]; then
-      # Container exists and is stopped or exited, so remove it
-      docker rm -f $container_name
-    fi
+    docker rm -f $container_name
 
     if hash id 2>/dev/null; then
 
@@ -115,6 +105,7 @@ if hash docker 2>/dev/null; then
       docker exec -it $container_name su-exec 1000:1000 $user_shell
     fi
   else
+    # If container is already running, exec into it
     if hash id 2>/dev/null; then
       docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" $user_shell
     else
