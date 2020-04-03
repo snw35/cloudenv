@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.18.1
+ENV K9S_VERSION 0.19.0
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 358dcca400120210e8d3b88d3672e59668d88c832c51356a04a0f9f8b28f5549
+ENV K9S_SHA256 bca5c081ecbfe99dc96cd094e01490228b55c7922fcd963f728a8ce709867d79
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -228,10 +228,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.18.0
+ENV FLUXCTL_VERSION 1.19.0
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 0d2cc4bb529b3c1cc48f93ea3f3ab08bf25b706e3c55bcfcc1210d770dd2613b
+ENV FLUXCTL_SHA256 0e5855ec75eb64340967ea893127a794f0473509c123c16fb251cc6410cfcb7f
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
