@@ -53,10 +53,10 @@ RUN apk --update --no-cache upgrade -a \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.18.1
+ENV KUBECTL_VERSION 1.18.2
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 f5144823e6d8a0b78611a8d12e7a25202126d079c3a232b18f37e61e872ff563
+ENV KUBECTL_SHA256 6ea8261b503c6c63d616878837dc70b758d4a3aeb9996ade8e83b51aedac9698
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
