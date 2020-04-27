@@ -31,6 +31,7 @@ RUN apk --update --no-cache upgrade -a \
     net-tools \
     nmap \
     openssh-client \
+    openssl \
     perl \
     python3 \
     shadow \
@@ -47,8 +48,8 @@ RUN apk --update --no-cache upgrade -a \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
-  && mkdir -p /etc/bash_completion.d
-
+  && mkdir -p /etc/bash_completion.d \
+  && ln -s /usr/bin/python3 /usr/bin/python
 
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
@@ -215,7 +216,7 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 ENV K9S_VERSION 0.19.3
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 5516fe9da4ca742060ed9d001736a4cd3a3e1aa8e936e04731f667a62ee02491
+ENV K9S_SHA256 36a9defb86c6a39bad3a5dcbd43b776b1fb730204b9d84d6a51d67db346d2482
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
