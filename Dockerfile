@@ -124,10 +124,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.23.10
+ENV TERRAGRUNT_NEW_VERSION 0.23.12
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 21f0a7fa8f292ed6c9d448c6c293bdddf8d27f1bc0e9586afe2eb2496d3b5139
+ENV TERRAGRUNT_NEW_SHA256 1d6b0d01627a5465170e746b3d8a54c13295189df1ef8bb4cee5e5264c9fa6e3
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -275,10 +275,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.17.0
+ENV EKSCTL_VERSION 0.18.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 9be087a870bafa00999b3930d0957cdaee3fc2dbfc876cf80043370571d5d744
+ENV EKSCTL_SHA256 a8f83394a12051bd6bf539dca7db2005237d36c6b1a67073bcf2070d034356f0
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -321,10 +321,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 290.0.0
+ENV GCLOUD_VERSION 290.0.1
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 864828e959239049d69a10aa5de08f5ebf90c66f38abceac85275fb0dd23c3eb
+ENV GCLOUD_SHA256 4780c45caeb910eee613b641d56483817de04b8eecb1bca49ed033dd7bd4690e
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
