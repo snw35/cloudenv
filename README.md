@@ -24,7 +24,7 @@ Everything should work as you expect. The bash shell contains common utilities (
 
 ## Included Software
 
-The following software is installed and automatically checked for updates once per week:
+The following software is installed and checked for updates daily:
 
  * [AWS CLI](https://aws.amazon.com/cli/)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
@@ -33,7 +33,6 @@ The following software is installed and automatically checked for updates once p
  * [AWS EC2 Instance Connect CLI](https://github.com/aws/aws-ec2-instance-connect-cli)
  * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)
  * [Confd](http://www.confd.io/)
- * [Container Transform](https://github.com/micahhausler/container-transform)
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
  * [Datadog CLI](https://github.com/DataDog/datadogpy)
  * [EKS CLI (Elastic Kubernetes Service CLI)](https://eksctl.io/)

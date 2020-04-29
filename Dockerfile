@@ -39,9 +39,7 @@ RUN apk --update --no-cache upgrade -a \
     tmux \
     tzdata \
   && pip3 install --no-cache-dir  \
-    pyyaml==3.10 \
     awscli \
-    container-transform \
     cookiecutter \
     okta-awscli \
     datadog \
@@ -304,8 +302,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && apk del build.deps
 
 
-# Install cloud-nuke - TEMPORARY disable upgrade until they release assets for new versions
-ENV CLOUD_NUKE_UPGRADE false
+# Install cloud-nuke
 ENV CLOUD_NUKE_VERSION 0.1.14
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
@@ -354,7 +351,9 @@ RUN apk --update --no-cache add --virtual build.deps \
   && go get github.com/segmentio/aws-okta \
   && go clean -cache \
   && mv /root/go/bin/* /usr/bin/ \
-  && pip3 install --no-cache-dir ec2instanceconnectcli \
+  && pip3 install --no-cache-dir \
+    ec2instanceconnectcli \
+    awsebcli \
   && apk del build.deps \
   && rm -rf /root/go/ \
   && rm -rf /root/.cache \
@@ -375,8 +374,8 @@ RUN echo "Test Layer" \
   && aws-okta \
   && cloud-nuke \
   && confd -version \
-  && container-transform -h \
   && cookiecutter -h \
+  && eb --help \
   && eksctl \
   && fluxctl \
   && helm \
