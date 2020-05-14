@@ -65,10 +65,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.2.0
+ENV HELM_VERSION 3.2.1
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 4c3fd562e64005786ac8f18e7334054a24da34ec04bbd769c206b03b8ed6e457
+ENV HELM_SHA256 018f9908cb950701a5d59e757653a790c66d8eda288625dbb185354ca6f41f6b
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -96,10 +96,10 @@ RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.24
+ENV TERRAFORM_NEW_VERSION 0.12.25
 ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
 ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 602d2529aafdaa0f605c06adb7c72cfb585d8aa19b3f4d8d189b42589e27bf11
+ENV TERRAFORM_NEW_SHA256 e95daabd1985329f87e6d40ffe7b9b973ff0abc07a403f767e8658d64d733fb0
 
 RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
   && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
@@ -122,10 +122,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.23.12
+ENV TERRAGRUNT_NEW_VERSION 0.23.17
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 1d6b0d01627a5465170e746b3d8a54c13295189df1ef8bb4cee5e5264c9fa6e3
+ENV TERRAGRUNT_NEW_SHA256 22a55f84ff6d69bfdc52af6dc1853ace5d55da5313465847b6c5bb9d8b9f8801
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -163,10 +163,10 @@ RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
 
 # Install Kubectx
 # From https://github.com/ahmetb/kubectx/releases
-ENV KUBECTX_VERSION 0.8.0
+ENV KUBECTX_VERSION 0.9.0
 ENV KUBECTX_URL https://github.com/ahmetb/kubectx/archive
 ENV KUBECTX_FILENAME v${KUBECTX_VERSION}.tar.gz
-ENV KUBECTX_SHA256 7acbb574f2b9cb82c03b2ceaf1d5cf312eddf1cefa12ecf6bc6bf0478511f809
+ENV KUBECTX_SHA256 ff991119532642e0036f2629a66ff4398f71c5b908bd665645ba7775e2a4e0e6
 
 RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
   && echo "$KUBECTX_SHA256  ./$KUBECTX_FILENAME" | sha256sum -c - \
@@ -183,10 +183,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.16.1
+ENV KOPS_VERSION 1.16.2
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 b7dcfbbdfbafaaba0242ef6325e48e5c4cc6cb4ed5a10b8cde072ab38a0eb947
+ENV KOPS_SHA256 b7bde530db830f67e9f7dcb22b00ea56a3086373dbf47b196e9c72f3cc119229
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -211,10 +211,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.19.3
+ENV K9S_VERSION 0.19.4
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 36a9defb86c6a39bad3a5dcbd43b776b1fb730204b9d84d6a51d67db346d2482
+ENV K9S_SHA256 4b9ed2d86c0341e13f07dc8a68229a34238962ca1a00eebf553f8792215633f7
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -273,10 +273,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.18.0
+ENV EKSCTL_VERSION 0.19.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 a8f83394a12051bd6bf539dca7db2005237d36c6b1a67073bcf2070d034356f0
+ENV EKSCTL_SHA256 054bc9231eaf12efb9f30a93edbd90cfd4c52ce68d2138cdaff5d5e53002eb11
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -318,10 +318,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 290.0.1
+ENV GCLOUD_VERSION 292.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 4780c45caeb910eee613b641d56483817de04b8eecb1bca49ed033dd7bd4690e
+ENV GCLOUD_SHA256 0c37817928d27781029cbee303aac58beb09e8b5951a39235eddd384bf5e91a4
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
