@@ -2,13 +2,19 @@
 
  * [Travis CI: ![Build Status](https://travis-ci.org/snw35/cloudenv.svg?branch=master)](https://travis-ci.org/snw35/cloudenv)
 
-The Cloud Environment Shell ⛅
+The Cloud Environment ⛅
 
-This is a one-stop "install all" for modern cloud tooling that wraps seamlessly over your existing shell. It provides a suite of infrastructure-as-code (IaC) tools for Amazon AWS, Google GCP, and Kubernetes with no setup required.
+This is a suite of modern cloud tooling that wraps seamlessly over your existing shell. It provides:
+
+ * Infrastructure-as-code (IaC) tools for Amazon AWS and Google GCP.
+ * Authentication tools for Okta and AWS.
+ * Large collection of Kubernetes tools.
+
+Tested on Mac and Linux with both Podman and Docker.
 
 ## How To Use
 
-The only requirement is to have Docker installed. Tested and working on both Mac and Linux.
+If you are using Docker, first add your user to the 'docker' group so you can run docker commands directly. Podman users do not need to do this.
 
 Install the `cloudenv` command:
 
@@ -16,11 +22,15 @@ Install the `cloudenv` command:
 sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /usr/local/bin/cloudenv && sudo chmod +x /usr/local/bin/cloudenv;
 ```
 
-Run the `cloudenv` command as your own user (not as root, you may need to add your user to the docker group first). It will pull the latest version of the container image (around 1.5GB), start the container, and drop you into the shell:
+Run the `cloudenv` command as your own user (not as root). It will pull the latest version of the container image (around 1.5GB), start the container, and drop you into the shell:
 
 `⛅user@cloudenv:~$`
 
-Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If your session has an ssh-agent running with cached credentials, then these should continue to work and be available for git/ssh etc.
+Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If your session has an ssh-agent running with cached credentials, then these will continue to work and be available for git/ssh etc.
+
+There may be updates to the 'cloudenv' script itself, which won't be automatically applied. Check below for the last update and re-run the install command above if needed:
+
+ * 2020-05-14 - Add Podman support, consolidate clouenv script.
 
 ## Included Software
 
@@ -50,7 +60,6 @@ The following software is installed and checked for updates daily:
  * [Kubespy](https://github.com/pulumi/kubespy)
  * [Okta AWS CLI](https://github.com/jmhale/okta-awscli)
  * [Rakkess](https://github.com/corneliusweig/rakkess)
- * [Terraform Docs](https://github.com/segmentio/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
 
  If something you want is missing, please open an issue or submit a PR, both are welcome!
@@ -80,7 +89,7 @@ By default, a custom bash shell is run inside the container. You can change this
 
 ### Remove The Container
 
-The container is left running in the background after you run the command for the first time. It won't re-start itself after a reboot, but will be in the stopped state. If you'd like to clean it up, then you can run the following: `docker rm -f cloudenv`
+The container is left running in the background after you run the command for the first time. It won't re-start itself after a reboot, but will be in the stopped state. If you'd like to clean it up, then you can run the following: `docker/podman rm -f cloudenv`
 
 
 ## Why?
@@ -130,7 +139,7 @@ An environment variable (`TZ`) is used to set the timezone when the container st
 
 - Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
 
-Travis CI automatically runs once per week and builds a new image if any updates are found to either the included software or the container base image.
+Travis CI automatically runs once per day and builds a new image if any updates are found to either the included software or the container base image.
 
 The cloudenv container stays as minimal as possible while packaging a *lot* of tools, some of which are large (Hashicorp ones specifically), and providing a *lot* of functionality. It is possible to provision, manage, and develop production-grade cloud infrastructure with just the contents of this container.
 

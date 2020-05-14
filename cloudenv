@@ -3,116 +3,78 @@ set -u
 
 # Variables
 timezone=Europe/London
-image_name=snw35/cloudenv
-image_tag=latest
+image_name=localhost/cloudenv
+image_tag=t4
 container_name=cloudenv
 home_directory=$HOME
+
+# Support podman if found on host. Prefer podman as docker=podman alias will likely be active.
+if hash podman 2>/dev/null; then
+  container_command='podman'
+  container_command_opts='--security-opt label=disable --userns keep-id'
+  container_exec_opts=''
+elif hash docker 2>/dev/null; then
+  container_command='docker'
+  container_command_opts=''
+  container_exec_opts="su-exec $(id -u):$(id -g)"
+else
+  echo "You must have a container runtime (podman or docker) installed to run cloudenv."
+  echo "Please install one and re-try."
+  exit 1
+fi
+
+# Check for 'id' command
+if not hash id 2>/dev/null; then
+  echo "You must have the 'id' command avalible to run cloudenv, please install it and re-try."
+  exit 1
+fi
 
 # Shell is a custom bash shell by default, or can be set to:
 # 'bash' for a plain bash shell that uses your host config
 # 'fish' for a plain fish shell that uses your host config
 user_shell="bash --rcfile /etc/bashrc"
 
+# Make sure home directory is accessible
 if [ ! -d $home_directory ]; then
   echo '$HOME is empty or does not exist, please update this script with the location of your home directory.'
   exit 1
 fi
 
+# Check for ssh agent
 if [ -z "${SSH_AGENT_PID:-}" ] || [ -z "${SSH_AUTH_SOCK:-}" ]; then
-  declare -r SSH_AGENT_PID='0'
+  container_ssh_opts=''
+else
+  container_ssh_opts="-e SSH_AUTH_SOCK=${SSH_AUTH_SOCK} --mount type=bind,source=`dirname $SSH_AUTH_SOCK`,target=`dirname $SSH_AUTH_SOCK`"
 fi
 
-if hash docker 2>/dev/null; then
+# Always pull latest image
+${container_command} pull $image_name:$image_tag
 
-  # Always pull latest image
-  docker pull $image_name:$image_tag
+# If container is not running, remove it so the latest image is used
+if [ ! "$(${container_command} ps -q -f name=$container_name)" ]; then
+  ${container_command} rm -f $container_name
 
-  # If container is not running, remove it so the latest image is used
-  if [ ! "$(docker ps -q -f name=$container_name)" ]; then
-    docker rm -f $container_name
+  ${container_command} run ${container_command_opts} -dit \
+    --name $container_name \
+    --hostname $container_name \
+    --workdir "$HOME" \
+    --mount type=bind,source=$home_directory,target="$HOME" \
+    --publish 5555:5555 \
+    -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" \
+    -e HOST_GROUP_NAME="$(id -g -n)" \
+    -e HOST_USER_ID="$(id -u)" \
+    -e HOST_GROUP_ID="$(id -g)" \
+    -e HOST_HOME_DIRECTORY="$HOME" \
+    $container_ssh_opts $image_name:$image_tag &> /dev/null
 
-    if hash id 2>/dev/null; then
-
-      if [ "${SSH_AGENT_PID}" -eq 0 ]; then
-        # Run without ssh agent passthrough
-        docker run -dit \
-          --name $container_name \
-          --hostname $container_name \
-          --workdir "$HOME" \
-          --mount type=bind,source=$home_directory,target="$HOME" \
-          --publish 5555:5555 \
-          -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" \
-          -e HOST_GROUP_NAME="$(id -g -n)" \
-          -e HOST_USER_ID="$(id -u)" \
-          -e HOST_GROUP_ID="$(id -g)" \
-          -e HOST_HOME_DIRECTORY="$HOME" \
-          $image_name:$image_tag &> /dev/null
-        retVal=$?
-      else
-        # Run with ssh agent passthrough, full options, and all bind-mounts
-        docker run -dit \
-          --name $container_name \
-          --hostname $container_name \
-          --workdir "$HOME" \
-          --mount type=bind,source=$home_directory,target="$HOME" \
-          --mount type=bind,source="`dirname $SSH_AUTH_SOCK`",target="`dirname $SSH_AUTH_SOCK`" \
-          --publish 5555:5555 \
-          -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" \
-          -e HOST_GROUP_NAME="$(id -g -n)" \
-          -e HOST_USER_ID="$(id -u)" \
-          -e HOST_GROUP_ID="$(id -g)" \
-          -e HOST_HOME_DIRECTORY="$HOME" \
-          -e SSH_AUTH_SOCK="${SSH_AUTH_SOCK}" \
-          $image_name:$image_tag &> /dev/null
-        retVal=$?
-      fi
-      if [ $retVal -ne 0 ]; then
-        echo "Error starting cloudenv container!"
-        exit 1
-      fi
-      docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" $user_shell
-
-    else
-      if [ "${SSH_AGENT_PID}" -eq 0 ]; then
-        # Run without id or ssh agent passthrough
-        docker run -dit \
-          --name $container_name \
-          --hostname $container_name \
-          --workdir "/home/user" \
-          --mount type=bind,source=$home_directory,target="/home/user" \
-          --publish 5555:5555 \
-          -e TZ=$timezone \
-          $image_name:$image_tag &> /dev/null
-        retVal=$?
-      else
-        # Run without id, but with ssh agent passthrough
-        docker run -dit \
-          --name $container_name \
-          --hostname $container_name \
-          --workdir "/home/user" \
-          --mount type=bind,source=$home_directory,target="/home/user" \
-          --mount type=bind,source="`dirname $SSH_AUTH_SOCK`",target="`dirname $SSH_AUTH_SOCK`" \
-          --publish 5555:5555 \
-          -e TZ=$timezone \
-          -e SSH_AUTH_SOCK="${SSH_AUTH_SOCK}" \
-          $image_name:$image_tag &> /dev/null
-        retVal=$?
-      fi
-      if [ $retVal -ne 0 ]; then
-        echo "Error starting cloudenv container!"
-        exit 1
-      fi
-      docker exec -it $container_name su-exec 1000:1000 $user_shell
-    fi
-  else
-    # If container is already running, exec into it
-    if hash id 2>/dev/null; then
-      docker exec -it $container_name su-exec "$(id -u)":"$(id -g)" $user_shell
-    else
-      docker exec -it $container_name su-exec 1000:1000 $user_shell
-    fi
+  retVal=$?
+  if [ $retVal -ne 0 ]; then
+    echo "Error starting cloudenv container!"
+    exit 1
   fi
+  ${container_command} exec -it $container_name $container_exec_opts $user_shell
 
 else
-  echo "docker command not found, you must install docker first."
+  # If container is already running, just exec into it
+  ${container_command} exec -it $container_name $container_exec_opts $user_shell
 fi

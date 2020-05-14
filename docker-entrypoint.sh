@@ -11,6 +11,11 @@ fi
 # check if running ssh-agent and run as appropriate user and group
 if [ "$1" = 'ssh-agent' ]; then
 
+  # Podman handles user and group ID mapping from the host, so we don't need to do any of the below if using it.
+  if [ "$container" = 'podman' ]; then
+    exec "$@"
+  fi
+
   # Check username passthrough
   if [ -z "${HOST_USER_NAME}" ]; then
     echo '$HOST_USER_NAME is not set, defaulting to "user"'
