@@ -345,7 +345,6 @@ RUN apk --update --no-cache add --virtual build.deps \
     openssl-dev \
   && echo GOROOT=/usr/lib/go > /usr/lib/go/src/all.bash \
   && export CGO_ENABLED=0 \
-  && go get github.com/segmentio/terraform-docs \
   && go get github.com/kelseyhightower/confd \
   && export CGO_ENABLED=1 \
   && go get github.com/segmentio/aws-okta \
@@ -353,12 +352,10 @@ RUN apk --update --no-cache add --virtual build.deps \
   && mv /root/go/bin/* /usr/bin/ \
   && pip3 install --no-cache-dir \
     ec2instanceconnectcli \
-    awsebcli \
   && apk del build.deps \
   && rm -rf /root/go/ \
   && rm -rf /root/.cache \
   && rm -rf /usr/lib/go/src/all.bash \
-  && terraform-docs completion bash > /etc/bash_completion.d/terraform-docs \
   && aws-okta completion bash > /etc/bash_completion.d/aws-okta \
   && echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
   && echo "    Host *" >> /etc/ssh/ssh_config \
@@ -375,7 +372,6 @@ RUN echo "Test Layer" \
   && cloud-nuke \
   && confd -version \
   && cookiecutter -h \
-  && eb --help \
   && eksctl \
   && fluxctl \
   && helm \
@@ -386,8 +382,7 @@ RUN echo "Test Layer" \
   && kubens --help \
   && mssh --help \
   && okta-awscli --help \
-  && session-manager-plugin --version \
-  && terraform-docs -h
+  && session-manager-plugin --version
 
 COPY bashrc /etc/bashrc
 
