@@ -3,8 +3,8 @@ set -u
 
 # Variables
 timezone=Europe/London
-image_name=localhost/cloudenv
-image_tag=t4
+image_name=snw35/cloudenv
+image_tag=latest
 container_name=cloudenv
 home_directory=$HOME
 
