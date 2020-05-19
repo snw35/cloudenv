@@ -8,7 +8,7 @@ This is a suite of modern cloud tooling that wraps seamlessly over your existing
 
  * Infrastructure-as-code (IaC) tools for Amazon AWS and Google GCP.
  * Authentication tools for Okta and AWS.
- * Large collection of Kubernetes tools.
+ * A large collection of Kubernetes and container tools.
 
 Tested on Mac and Linux with both Podman and Docker.
 
@@ -24,12 +24,13 @@ sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /u
 
 Run the `cloudenv` command as your own user (not as root). It will pull the latest version of the container image (around 1.5GB), start the container, and drop you into the shell:
 
-`⛅user@cloudenv:~$`
+`⛅user@cloudenv-user:~$`
 
 Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If your session has an ssh-agent running with cached credentials, then these will continue to work and be available for git/ssh etc.
 
 There may be updates to the 'cloudenv' script itself, which won't be automatically applied. Check below for the last update and re-run the install command above if needed:
 
+ * 2020-05-19 - Add multi-user support.
  * 2020-05-14 - Add Podman support, consolidate clouenv script.
 
 ## Included Software
@@ -64,7 +65,16 @@ The following software is installed and checked for updates daily:
 
  If something you want is missing, please open an issue or submit a PR, both are welcome!
 
-#### Terraform 11/12 and Terragrunt 18/19
+### Multi-User and Multi-Session Support
+
+One instance of cloudenv will be run per user, named 'cloudenv-username', and multiple sessions can be run in each instance. The environment inside each instance is separate, e.g separate environment variables. In summary:
+
+* A user can run multiple sessions of cloudenv.
+* Multiple users can run separate instances of cloudenv.
+
+**WARNING:** If multiple users run cloudenv on the same machine, because the home directory is bind-mounted into the container, **anyone** in the docker group will be able to exec into any cloudenv container and access all of that user's files. This tool is meant to be run on e.g trusted jumpbox hosts, or on single-user workstations. Keep this in mind when deploying it elsewhere.
+
+### Terraform 11/12 and Terragrunt 18/19
 
 Terraform 12 and Terragrunt 19 are not backwards compatible with 11/18, so both sets of versions are included. By default, the latest 12/19+ versions are used.
 

@@ -5,7 +5,6 @@ set -u
 timezone=Europe/London
 image_name=snw35/cloudenv
 image_tag=latest
-container_name=cloudenv
 home_directory=$HOME
 
 # Support podman if found on host. Prefer podman as docker=podman alias will likely be active.
@@ -28,6 +27,9 @@ if not hash id 2>/dev/null; then
   echo "You must have the 'id' command avalible to run cloudenv, please install it and re-try."
   exit 1
 fi
+
+# Multi-user support
+container_name=cloudenv-"$(id -un)"
 
 # Shell is a custom bash shell by default, or can be set to:
 # 'bash' for a plain bash shell that uses your host config
