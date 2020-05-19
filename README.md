@@ -85,13 +85,6 @@ export TERRAGRUNT_TFPATH=/usr/bin/terraform11
 terragrunt18 plan-all
 ```
 
-### Connecting to Published Ports
-
-Port `5555` is exposed from the container to the host and can be reached at `http://localhost:5555`. This can be used for e.g authentication programs that serve a web page on localhost. If a different port is required, it can be added or edited in the `cloudenv` script.
-
-__Note:__ Host mode networking is not used because it cannot be used on Macs, as docker runs inside a VM.
-
-
 ### Changing The Shell
 
 By default, a custom bash shell is run inside the container. You can change this to a plain fish or a bash session that will use your host machine's shell configuration. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.

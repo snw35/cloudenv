@@ -61,7 +61,6 @@ if [ ! "$(${container_command} ps -q -f name=$container_name)" ]; then
     --hostname $container_name \
     --workdir "$HOME" \
     --mount type=bind,source=$home_directory,target="$HOME" \
-    --publish 5555:5555 \
     -e TZ=$timezone -e HOST_USER_NAME="$(id -u -n)" \
     -e HOST_GROUP_NAME="$(id -g -n)" \
     -e HOST_USER_ID="$(id -u)" \
