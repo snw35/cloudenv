@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.11.6
+FROM alpine:3.12
 
 WORKDIR /usr/bin/
 
@@ -33,12 +33,13 @@ RUN apk --update --no-cache upgrade -a \
     openssh-client \
     openssl \
     perl \
+    py3-pip \
     python3 \
     shadow \
     su-exec \
     tmux \
     tzdata \
-  && pip3 install --no-cache-dir  \
+  && pip install --no-cache-dir  \
     awscli \
     cookiecutter \
     okta-awscli \
@@ -351,7 +352,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && go get github.com/segmentio/aws-okta \
   && go clean -cache \
   && mv /root/go/bin/* /usr/bin/ \
-  && pip3 install --no-cache-dir \
+  && pip install --no-cache-dir \
     ec2instanceconnectcli \
   && apk del build.deps \
   && rm -rf /root/go/ \
