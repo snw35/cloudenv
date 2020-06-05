@@ -66,10 +66,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.2.1
+ENV HELM_VERSION 3.2.2
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 018f9908cb950701a5d59e757653a790c66d8eda288625dbb185354ca6f41f6b
+ENV HELM_SHA256 305cc92bc21c902a5337a9e1a63316ef67f6e06000d878cf22eb504c6750745c
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.20.3
+ENV K9S_VERSION 0.20.4
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 04bbe4d7d9f0e6b5d53107d7678a5c78e5b5510eec795cdbcbc247e0a02daa51
+ENV K9S_SHA256 0c7c2a75385ffea192451ff6a32499a4ef3ab28c3ae44afa6616bc3f9692670f
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
