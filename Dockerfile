@@ -212,10 +212,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.20.4
+ENV K9S_VERSION 0.20.5
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 0c7c2a75385ffea192451ff6a32499a4ef3ab28c3ae44afa6616bc3f9692670f
+ENV K9S_SHA256 12c03e2b3a3dcceda01c4296e618f825d017263c0ee7af15bb203620fa5c61a1
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -274,10 +274,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.20.0
+ENV EKSCTL_VERSION 0.21.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 069f1980a7942a038e181e7e75d23fa3d8102c2667c1560475cf3bfb570c745a
+ENV EKSCTL_SHA256 4573bca35af67fa002fb722b4d41fae2224a27576619ed2f1e269dd7bd15c214
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
