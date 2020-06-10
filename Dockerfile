@@ -136,10 +136,10 @@ RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.5.6
+ENV PACKER_VERSION 1.6.0
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 2abb95dc3a5fcfb9bf10ced8e0dd51d2a9e6582a1de1cab8ccec650101c1f9df
+ENV PACKER_SHA256 a678c995cb8dc232db3353881723793da5acc15857a807d96c52e96e671309d9
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -320,10 +320,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 295.0.0
+ENV GCLOUD_VERSION 296.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 4b2edde085211dc8f3c22478cf1f7b221a7a8852abb98f946e758fa5b8edc51c
+ENV GCLOUD_SHA256 693bb7f05f7cda43fe5f1789c2d323f98f3780a0fe0fa7b237aa290fc478606d
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
