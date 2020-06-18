@@ -53,10 +53,10 @@ RUN apk --update --no-cache upgrade -a \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.18.3
+ENV KUBECTL_VERSION 1.18.4
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 6fcf70aae5bc64870c358fac153cdfdc93f55d8bae010741ecce06bb14c083ea
+ENV KUBECTL_SHA256 5fea9ad294ea73f952243178db5340dc29c14ad96aed3f92a18deedb73f221ec
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -320,10 +320,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 297.0.0
+ENV GCLOUD_VERSION 297.0.1
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 4ef5026100efbeb3b60199f5ea7e03f0b4424d4410a8c3e848258a23ce03e9a4
+ENV GCLOUD_SHA256 983b3f523cbc876972c843745022298d6449e7a61e1dded7d7b1b46a86cc05a4
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
