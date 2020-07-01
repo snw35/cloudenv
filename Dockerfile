@@ -123,10 +123,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.23.30
+ENV TERRAGRUNT_NEW_VERSION 0.23.31
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 f1bfad3ba53eeb913002cc1f8d5380498eb8cb9b1b2a9758b57594378514d99d
+ENV TERRAGRUNT_NEW_SHA256 efd124c2b9f406c0eb81b646e6b9eb32056095b38a130e6dc9a27d4be9bc25d9
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -164,10 +164,10 @@ RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
 
 # Install Kubectx
 # From https://github.com/ahmetb/kubectx/releases
-ENV KUBECTX_VERSION 0.9.0
+ENV KUBECTX_VERSION 0.9.1
 ENV KUBECTX_URL https://github.com/ahmetb/kubectx/archive
 ENV KUBECTX_FILENAME v${KUBECTX_VERSION}.tar.gz
-ENV KUBECTX_SHA256 ff991119532642e0036f2629a66ff4398f71c5b908bd665645ba7775e2a4e0e6
+ENV KUBECTX_SHA256 8f68e19b841a1f1492536dc27f9b93ea3204c7e4fd0ad2e3c483d1b8e95be675
 
 RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
   && echo "$KUBECTX_SHA256  ./$KUBECTX_FILENAME" | sha256sum -c - \
@@ -320,10 +320,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 298.0.0
+ENV GCLOUD_VERSION 299.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 0d58f451331abf43d080fa997c8e580d64897627e30be74f6d8f983ccfabef1e
+ENV GCLOUD_SHA256 240042ba13bdef96e2d494dc67c3c367dfb27d0db5b9cb5bce4d3a517671762f
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
