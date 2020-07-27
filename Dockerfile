@@ -375,7 +375,8 @@ ENV TERRAFORM_DOCS_SHA256 ceb4e7f291d43a5f7672f7ca9543075554bacd02cf850e6402e74f
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
   && mv ./$TERRAFORM_DOCS_FILENAME /usr/bin/terraform-docs \
-  && chmod +x /usr/bin/terraform-docs
+  && chmod +x /usr/bin/terraform-docs \
+  && /usr/bin/terraform-docs completion bash > /etc/bash_completion.d/terraform-docs
 
 
 # Install aws-connect
