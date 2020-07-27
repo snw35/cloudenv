@@ -359,7 +359,10 @@ RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
   && mv ./aws-okta-${AWS_OKTA_VERSION}/aws-okta /usr/bin/aws-okta \
   && rm -rf ./aws-okta-${AWS_OKTA_VERSION} \
   && rm -rf ./$AWS_OKTA_FILENAME \
+  && go clean -cache \
   && apk del build.deps \
+  && rm -rf /root/go/ \
+  && rm -rf /root/.cache \
   && /usr/bin/aws-okta completion bash > /etc/bash_completion.d/aws-okta
 
 
