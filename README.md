@@ -38,10 +38,11 @@ There may be updates to the 'cloudenv' script itself, which won't be automatical
 The following software is installed and checked for updates daily:
 
  * [AWS CLI](https://aws.amazon.com/cli/)
+ * [AWS Connect](https://github.com/rewindio/aws-connect)
+ * [AWS EC2 Instance Connect CLI](https://github.com/aws/aws-ec2-instance-connect-cli)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
- * [AWS EC2 Instance Connect CLI](https://github.com/aws/aws-ec2-instance-connect-cli)
  * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)
  * [Confd](http://www.confd.io/)
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
@@ -61,6 +62,7 @@ The following software is installed and checked for updates daily:
  * [Kubespy](https://github.com/pulumi/kubespy)
  * [Okta AWS CLI](https://github.com/jmhale/okta-awscli)
  * [Rakkess](https://github.com/corneliusweig/rakkess)
+ * [Terraform Docs](https://github.com/terraform-docs/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
 
  If something you want is missing, please open an issue or submit a PR, both are welcome!
@@ -150,4 +152,4 @@ The cloudenv container stays as minimal as possible while packaging a *lot* of t
 
 The `latest` tag always points to the most recent image. Where backwards compatibility is an issue (such as with terraform), both the old and new versions will be included.
 
-The 'cloudenv' script pulls the `latest` tag each time it is run, so you will always be running the most recent software.
+The 'cloudenv' script pulls the `latest` tag each time it is run. It does not stop or remove running containers however, so you will only use an updated version when you stop/remove the current container. This will happen after a reboot for example.

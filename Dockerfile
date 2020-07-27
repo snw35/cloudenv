@@ -50,6 +50,16 @@ RUN apk --update --no-cache upgrade -a \
   && mkdir -p /etc/bash_completion.d \
   && ln -s /usr/bin/python3 /usr/bin/python
 
+# Install software / modules that need build_base
+RUN apk --update --no-cache add --virtual build.deps \
+    build-base \
+    libffi-dev \
+    openssl-dev \
+    python3-dev \
+  && pip install --no-cache-dir \
+    ec2instanceconnectcli \
+  && apk del build.deps
+
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -316,6 +326,70 @@ RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && mv ./${CLOUD_NUKE_FILENAME} ./cloud-nuke
 
 
+# Install confd
+ENV CONFD_VERSION 0.16.0
+ENV CONFD_URL https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION
+ENV CONFD_FILENAME confd-$CONFD_VERSION-linux-amd64
+ENV CONFD_SHA256 255d2559f3824dd64df059bdc533fd6b697c070db603c76aaf8d1d5e6b0cc334
+
+RUN wget $CONFD_URL/$CONFD_FILENAME \
+  && echo "$CONFD_SHA256  ./$CONFD_FILENAME" | sha256sum -c - \
+  && mv ./$CONFD_FILENAME /usr/bin/confd \
+  && chmod +x /usr/bin/confd \
+  && mkdir -p /etc/confd/conf.d \
+  && mkdir -p /etc/confd/templates
+
+
+# Install aws-okta
+# We can't use the pre-compiled binaries because they don't support musl libc
+ENV AWS_OKTA_VERSION 1.0.4
+ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/archive
+ENV AWS_OKTA_FILENAME v${AWS_OKTA_VERSION}.tar.gz
+ENV AWS_OKTA_SHA256 8de9ddeed77576a4852c140c42197e8022f463b60e9c4b06978fdb12c3fcd4b7
+
+RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
+  && echo "$AWS_OKTA_SHA256  ./$AWS_OKTA_FILENAME" | sha256sum -c - \
+  && tar -xzf ./$AWS_OKTA_FILENAME \
+  && apk --update --no-cache add --virtual build.deps \
+    go \
+  && export CGO_ENABLED=0 \
+  && cd ./aws-okta-${AWS_OKTA_VERSION} \
+  && go build \
+  && cd .. \
+  && mv ./aws-okta-${AWS_OKTA_VERSION}/aws-okta /usr/bin/aws-okta \
+  && rm -rf ./aws-okta-${AWS_OKTA_VERSION} \
+  && rm -rf ./$AWS_OKTA_FILENAME \
+  && apk del build.deps \
+  && /usr/bin/aws-okta completion bash > /etc/bash_completion.d/aws-okta
+
+
+# Install terraform-docs
+ENV TERRAFORM_DOCS_VERSION 0.9.1
+ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
+ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64
+ENV TERRAFORM_DOCS_SHA256 ceb4e7f291d43a5f7672f7ca9543075554bacd02cf850e6402e74f18fbf28f7e
+
+RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
+  && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
+  && mv ./$TERRAFORM_DOCS_FILENAME /usr/bin/terraform-docs \
+  && chmod +x /usr/bin/terraform-docs
+
+
+# Install aws-connect
+ENV AWS_CONNECT_VERSION 1.0.11
+ENV AWS_CONNECT_URL https://github.com/rewindio/aws-connect/archive
+ENV AWS_CONNECT_FILENAME v${AWS_CONNECT_VERSION}.tar.gz
+ENV AWS_CONNECT_SHA256 56d9ae4695302ca93c4020bf634d5f09eb772dfde7be2db02035266b7d3d44a2
+
+RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
+  && echo "$AWS_CONNECT_SHA256  ./$AWS_CONNECT_FILENAME" | sha256sum -c - \
+  && tar -xzf ./${AWS_CONNECT_FILENAME} \
+  && mv ./aws-connect-${AWS_CONNECT_VERSION}/aws-connect /usr/local/bin/aws-connect \
+  && chmod +x /usr/local/bin/aws-connect \
+  && rm -f ./${AWS_CONNECT_FILENAME} \
+  && rm -rf ./aws-connect-${AWS_CONNECT_VERSION}
+
+
 WORKDIR /opt
 
 # Install gcloud suite
@@ -335,31 +409,8 @@ RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY clearokta /usr/bin/clearokta
 
-# Install go binaries
-ENV GOROOT "/usr/lib/go"
-RUN apk --update --no-cache add --virtual build.deps \
-    build-base \
-    go \
-    libusb-dev \
-    pkgconfig \
-    libffi-dev \
-    python3-dev \
-    openssl-dev \
-  && echo GOROOT=/usr/lib/go > /usr/lib/go/src/all.bash \
-  && export CGO_ENABLED=0 \
-  && go get github.com/kelseyhightower/confd \
-  && export CGO_ENABLED=1 \
-  && go get github.com/segmentio/aws-okta \
-  && go clean -cache \
-  && mv /root/go/bin/* /usr/bin/ \
-  && pip install --no-cache-dir \
-    ec2instanceconnectcli \
-  && apk del build.deps \
-  && rm -rf /root/go/ \
-  && rm -rf /root/.cache \
-  && rm -rf /usr/lib/go/src/all.bash \
-  && aws-okta completion bash > /etc/bash_completion.d/aws-okta \
-  && echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
+# Set up bashrc and scripts
+RUN echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
   && echo "    Host *" >> /etc/ssh/ssh_config \
   && echo "ServerAliveInterval 30" >> /etc/ssh/ssh_config \
   && echo "ServerAliveCountMax 3" >> /etc/ssh/ssh_config \
@@ -384,7 +435,8 @@ RUN echo "Test Layer" \
   && kubens --help \
   && mssh --help \
   && okta-awscli --help \
-  && session-manager-plugin --version
+  && session-manager-plugin --version \
+  && terraform-docs
 
 COPY bashrc /etc/bashrc
 
