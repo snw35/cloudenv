@@ -133,10 +133,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.23.32
+ENV TERRAGRUNT_NEW_VERSION 0.23.33
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 9d423548cc7277c43251b2f24b5a5207e729a57f634f941fa639cf2738ab7ec4
+ENV TERRAGRUNT_NEW_SHA256 ce67c9d59af85a98046f22cf39d09b4f0e6fe9746334764bbb620bcbd71f75b7
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -194,10 +194,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.17.1
+ENV KOPS_VERSION 1.18.0
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 7deb5ac37a25ef833579804f3e9d1b862a9610ca2991b46fed65a1f4782c4570
+ENV KOPS_SHA256 e617f79a21a9a3ea984ca8be3a24cf175b254ab28611b22ac09e8a2964dd29b4
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -222,10 +222,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.21.5
+ENV K9S_VERSION 0.21.7
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 c13ab1fdd41a2da53a463e2e23c90fa1bd2d8d7c1c572b3cbd3fd73f81f6b136
+ENV K9S_SHA256 bde46b89bb04703a52b4836a260bc56c7ebeae827e4640d9cc9b9ec9b9376a2c
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
