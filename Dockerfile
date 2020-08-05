@@ -238,10 +238,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.20.0
+ENV FLUXCTL_VERSION 1.20.1
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 790450b7fb3cbb5decc060223e489bce3459753b5e77e7bac1adeee8db41eb21
+ENV FLUXCTL_SHA256 0b44c95acf9b08fee6f975bf13a93c71a766d0a342f0e9af1470ebaa1b1a98bc
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -398,10 +398,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 303.0.0
+ENV GCLOUD_VERSION 304.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 05e22e4308fa68e7270e071a4bd783d4ade3c6911db62520f3991b46ec70a25c
+ENV GCLOUD_SHA256 9cc7ec94855c3cab99211879ab8774a5a16b8de5322be5dd055e8da6d80495d3
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
