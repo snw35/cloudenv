@@ -91,35 +91,53 @@ RUN wget $HELM_URL/$HELM_FILENAME \
   && helm completion bash > /etc/bash_completion.d/helm
 
 
-# Install terraform 11 as default and do not upgrade
+# Install terraform 11
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_OLD_VERSION 0.11.14
-ENV TERRAFORM_OLD_URL https://releases.hashicorp.com/terraform/$TERRAFORM_OLD_VERSION
-ENV TERRAFORM_OLD_FILENAME terraform_${TERRAFORM_OLD_VERSION}_linux_amd64.zip
-ENV TERRAFORM_OLD_SHA256 9b9a4492738c69077b079e595f5b2a9ef1bc4e8fb5596610f69a6f322a8af8dd
+ENV TERRAFORM_11_VERSION 0.11.14
+ENV TERRAFORM_11_URL https://releases.hashicorp.com/terraform/$TERRAFORM_11_VERSION
+ENV TERRAFORM_11_FILENAME terraform_${TERRAFORM_11_VERSION}_linux_amd64.zip
+ENV TERRAFORM_11_SHA256 9b9a4492738c69077b079e595f5b2a9ef1bc4e8fb5596610f69a6f322a8af8dd
 
-RUN wget $TERRAFORM_OLD_URL/$TERRAFORM_OLD_FILENAME \
-  && echo "$TERRAFORM_OLD_SHA256  ./$TERRAFORM_OLD_FILENAME" | sha256sum -c - \
-  && unzip ./$TERRAFORM_OLD_FILENAME \
-  && rm ./$TERRAFORM_OLD_FILENAME \
+RUN wget $TERRAFORM_11_URL/$TERRAFORM_11_FILENAME \
+  && echo "$TERRAFORM_11_SHA256  ./$TERRAFORM_11_FILENAME" | sha256sum -c - \
+  && unzip ./$TERRAFORM_11_FILENAME \
+  && rm ./$TERRAFORM_11_FILENAME \
   && chmod +x ./terraform \
   && mv ./terraform ./terraform11
 
 # Install terraform 12
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_NEW_VERSION 0.12.29
-ENV TERRAFORM_NEW_URL https://releases.hashicorp.com/terraform/$TERRAFORM_NEW_VERSION
-ENV TERRAFORM_NEW_FILENAME terraform_${TERRAFORM_NEW_VERSION}_linux_amd64.zip
-ENV TERRAFORM_NEW_SHA256 872245d9c6302b24dc0d98a1e010aef1e4ef60865a2d1f60102c8ad03e9d5a1d
+ENV TERRAFORM_12_VERSION 0.12.29
+ENV TERRAFORM_12_URL https://releases.hashicorp.com/terraform/$TERRAFORM_12_VERSION
+ENV TERRAFORM_12_FILENAME terraform_${TERRAFORM_12_VERSION}_linux_amd64.zip
+ENV TERRAFORM_12_SHA256 872245d9c6302b24dc0d98a1e010aef1e4ef60865a2d1f60102c8ad03e9d5a1d
 
-RUN wget $TERRAFORM_NEW_URL/$TERRAFORM_NEW_FILENAME \
-  && echo "$TERRAFORM_NEW_SHA256  ./$TERRAFORM_NEW_FILENAME" | sha256sum -c - \
-  && unzip ./$TERRAFORM_NEW_FILENAME \
-  && rm ./$TERRAFORM_NEW_FILENAME \
-  && chmod +x ./terraform
+RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
+  && echo "$TERRAFORM_12_SHA256  ./$TERRAFORM_12_FILENAME" | sha256sum -c - \
+  && unzip ./$TERRAFORM_12_FILENAME \
+  && rm ./$TERRAFORM_12_FILENAME \
+  && chmod +x ./terraform \
+  && mv ./terraform ./terraform12
+
+# Install terraform latest
+# From https://www.terraform.io/downloads.html
+ENV TERRAFORM_LATEST_VERSION 0.13.0
+ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
+ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
+ENV TERRAFORM_LATEST_SHA256 9ed437560faf084c18716e289ea712c784a514bdd7f2796549c735d439dbe378
+
+RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
+  && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
+  && unzip ./$TERRAFORM_LATEST_FILENAME \
+  && rm ./$TERRAFORM_LATEST_FILENAME \
+  && chmod +x ./terraform \
+  && mv ./terraform ./terraform13
+
+# Use Terrafrom 12 by default
+RUN ln -s ./terraform12 ./terraform
 
 
-# Install terragrunt 18 as default and do not upgrade
+# Install terragrunt 18
 # From https://github.com/gruntwork-io/terragrunt/releases
 ENV TERRAGRUNT_OLD_VERSION 0.18.7
 ENV TERRAGRUNT_OLD_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_OLD_VERSION
