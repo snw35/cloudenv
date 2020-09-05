@@ -302,10 +302,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.26.0
+ENV EKSCTL_VERSION 0.27.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 a69012e867c9888db3335c91401de6640d1165c155339414b0cf67cc27762a05
+ENV EKSCTL_SHA256 62b15bced0e4a21d8f8af144836c8493af889e626a2d54a6931f9c78c3d4e4fe
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
