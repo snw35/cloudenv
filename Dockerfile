@@ -18,14 +18,12 @@ RUN apk --update --no-cache upgrade -a \
     fish \
     fzf \
     fzf-bash-completion \
-    gcompat \
     git \
     gnupg \
     groff \
     iputils \
     jq \
     keychain \
-    libc6-compat \
     libusb \
     ncurses \
     net-tools \
@@ -40,7 +38,6 @@ RUN apk --update --no-cache upgrade -a \
     tmux \
     tzdata \
   && pip install --no-cache-dir  \
-    awscli \
     cookiecutter \
     okta-awscli \
     datadog \
@@ -59,6 +56,22 @@ RUN apk --update --no-cache add --virtual build.deps \
   && pip install --no-cache-dir \
     ec2instanceconnectcli \
   && apk del build.deps
+
+
+# Install glibc
+ENV GLIBC_VERSION 2.32-r0
+ENV GLIBC_URL https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}
+ENV GLIBC_FILENAME glibc-${GLIBC_VERSION}.apk
+ENV GLIBC_SHA256 2a3cd1111d2b42563e90a1ace54c3e000adf3a5a422880e7baf628c671b430c5
+
+RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+  && wget $GLIBC_URL/$GLIBC_FILENAME \
+  && wget $GLIBC_URL/glibc-bin-${GLIBC_VERSION}.apk \
+  && echo "$GLIBC_SHA256  ./$GLIBC_FILENAME" | sha256sum -c - \
+  && apk add --no-cache ./$GLIBC_FILENAME ./glibc-bin-${GLIBC_VERSION}.apk \
+  && rm -f ./$GLIBC_FILENAME \
+  && rm -f glibc-bin-${GLIBC_VERSION}.apk
+
 
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
@@ -359,28 +372,16 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 
 # Install aws-okta
-# We can't use the pre-compiled binaries because they don't support musl libc
+# https://github.com/segmentio/aws-okta/releases/download/v1.0.4/aws-okta-v1.0.4-linux-amd64
 ENV AWS_OKTA_VERSION 1.0.4
-ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/archive
-ENV AWS_OKTA_FILENAME v${AWS_OKTA_VERSION}.tar.gz
-ENV AWS_OKTA_SHA256 8de9ddeed77576a4852c140c42197e8022f463b60e9c4b06978fdb12c3fcd4b7
+ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/releases/download/v${AWS_OKTA_VERSION}
+ENV AWS_OKTA_FILENAME aws-okta-v${AWS_OKTA_VERSION}-linux-amd64
+ENV AWS_OKTA_SHA256 ffed53823bcc3d7d28941640b6edd89eaab9c740c9e0e8cf9fd4506364c86674
 
 RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
   && echo "$AWS_OKTA_SHA256  ./$AWS_OKTA_FILENAME" | sha256sum -c - \
-  && tar -xzf ./$AWS_OKTA_FILENAME \
-  && apk --update --no-cache add --virtual build.deps \
-    go \
-  && export CGO_ENABLED=0 \
-  && cd ./aws-okta-${AWS_OKTA_VERSION} \
-  && go build \
-  && cd .. \
-  && mv ./aws-okta-${AWS_OKTA_VERSION}/aws-okta /usr/bin/aws-okta \
-  && rm -rf ./aws-okta-${AWS_OKTA_VERSION} \
-  && rm -rf ./$AWS_OKTA_FILENAME \
-  && go clean -cache \
-  && apk del build.deps \
-  && rm -rf /root/go/ \
-  && rm -rf /root/.cache \
+  && mv ./$AWS_OKTA_FILENAME /usr/bin/aws-okta \
+  && chmod +x /usr/bin/aws-okta \
   && /usr/bin/aws-okta completion bash > /etc/bash_completion.d/aws-okta
 
 
@@ -410,6 +411,20 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
   && chmod +x /usr/local/bin/aws-connect \
   && rm -f ./${AWS_CONNECT_FILENAME} \
   && rm -rf ./aws-connect-${AWS_CONNECT_VERSION}
+
+
+# Install AWS CLI v2
+ENV AWS_CLI_VERSION 2.0.48
+ENV AWS_CLI_URL https://awscli.amazonaws.com
+ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
+ENV AWS_CLI_SHA256 b9b55678184ccc46f7ec0702fdc7d7c86aac314852e1b0bb5fa9eb92b8407a7f
+
+RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
+  && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
+  && unzip ./$AWS_CLI_FILENAME \
+  && rm -f ./$AWS_CLI_FILENAME \
+  && ./aws/install \
+  && rm -rf ./aws
 
 
 WORKDIR /opt
@@ -442,6 +457,7 @@ RUN echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
 RUN echo "Test Layer" \
   && /opt/google-cloud-sdk/bin/gcloud version \
   && aws --version \
+  && aws-connect -v \
   && aws-iam-authenticator \
   && aws-okta \
   && cloud-nuke \
@@ -458,7 +474,12 @@ RUN echo "Test Layer" \
   && mssh --help \
   && okta-awscli --help \
   && session-manager-plugin --version \
-  && terraform-docs
+  && terraform-docs \
+  && terraform11 -h \
+  && terraform12 -h \
+  && terraform13 -h \
+  && terragrunt -h \
+  && terragrunt18 -h
 
 COPY bashrc /etc/bashrc
 
