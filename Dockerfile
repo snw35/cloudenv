@@ -89,10 +89,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.3.2
+ENV HELM_VERSION 3.3.3
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 cf82fe0ed1675030b203a9a3575b1a1bc4b0f5ce4584ce2cd7f75cd093cad259
+ENV HELM_SHA256 246d58b6b353e63ae8627415a7340089015e3eb542ff7b5ce124b0b1409369cc
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -164,10 +164,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.24.4
+ENV TERRAGRUNT_NEW_VERSION 0.25.0
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 f65a22becc185af5291870b04653939cab0cee86beda97fd774feb6dc822b416
+ENV TERRAGRUNT_NEW_SHA256 e90af23f3ce390b86cddc2d055c7b8921fae0cef8457c6bf85c244ce6c8fc268
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -253,10 +253,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.22.0
+ENV K9S_VERSION 0.22.1
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 10bac186387a3d796a5a9d6249289f0165d2bc7126f46fda4233fec2e14213c8
+ENV K9S_SHA256 42d8aef6b839a9bc60de29d2461521596ce2d1f66347dbf5196983229cfeafd2
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
