@@ -126,4 +126,4 @@ if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google-cloud
 . /opt/google-cloud-sdk/path.bash.inc
 
 # aws cli bash completion
-complete -C '/usr/bin/aws_completer' aws
+complete -C '/usr/local/bin/aws_completer' aws
