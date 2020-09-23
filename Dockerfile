@@ -89,10 +89,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.3.3
+ENV HELM_VERSION 3.3.4
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 246d58b6b353e63ae8627415a7340089015e3eb542ff7b5ce124b0b1409369cc
+ENV HELM_SHA256 b664632683c36446deeb85c406871590d879491e3de18978b426769e43a1e82c
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -315,10 +315,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.28.0
+ENV EKSCTL_VERSION 0.28.1
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 7c0ee529eb50feee902332f69f0a238d73aff7b972d4b3e99a56762eea621779
+ENV EKSCTL_SHA256 9d4f5001bedbdf6afa53bb190c85453266317f5170f3794ae20f4b6a1853cbe8
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
