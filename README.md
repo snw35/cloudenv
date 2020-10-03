@@ -35,12 +35,13 @@ There may be updates to the 'cloudenv' script itself, which won't be automatical
 
 ## Included Software
 
-The following software is installed and checked for updates daily:
+The following software is installed and checked for updates weekly:
 
  * [AWS CLI](https://aws.amazon.com/cli/)
  * [AWS Connect](https://github.com/rewindio/aws-connect)
  * [AWS EC2 Instance Connect CLI](https://github.com/aws/aws-ec2-instance-connect-cli)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+ * [AWS Okta Keyman](https://github.com/nathan-v/aws_okta_keyman)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
  * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)
@@ -159,7 +160,7 @@ An environment variable (`TZ`) is used to set the timezone when the container st
 
 - Image on Dockerhub: https://hub.docker.com/r/snw35/cloudenv
 
-Travis CI automatically runs once per day and builds a new image if any updates are found to either the included software or the container base image.
+Travis CI automatically runs once per week and builds a new image if any updates are found to either the included software or the container base image.
 
 The cloudenv container stays as minimal as possible while packaging a *lot* of tools, some of which are large (Hashicorp ones specifically), and providing a *lot* of functionality. It is possible to provision, manage, and develop production-grade cloud infrastructure with just the contents of this container.
 

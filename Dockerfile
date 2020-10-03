@@ -39,8 +39,8 @@ RUN apk --update --no-cache upgrade -a \
     tzdata \
   && pip install --no-cache-dir  \
     cookiecutter \
-    okta-awscli \
     datadog \
+    okta-awscli \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
@@ -54,6 +54,7 @@ RUN apk --update --no-cache add --virtual build.deps \
     openssl-dev \
     python3-dev \
   && pip install --no-cache-dir \
+    aws-okta-keyman \
     ec2instanceconnectcli \
   && apk del build.deps
 
@@ -372,16 +373,28 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 
 # Install aws-okta
-# https://github.com/segmentio/aws-okta/releases/download/v1.0.4/aws-okta-v1.0.4-linux-amd64
+# Upstream has stopped providing pre-built binaries
 ENV AWS_OKTA_VERSION 1.0.4
-ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/releases/download/v${AWS_OKTA_VERSION}
-ENV AWS_OKTA_FILENAME aws-okta-v${AWS_OKTA_VERSION}-linux-amd64
-ENV AWS_OKTA_SHA256 ffed53823bcc3d7d28941640b6edd89eaab9c740c9e0e8cf9fd4506364c86674
+ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/archive
+ENV AWS_OKTA_FILENAME v${AWS_OKTA_VERSION}.tar.gz
+ENV AWS_OKTA_SHA256 8de9ddeed77576a4852c140c42197e8022f463b60e9c4b06978fdb12c3fcd4b7
 
 RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
   && echo "$AWS_OKTA_SHA256  ./$AWS_OKTA_FILENAME" | sha256sum -c - \
-  && mv ./$AWS_OKTA_FILENAME /usr/bin/aws-okta \
-  && chmod +x /usr/bin/aws-okta \
+  && tar -xzf ./$AWS_OKTA_FILENAME \
+  && apk --update --no-cache add --virtual build.deps \
+    go \
+  && export CGO_ENABLED=0 \
+  && cd ./aws-okta-${AWS_OKTA_VERSION} \
+  && go build \
+  && cd .. \
+  && mv ./aws-okta-${AWS_OKTA_VERSION}/aws-okta /usr/bin/aws-okta \
+  && rm -rf ./aws-okta-${AWS_OKTA_VERSION} \
+  && rm -rf ./$AWS_OKTA_FILENAME \
+  && go clean -cache \
+  && apk del build.deps \
+  && rm -rf /root/go/ \
+  && rm -rf /root/.cache \
   && /usr/bin/aws-okta completion bash > /etc/bash_completion.d/aws-okta
 
 
@@ -460,6 +473,7 @@ RUN echo "Test Layer" \
   && aws-connect -v \
   && aws-iam-authenticator \
   && aws-okta \
+  && aws_okta_keyman --help \
   && cloud-nuke \
   && confd -version \
   && cookiecutter -h \
