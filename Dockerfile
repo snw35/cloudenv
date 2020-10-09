@@ -56,6 +56,7 @@ RUN apk --update --no-cache add --virtual build.deps \
   && pip install --no-cache-dir \
     aws-okta-keyman \
     ec2instanceconnectcli \
+    keyrings.cryptfile \
   && apk del build.deps
 
 
