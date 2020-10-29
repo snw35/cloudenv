@@ -8,3 +8,5 @@ fi
 if [ -d ~/.aws-okta ]; then
   find ~/.aws-okta -maxdepth 1 -name "*session\ \(*" -type f -delete
 fi
+
+pkill -f aws_okta_keyman
