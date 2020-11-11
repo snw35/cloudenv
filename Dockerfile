@@ -166,10 +166,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.26.0
+ENV TERRAGRUNT_NEW_VERSION 0.26.2
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 3017dedf017e7192afdecfba4ec42d50aceff78ab3d5e410aedcdfc2f9aeb3b1
+ENV TERRAGRUNT_NEW_SHA256 6e71b31d21e69b96279b912f8e4f1947870b9bb9291923434a2c4292633deff1
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -255,10 +255,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.23.4
+ENV K9S_VERSION 0.23.10
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 1876dd1ff4388b70c9e25f66c0a51296416f283fc7b3adc9e4be42474b8c7b37
+ENV K9S_SHA256 7838b227164bb67c44caba4a1ecaee44c200580b6c6e8d6fc2acb741e5a95017
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -317,10 +317,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.30.0
+ENV EKSCTL_VERSION 0.31.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 5c12240e428874d130cf3bf87be54c5cfa4e4cefa9c15723f1a1c0d9cf40739c
+ENV EKSCTL_SHA256 1066fb10812bf39a0997ec7cb09a4fb513cc32ca494eb9b1965de15f527fc0f1
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -375,10 +375,10 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 # Install aws-okta
 # Upstream has stopped providing pre-built binaries
-ENV AWS_OKTA_VERSION 1.0.6
+ENV AWS_OKTA_VERSION 1.0.8
 ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/archive
 ENV AWS_OKTA_FILENAME v${AWS_OKTA_VERSION}.tar.gz
-ENV AWS_OKTA_SHA256 c73df8932f5f2e24662a423505cbaab4d0032ba89afe5790e16ea8cf64f63d51
+ENV AWS_OKTA_SHA256 85c97294eac8cd5f3d47b2d74244c7a397787206e3eb19e875c879b3718c8c59
 
 RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
   && echo "$AWS_OKTA_SHA256  ./$AWS_OKTA_FILENAME" | sha256sum -c - \
@@ -428,10 +428,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.0.61
+ENV AWS_CLI_VERSION 2.1.0
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 72ea1b4acc4862a4f6dfa4ed8ec505127b5d8eb7dc0acdd77a8d7f44effb6b6d
+ENV AWS_CLI_SHA256 c96e0650cc301ab705660f9e72841b3ae94ff2fb70e8422dd2a9a891331328aa
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
