@@ -78,10 +78,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.19.4
+ENV KUBECTL_VERSION 1.20.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 7df333f1fc1207d600139fe8196688303d05fbbc6836577808cda8fe1e3ea63f
+ENV KUBECTL_SHA256 a5895007f331f08d2e082eb12458764949559f30bcc5beae26c38f3e2724262c
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -136,10 +136,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 0.13.5
+ENV TERRAFORM_LATEST_VERSION 0.14.2
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 f7b7a7b1bfbf5d78151cfe3d1d463140b5fd6a354e71a7de2b5644e652ca5147
+ENV TERRAFORM_LATEST_SHA256 6f380c0c7a846f9e0aedb98a2073d2cbd7d1e2dc0e070273f9325f1b69e668b2
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -255,10 +255,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.24.1
+ENV K9S_VERSION 0.24.2
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 58707af45652b26ebc764bd8422725940832348ccef07f38d2d31c17572e3bf8
+ENV K9S_SHA256 238b754da8469c1e25a2699d2994a59b16308b2abee671cbf9c476a0b8d9bd67
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -284,10 +284,10 @@ RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
 
 # Install rakkess
 # From https://github.com/corneliusweig/rakkess/releases
-ENV RAKKESS_VERSION 0.4.5
+ENV RAKKESS_VERSION 0.4.6
 ENV RAKKESS_URL https://github.com/corneliusweig/rakkess/releases/download/v${RAKKESS_VERSION}
 ENV RAKKESS_FILENAME rakkess-amd64-linux.tar.gz
-ENV RAKKESS_SHA256 21ea703ec0ad5464e5a236f6094fcd8eb84c0a51e70c8cd25ea35c8a7543415f
+ENV RAKKESS_SHA256 f6f34a9e60b7877b87b371234dd7f2c4988423ce9ce86b4420b7f81922806ec1
 
 RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
   && echo "$RAKKESS_SHA256  ./$RAKKESS_FILENAME" | sha256sum -c - \
@@ -317,10 +317,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.32.0
+ENV EKSCTL_VERSION 0.34.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 ee7e78a7c325c211b954648cde84e315a2ef62a55aeb738ee9cfb24f5156f457
+ENV EKSCTL_SHA256 b36f5e860a7082d2391ddc4ab436875e34a37f0649fd0e11cb6556f39d0c2ae2
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -428,10 +428,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.1.6
+ENV AWS_CLI_VERSION 2.1.8
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 1acc24993389e088434a85d506f6142121f12d4fbe74e73043dfded434141d04
+ENV AWS_CLI_SHA256 1eb9ef80633d94acb313630acd5a9eb60c27d61563498eb5c75a1a8bdcfd8413
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
