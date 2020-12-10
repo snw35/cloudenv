@@ -41,6 +41,7 @@ RUN apk --update --no-cache upgrade -a \
     cookiecutter \
     datadog \
     okta-awscli \
+    wheel \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
@@ -55,6 +56,7 @@ RUN apk --update --no-cache add --virtual build.deps \
     python3-dev \
   && pip install --no-cache-dir \
     aws-okta-keyman \
+    aws-sam-cli \
     ec2instanceconnectcli \
     keyrings.cryptfile \
   && apk del build.deps
@@ -146,7 +148,7 @@ RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && unzip ./$TERRAFORM_LATEST_FILENAME \
   && rm ./$TERRAFORM_LATEST_FILENAME \
   && chmod +x ./terraform \
-  && mv ./terraform ./terraform13
+  && mv ./terraform ./terraform-latest
 
 # Use Terrafrom 12 by default
 RUN ln -s ./terraform12 ./terraform
@@ -488,11 +490,12 @@ RUN echo "Test Layer" \
   && kubens --help \
   && mssh --help \
   && okta-awscli --help \
+  && sam --help \
   && session-manager-plugin --version \
   && terraform-docs \
   && terraform11 -h \
   && terraform12 -h \
-  && terraform13 -h \
+  && terraform-latest -h \
   && terragrunt -h \
   && terragrunt18 -h
 

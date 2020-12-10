@@ -43,6 +43,7 @@ The following software is installed and checked for updates weekly:
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta Keyman](https://github.com/nathan-v/aws_okta_keyman)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
+ * [AWS SAM CLI](https://github.com/aws/aws-sam-cli)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
  * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)
  * [Confd](http://www.confd.io/)
@@ -77,9 +78,9 @@ One instance of cloudenv will be run per user, named 'cloudenv-username', and mu
 
 **WARNING:** If multiple users run cloudenv on the same machine, because the home directory is bind-mounted into the container, **anyone** in the docker group will be able to exec into any cloudenv container and access all of that user's files. This tool is meant to be run on e.g trusted jumpbox hosts, or on single-user workstations. Keep this in mind when deploying it elsewhere.
 
-### Terraform 11/12/13 and Terragrunt 18/19
+### Terraform 11/12/13+ and Terragrunt 18/19
 
-Terraform 12/13 and Terragrunt 19 are not backwards compatible with previous major versions, so all sets of versions are included. By default, Terraform 12 and the latest version of Terragrunt are used. This is to give users to time to migrate their configurations to Terraform 13.
+Terraform 12/13+ and Terragrunt 19 are not backwards compatible with previous major versions, so all sets of versions are included. By default, Terraform 12 and the latest version of Terragrunt are used. This is to give users to time to migrate their configurations to Terraform 13 and later.
 
 To run with a specific version combination:
 
@@ -96,10 +97,10 @@ terragrunt18 plan
 terragrunt plan
 ```
 
-#### Latest (TF 13 + TG 19+)
+#### Latest (TF 13+ + TG 19+)
 
 ```shell
-export TERRAGRUNT_TFPATH=/usr/bin/terraform13
+export TERRAGRUNT_TFPATH=/usr/bin/terraform-latest
 terragrunt plan
 ```
 
