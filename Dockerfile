@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.12.1
+FROM alpine:3.12.2
 
 WORKDIR /usr/bin/
 
@@ -377,10 +377,10 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 # Install aws-okta
 # Upstream has stopped providing pre-built binaries
-ENV AWS_OKTA_VERSION 1.0.8
+ENV AWS_OKTA_VERSION 1.0.9
 ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/archive
 ENV AWS_OKTA_FILENAME v${AWS_OKTA_VERSION}.tar.gz
-ENV AWS_OKTA_SHA256 85c97294eac8cd5f3d47b2d74244c7a397787206e3eb19e875c879b3718c8c59
+ENV AWS_OKTA_SHA256 030fdf10e25f0f3507a93f8b267fcb6939b77d714260cd757e741162c79a418b
 
 RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
   && echo "$AWS_OKTA_SHA256  ./$AWS_OKTA_FILENAME" | sha256sum -c - \
@@ -430,10 +430,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.1.9
+ENV AWS_CLI_VERSION 2.1.11
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 da5e1fb5ab51b22ed04b6cf784508181cc986d3bd1daaebed94b3f1486b05c71
+ENV AWS_CLI_SHA256 db3680555ba006d821a50da60096230c048afc5cfeb259d29cfbf7844758e601
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
