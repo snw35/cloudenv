@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.12.2
+FROM alpine:3.12.3
 
 WORKDIR /usr/bin/
 
@@ -80,10 +80,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.20.0
+ENV KUBECTL_VERSION 1.20.1
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 a5895007f331f08d2e082eb12458764949559f30bcc5beae26c38f3e2724262c
+ENV KUBECTL_SHA256 3f4b52a8072013e4cd34c9ea07e3c0c4e0350b227e00507fb1ae44a9adbf6785
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -138,10 +138,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 0.14.2
+ENV TERRAFORM_LATEST_VERSION 0.14.3
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 6f380c0c7a846f9e0aedb98a2073d2cbd7d1e2dc0e070273f9325f1b69e668b2
+ENV TERRAFORM_LATEST_SHA256 aa7b6cb6f366ffb920083b2a9739079ee560240ca31b580fe422af4af28cbb5a
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -181,10 +181,10 @@ RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.6.5
+ENV PACKER_VERSION 1.6.6
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 a49f6408a50c220fe3f1a6192ea21134e2e8f31092c507614cd27ad4f913234b
+ENV PACKER_SHA256 721d119fd70e38d6f2b4ccd8a39daf6b4d36bf5f7640036acafcaaa967b00c3b
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -319,10 +319,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.34.0
+ENV EKSCTL_VERSION 0.35.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 b36f5e860a7082d2391ddc4ab436875e34a37f0649fd0e11cb6556f39d0c2ae2
+ENV EKSCTL_SHA256 e17d0a9ddfdf4e85a78eefcd8843d1926be9440de6540a8fc98f023523906dc7
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -430,10 +430,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.1.11
+ENV AWS_CLI_VERSION 2.1.14
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 db3680555ba006d821a50da60096230c048afc5cfeb259d29cfbf7844758e601
+ENV AWS_CLI_SHA256 b7f5643470319bf1ecbb270544f452f9f1ed406ab283037d3ab3cf9620f02a18
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
