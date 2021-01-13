@@ -150,8 +150,8 @@ RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && chmod +x ./terraform \
   && mv ./terraform ./terraform-latest
 
-# Use Terrafrom 12 by default
-RUN ln -s ./terraform12 ./terraform
+# Use Terrafrom latest by default
+RUN ln -s ./terraform-latest ./terraform
 
 
 # Install terragrunt 18

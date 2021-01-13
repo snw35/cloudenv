@@ -78,29 +78,29 @@ One instance of cloudenv will be run per user, named 'cloudenv-username', and mu
 
 **WARNING:** If multiple users run cloudenv on the same machine, because the home directory is bind-mounted into the container, **anyone** in the docker group will be able to exec into any cloudenv container and access all of that user's files. This tool is meant to be run on e.g trusted jumpbox hosts, or on single-user workstations. Keep this in mind when deploying it elsewhere.
 
-### Terraform 11/12/13+ and Terragrunt 18/19
+### Terraform and Terragrunt Versions
 
-Terraform 12/13+ and Terragrunt 19 are not backwards compatible with previous major versions, so all sets of versions are included. By default, Terraform 12 and the latest version of Terragrunt are used. This is to give users to time to migrate their configurations to Terraform 13 and later.
+Terraform and Terragrunt are not backwards compatible with certain previous major versions, so multiple sets of versions are included. By default, the latest versions of Terraform and Terragrunt are used.
 
-To run with a specific version combination:
+To run Terragrunt with a specific version of Terraform:
 
-#### Legacy (TF 11 + TG 18)
+#### Terraform 11 (requires Terragrunt 18)
 
 ```shell
 export TERRAGRUNT_TFPATH=/usr/bin/terraform11
 terragrunt18 plan
 ```
 
-#### Modern (TF 12 + TG 19+)
+#### Terraform 12
 
 ```shell
+export TERRAGRUNT_TFPATH=/usr/bin/terraform12
 terragrunt plan
 ```
 
-#### Latest (TF 13+ + TG 19+)
+#### Terraform Latest
 
 ```shell
-export TERRAGRUNT_TFPATH=/usr/bin/terraform-latest
 terragrunt plan
 ```
 
