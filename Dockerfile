@@ -37,6 +37,7 @@ RUN apk --update --no-cache upgrade -a \
     su-exec \
     tmux \
     tzdata \
+  && pip install --upgrade pip \
   && pip install --no-cache-dir  \
     cookiecutter \
     datadog \
@@ -51,9 +52,11 @@ RUN apk --update --no-cache upgrade -a \
 # Install software / modules that need build_base
 RUN apk --update --no-cache add --virtual build.deps \
     build-base \
+    cargo \
     libffi-dev \
     openssl-dev \
     python3-dev \
+    rust \
   && pip install --no-cache-dir \
     aws-okta-keyman \
     aws-sam-cli \
