@@ -1,0 +1,143 @@
+[__config__]
+oldver = "old_ver.json"
+newver = "new_ver.json"
+
+[GCLOUD]
+source = "regex"
+regex = 'google-cloud-sdk-anthos-auth_(\d*\.\d*\.\d*).orig_amd64.tar.gz'
+url = "https://storage.googleapis.com/cloud-sdk-release"
+
+[KUBECTL]
+source = "cmd"
+cmd = "wget -qO- https://storage.googleapis.com/kubernetes-release/release/stable.txt"
+prefix = "v"
+
+[HELM]
+source = "github"
+github = "helm/helm"
+use_max_tag = true
+exclude_regex = ".*rc.*"
+prefix = "v"
+
+[TERRAFORM_11]
+source = "github"
+github = "hashicorp/terraform"
+use_max_tag = true
+include_regex = "v0\\.11\\..*"
+prefix = "v"
+
+[TERRAFORM_12]
+source = "github"
+github = "hashicorp/terraform"
+use_max_tag = true
+include_regex = "v0\\.12\\..*"
+prefix = "v"
+
+[TERRAFORM_LATEST]
+source = "github"
+github = "hashicorp/terraform"
+use_latest_release = true
+prefix = "v"
+
+[TERRAGRUNT_OLD]
+source = "github"
+github = "gruntwork-io/terragrunt"
+use_max_tag = true
+include_regex = "v0\\.18\\..*"
+prefix = "v"
+
+[TERRAGRUNT_NEW]
+source = "github"
+github = "gruntwork-io/terragrunt"
+use_latest_release = true
+prefix = "v"
+
+[PACKER]
+source = "github"
+github = "hashicorp/packer"
+use_latest_release = true
+prefix = "v"
+
+[AWS_IAM_AUTH]
+source = "github"
+github = "kubernetes-sigs/aws-iam-authenticator"
+use_latest_release = true
+prefix = "v"
+
+[KUBECTX]
+source = "github"
+github = "ahmetb/kubectx"
+use_latest_release = true
+prefix = "v"
+
+[KOPS]
+source = "github"
+github = "kubernetes/kops"
+use_latest_release = false
+use_max_tag = true
+exclude_regex = ".*(alpha|beta).*"
+prefix = "v"
+
+[KOMPOSE]
+source = "github"
+github = "kubernetes/kompose"
+use_latest_release = true
+prefix = "v"
+
+[K9S]
+source = "github"
+github = "derailed/k9s"
+use_latest_release = false
+use_max_tag = true
+prefix = "v"
+
+[FLUXCTL]
+source = "github"
+github = "fluxcd/flux"
+use_latest_release = true
+
+[RAKKESS]
+source = "github"
+github = "corneliusweig/rakkess"
+use_latest_release = true
+prefix = "v"
+
+[EKSCTL]
+source = "github"
+github = "weaveworks/eksctl"
+use_max_tag = true
+exclude_regex = ".*rc.*"
+
+[CLOUD_NUKE]
+source = "github"
+github = "gruntwork-io/cloud-nuke"
+use_latest_release = true
+prefix = "v"
+
+[CONFD]
+source = "github"
+github = "kelseyhightower/confd"
+use_max_tag = true
+prefix = "v"
+
+[AWS_OKTA]
+source = "github"
+github = "segmentio/aws-okta"
+use_max_tag = true
+prefix = "v"
+
+[TERRAFORM_DOCS]
+source = "github"
+github = "terraform-docs/terraform-docs"
+use_latest_release = true
+prefix = "v"
+
+[GLIBC]
+source = "github"
+github = "sgerrand/alpine-pkg-glibc"
+use_max_tag = true
+
+[AWS_CLI]
+source = "github"
+github = "aws/aws-cli"
+use_max_tag = true
