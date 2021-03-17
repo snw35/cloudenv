@@ -6,9 +6,9 @@
   "CONFD": "0.16.0",
   "EKSCTL": "0.40.0",
   "FLUXCTL": "1.21.2",
-  "GCLOUD": "331.0.0",
+  "GCLOUD": "332.0.0",
   "GLIBC": "2.33-r0",
-  "HELM": "3.5.2",
+  "HELM": "3.5.3",
   "K9S": "0.24.2",
   "KOMPOSE": "1.22.0",
   "KOPS": "1.19.1",
@@ -19,7 +19,7 @@
   "TERRAFORM_11": "0.11.14",
   "TERRAFORM_12": "0.12.30",
   "TERRAFORM_DOCS": "0.11.2",
-  "TERRAFORM_LATEST": "0.14.7",
-  "TERRAGRUNT_NEW": "0.28.8",
+  "TERRAFORM_LATEST": "0.14.8",
+  "TERRAGRUNT_NEW": "0.28.15",
   "TERRAGRUNT_OLD": "0.18.7"
 }
