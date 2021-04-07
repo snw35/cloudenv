@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.13.3
+FROM alpine:3.13.4
 
 WORKDIR /usr/bin/
 
@@ -184,10 +184,10 @@ RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.7.0
+ENV PACKER_VERSION 1.7.2
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 935e81c07381a964bdbaddde2d890c91d52e88b9e5375f3882840925f6a96893
+ENV PACKER_SHA256 9429c3a6f80b406dbddb9b30a4e468aeac59ab6ae4d09618c8d70c4f4188442e
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -260,10 +260,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.24.6
+ENV K9S_VERSION 0.24.7
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 a5debeafafc1c9a6eb2517873a5a62d2e285e1ba3dc7653190f4c64073fedffa
+ENV K9S_SHA256 5096820f8c55708b059c3a01c5baeecca210c6b955740419d6b30b3132589619
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -276,10 +276,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.22.0
+ENV FLUXCTL_VERSION 1.22.1
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 bc3c5c1f4b82ddc6f5c56b5c2a12a0e695950d53ab77f7c52b893dbcb0625def
+ENV FLUXCTL_SHA256 991f77ec238b26238819c654455adf28e7f58f43a891011212f060a34af51b08
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -322,10 +322,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.42.0
+ENV EKSCTL_VERSION 0.43.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 32b6c24f37817e90278e31778070c2058496c6ea979aea210f3e783064933745
+ENV EKSCTL_SHA256 ef2f1dc7e3569b911109f67fdc8c0955098e661c9fe9d36b2dee7422b4042363
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -433,10 +433,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.1.33
+ENV AWS_CLI_VERSION 2.1.35
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 03c455bc89b114d46cdda90a54553fe041e42d5adc3e9b21c700f8983ee906b2
+ENV AWS_CLI_SHA256 b45a07d5b6818eb4c97a0dc485d0c98f7509aa565557270bf7ba9668dc064073
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
