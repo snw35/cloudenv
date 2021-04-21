@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.13.4
+FROM alpine:3.13.5
 
 WORKDIR /usr/bin/
 
@@ -96,10 +96,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.5.3
+ENV HELM_VERSION 3.5.4
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 2170a1a644a9e0b863f00c17b761ce33d4323da64fc74562a3a6df2abbf6cd70
+ENV HELM_SHA256 a8ddb4e30435b5fd45308ecce5eaad676d64a5de9c89660b56face3fe990b318
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -141,10 +141,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 0.14.10
+ENV TERRAFORM_LATEST_VERSION 0.15.0
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 45d4a12ca7b5c52983f43837d696f45c5ed9ebe536d6b44104f2edb2e1a39894
+ENV TERRAFORM_LATEST_SHA256 69c5db7bd6d4a5d3dd060678e5c3d9442e32610ed05879b4325e6aa4807d0529
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -171,10 +171,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.28.21
+ENV TERRAGRUNT_NEW_VERSION 0.28.24
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 44672d141b8837e5a7d462f1507079bf00fdbcbffde25ebee4988afcff49616d
+ENV TERRAGRUNT_NEW_SHA256 a0aa567499b9cd92f94d624d6d81628a9b87a13ed8e8ae9cfca37cb8ea3c94a6
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -322,10 +322,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.44.0
+ENV EKSCTL_VERSION 0.45.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 2a3e86bab1767b0aac3d75f51e04435aa34d6acb30bbef5ffd756dfcf61e1512
+ENV EKSCTL_SHA256 55dbaec1b63f1a711300c5004ea901093a492881a519a2d042227e6d0e53ce50
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -433,10 +433,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.1.37
+ENV AWS_CLI_VERSION 2.1.38
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 4e2fb7a5594ede7778938343f16244a449aa417cd74e86f4dfef2438398399fb
+ENV AWS_CLI_SHA256 e11687aa1b1008a2ba9b4023684560d0a1308047b398fa68fdcbb2ea4920d02c
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -450,10 +450,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 335.0.0
+ENV GCLOUD_VERSION 337.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 9cc234763bc70dc383a84a1b74adacc2816be991002352423037f56150fc6b8b
+ENV GCLOUD_SHA256 04835064bd1b015ad1f6797f2df5f7d8c47522b3d47d7c283d0b8b46c970309d
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
