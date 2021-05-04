@@ -413,7 +413,6 @@ ENV TERRAFORM_DOCS_SHA256 2fad6ac8eeb3d1c26b2d6d5cc08898986039bc3a4c676a87d00f81
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
   && tar -xzf ./$TERRAFORM_DOCS_FILENAME \
-  && mv ./terraform-docs /usr/bin/terraform-docs \
   && chmod +x /usr/bin/terraform-docs \
   && /usr/bin/terraform-docs completion bash > /etc/bash_completion.d/terraform-docs \
   && rm -f ./$TERRAFORM_DOCS_FILENAME
