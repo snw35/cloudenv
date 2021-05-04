@@ -36,7 +36,7 @@ prefix = "v"
 [TERRAFORM_LATEST]
 source = "github"
 github = "hashicorp/terraform"
-use_latest_release = true
+use_max_tag = true
 prefix = "v"
 
 [TERRAGRUNT_OLD]
