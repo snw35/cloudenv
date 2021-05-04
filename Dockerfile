@@ -405,16 +405,18 @@ RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
 
 
 # Install terraform-docs
-ENV TERRAFORM_DOCS_VERSION 0.12.1
+ENV TERRAFORM_DOCS_VERSION 0.13.0
 ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
-ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64
-ENV TERRAFORM_DOCS_SHA256 32c0611a33a9c83857240ce2095287a5329564f26acd04818da5156192ecf401
+ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
+ENV TERRAFORM_DOCS_SHA256 2fad6ac8eeb3d1c26b2d6d5cc08898986039bc3a4c676a87d00f810694224fee
 
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
-  && mv ./$TERRAFORM_DOCS_FILENAME /usr/bin/terraform-docs \
+  && tar -xzf ./$TERRAFORM_DOCS_FILENAME \
+  && mv ./terraform-docs /usr/bin/terraform-docs \
   && chmod +x /usr/bin/terraform-docs \
-  && /usr/bin/terraform-docs completion bash > /etc/bash_completion.d/terraform-docs
+  && /usr/bin/terraform-docs completion bash > /etc/bash_completion.d/terraform-docs \
+  && rm -f ./$TERRAFORM_DOCS_FILENAME
 
 
 # Install aws-connect
