@@ -67,7 +67,7 @@ if [ "$1" = 'ssh-agent' ]; then
     HOST_GROUP_ID=1000
     groupadd -g $HOST_GROUP_ID $HOST_GROUP_NAME
   else
-    if id -g $HOST_GROUP_ID >/dev/null 2>&1; then
+    if getent group $HOST_GROUP_ID >/dev/null 2>&1; then
       HOST_GROUP_NAME=$(id -gn $HOST_GROUP_ID)
       echo "Matching internal group found, running as $HOST_GROUP_NAME"
     else

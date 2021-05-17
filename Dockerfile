@@ -39,6 +39,7 @@ RUN apk --update --no-cache upgrade -a \
     tzdata \
   && pip install --upgrade pip \
   && pip install --no-cache-dir  \
+    aws-export-credentials \
     cookiecutter \
     datadog \
     okta-awscli \

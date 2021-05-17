@@ -40,6 +40,7 @@ The following software is installed and checked for updates weekly:
  * [AWS CLI](https://aws.amazon.com/cli/)
  * [AWS Connect](https://github.com/rewindio/aws-connect)
  * [AWS EC2 Instance Connect CLI](https://github.com/aws/aws-ec2-instance-connect-cli)
+ * [AWS Export Credentials](https://github.com/benkehoe/aws-export-credentials)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta Keyman](https://github.com/nathan-v/aws_okta_keyman)
  * [AWS Okta](https://github.com/segmentio/aws-okta)
