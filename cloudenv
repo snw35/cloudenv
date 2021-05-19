@@ -3,7 +3,7 @@ set -u
 
 # Variables
 timezone=Europe/London
-image_name=snw35/cloudenv
+image_name=https://github.com/smartsheet/cloudenv.git
 image_tag=latest
 home_directory=$HOME
 
@@ -55,6 +55,24 @@ ${container_command} pull $image_name:$image_tag
 # If container is not running, remove it so the latest image is used
 if [ ! "$(${container_command} ps -q -f name=$container_name)" ]; then
   ${container_command} rm -f $container_name
+
+  # set check to true to debug
+  if false; then
+    echo "[DEBUG] -----------------------------------------------------------------"
+    echo "[DEBUG] Starting container with command..."
+    echo "${container_command} run ${container_command_opts} -dit"
+    echo "    --name $container_name "
+    echo "    --hostname $container_name "
+    echo "    --workdir \"$HOME\" "
+    echo "    --mount type=bind,source=$home_directory,target=\"$HOME\" "
+    echo "    -e TZ=$timezone -e HOST_USER_NAME=\"$(id -u -n)\" "
+    echo "    -e HOST_GROUP_NAME=\"$(id -g -n)\" "
+    echo "    -e HOST_USER_ID=\"$(id -u)\" "
+    echo "    -e HOST_GROUP_ID=\"$(id -g)\" "
+    echo "    -e HOST_HOME_DIRECTORY=\"$HOME\" "
+    echo "    $container_ssh_opts $image_name:$image_tag "
+    echo "[DEBUG] -----------------------------------------------------------------"
+  fi
 
   ${container_command} run ${container_command_opts} -dit \
     --name $container_name \
