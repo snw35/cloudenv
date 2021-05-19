@@ -3,7 +3,9 @@ set -u
 
 # Variables
 timezone=Europe/London
-image_name=https://github.com/smartsheet/cloudenv.git
+image_name=snw35/cloudenv
+# If you wish to fetch image directly from the repo
+# image_name=https://github.com/snw35/cloudenv.git
 image_tag=latest
 home_directory=$HOME
 
