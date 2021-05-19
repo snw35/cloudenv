@@ -186,5 +186,12 @@ To test the locally built image,
 ./cloudenv
 ```
 
+To run with DEBUG mode on,
+
+```sh
+export CLOUDENV_DBG=true && ./cloudenv
+```
+
+
 Once your changes are tested, open a pull request with your changes.
 
