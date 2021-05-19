@@ -65,16 +65,17 @@ if [ ! "$(${container_command} ps -q -f name=$container_name)" ]; then
   if $debug; then
     echo "[DEBUG] -----------------------------------------------------------------"
     echo "[DEBUG] Starting container with command..."
-    echo "${container_command} run ${container_command_opts} -dit"
-    echo "    --name $container_name "
-    echo "    --hostname $container_name "
-    echo "    --workdir \"$HOME\" "
-    echo "    --mount type=bind,source=$home_directory,target=\"$HOME\" "
-    echo "    -e TZ=$timezone -e HOST_USER_NAME=\"$(id -u -n)\" "
-    echo "    -e HOST_GROUP_NAME=\"$(id -g -n)\" "
-    echo "    -e HOST_USER_ID=\"$(id -u)\" "
-    echo "    -e HOST_GROUP_ID=\"$(id -g)\" "
-    echo "    -e HOST_HOME_DIRECTORY=\"$HOME\" "
+    echo "${container_command} run ${container_command_opts} -dit \\"
+    echo "    --name $container_name \\"
+    echo "    --hostname $container_name \\"
+    echo "    --workdir \"$HOME\" \\"
+    echo "    --mount type=bind,source=$home_directory,target=\"$HOME\" \\"
+    echo "    -e TZ=$timezone -e HOST_USER_NAME=\"$(id -u -n)\" \\"
+    echo "    -e HOST_GROUP_NAME=\"$(id -g -n)\" \\"
+    echo "    -e HOST_USER_ID=\"$(id -u)\" \\"
+    echo "    -e HOST_GROUP_ID=\"$(id -g)\" \\"
+    echo "    -e HOST_HOME_DIRECTORY=\"$HOME\" \\"
+    echo "    -e DEBUG_MODE=$debug \\"
     echo "    $container_ssh_opts $image_name:$image_tag "
     echo "[DEBUG] -----------------------------------------------------------------"
   fi
@@ -89,6 +90,7 @@ if [ ! "$(${container_command} ps -q -f name=$container_name)" ]; then
     -e HOST_USER_ID="$(id -u)" \
     -e HOST_GROUP_ID="$(id -g)" \
     -e HOST_HOME_DIRECTORY="$HOME" \
+    -e DEBUG_MODE=$debug \
     $container_ssh_opts $image_name:$image_tag &> /dev/null
 
   retVal=$?
