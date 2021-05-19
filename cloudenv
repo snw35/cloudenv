@@ -6,7 +6,11 @@ timezone=Europe/London
 image_name=snw35/cloudenv
 image_tag=latest
 home_directory=$HOME
-debug=false
+debug=${CLOUDENV_DBG-false}
+
+if $debug; then
+  echo "[DEBUG] Running with debug mode ON"
+fi
 
 # Support podman if found on host. Prefer podman as docker=podman alias will likely be active.
 if hash podman 2>/dev/null; then
