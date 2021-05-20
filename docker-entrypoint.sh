@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+debug=${DEBUG_MODE-false}
+
+[[ $debug = 'true' ]] && echo "[DEBUG] Container running in DEBUG_MODE"
+
 # this if will check if the first argument is a flag
 # but only works if all arguments require a hyphenated flag
 # -v; -SL; -f arg; etc will work, but not arg1 arg2
@@ -65,13 +69,15 @@ if [ "$1" = 'ssh-agent' ]; then
     echo '$HOST_GROUP_ID not set, unable to map external and internal GIDs'
     echo 'Using default GID of 1000 instead'
     HOST_GROUP_ID=1000
+    [[ $debug = 'true' ]] && echo "[DEBUG] groupadd -g $HOST_GROUP_ID $HOST_GROUP_NAME"
     groupadd -g $HOST_GROUP_ID $HOST_GROUP_NAME
   else
     if getent group $HOST_GROUP_ID >/dev/null 2>&1; then
-      HOST_GROUP_NAME=$(id -gn $HOST_GROUP_ID)
+      HOST_GROUP_NAME=$(getent group $HOST_GROUP_ID | cut -d: -f1)
       echo "Matching internal group found, running as $HOST_GROUP_NAME"
     else
       echo "No matching internal group found, creating one..."
+      [[ $debug = 'true' ]] && echo "[DEBUG] groupadd -g $HOST_GROUP_ID $HOST_GROUP_NAME"
       groupadd -g $HOST_GROUP_ID $HOST_GROUP_NAME
     fi
   fi
@@ -81,6 +87,7 @@ if [ "$1" = 'ssh-agent' ]; then
     echo '$HOST_USER_ID not set, unable to map external and internal UIDs'
     echo 'Using default UID of 1000 instead'
     HOST_USER_ID=1000
+    [[ $debug = 'true' ]] && echo "[DEBUG] useradd -l -m -s /bin/bash -u $HOST_USER_ID -g $HOST_GROUP_ID -d $HOST_HOME_DIRECTORY $HOST_USER_NAME"
     useradd -l -m -s /bin/bash -u $HOST_USER_ID -g $HOST_GROUP_ID -d $HOST_HOME_DIRECTORY $HOST_USER_NAME
   else
     # Use an existing internal user if one matches
@@ -89,6 +96,7 @@ if [ "$1" = 'ssh-agent' ]; then
       echo "Matching internal user found, running as $HOST_USER_NAME"
     else
       echo "No matching interneral user found, creating one..."
+      [[ $debug = 'true' ]] && echo "[DEBUG] useradd -l -m -s /bin/bash -u $HOST_USER_ID -g $HOST_GROUP_ID -d $HOST_HOME_DIRECTORY $HOST_USER_NAME"
       useradd -l -m -s /bin/bash -u $HOST_USER_ID -g $HOST_GROUP_ID -d $HOST_HOME_DIRECTORY $HOST_USER_NAME
     fi
   fi

@@ -171,3 +171,27 @@ The cloudenv container stays as minimal as possible while packaging a *lot* of t
 The `latest` tag always points to the most recent image. Where backwards compatibility is an issue (such as with terraform), both the old and new versions will be included.
 
 The 'cloudenv' script pulls the `latest` tag each time it is run. It does not stop or remove running containers however, so you will only use an updated version when you stop/remove the current container. This will happen after a reboot for example.
+
+## Contributing
+
+To build the container locally,
+
+```sh
+docker build -t snw35/cloudenv:latest .
+```
+
+To test the locally built image,
+
+```sh
+./cloudenv
+```
+
+To run with DEBUG mode on,
+
+```sh
+export CLOUDENV_DBG=true && ./cloudenv
+```
+
+
+Once your changes are tested, open a pull request with your changes.
+
