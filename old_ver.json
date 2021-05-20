@@ -9,7 +9,7 @@
   "GCLOUD": "341.0.0",
   "GLIBC": "2.33-r0",
   "HELM": "3.5.4",
-  "K9S": "0.24.9",
+  "K9S": "0.24.10",
   "KOMPOSE": "1.22.0",
   "KOPS": "1.20.1",
   "KUBECTL": "1.21.1",
@@ -19,7 +19,7 @@
   "TERRAFORM_11": "0.11.15",
   "TERRAFORM_12": "0.12.31",
   "TERRAFORM_DOCS": "0.13.0",
-  "TERRAFORM_LATEST": "0.15.3",
+  "TERRAFORM_LATEST": "0.15.4",
   "TERRAGRUNT_NEW": "0.29.3",
   "TERRAGRUNT_OLD": "0.18.7"
 }
