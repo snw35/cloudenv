@@ -478,10 +478,11 @@ RUN echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
 RUN echo "Test Layer" \
   && /opt/google-cloud-sdk/bin/gcloud version \
   && aws --version \
+  && aws_okta_keyman --help \
   && aws-connect -v \
+  && aws-export-credentials --help \
   && aws-iam-authenticator \
   && aws-okta \
-  && aws_okta_keyman --help \
   && cloud-nuke \
   && confd -version \
   && cookiecutter -h \
@@ -498,9 +499,9 @@ RUN echo "Test Layer" \
   && sam --help \
   && session-manager-plugin --version \
   && terraform-docs \
+  && terraform-latest -h \
   && terraform11 -h \
   && terraform12 -h \
-  && terraform-latest -h \
   && terragrunt -h \
   && terragrunt18 -h
 
