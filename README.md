@@ -30,6 +30,7 @@ Everything should work as you expect. The bash shell contains common utilities (
 
 There may be updates to the 'cloudenv' script itself, which won't be automatically applied. Check below for the last update and re-run the install command above if needed:
 
+ * 2020-05-20 - Add debug logging with CLOUDENV_DBG flag.
  * 2020-05-19 - Add multi-user support.
  * 2020-05-14 - Add Podman support, consolidate clouenv script.
 
@@ -194,4 +195,3 @@ export CLOUDENV_DBG=true && ./cloudenv
 
 
 Once your changes are tested, open a pull request with your changes.
-
