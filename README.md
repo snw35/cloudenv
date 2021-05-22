@@ -1,6 +1,6 @@
 # cloudenv
 
- * [Travis CI: ![Build Status](https://travis-ci.org/snw35/cloudenv.svg?branch=master)](https://travis-ci.org/snw35/cloudenv)
+ * [Travis CI: ![Build Status](https://travis-ci.com/snw35/cloudenv.svg?branch=master)](https://travis-ci.com/github/snw35/cloudenv)
 
 The Cloud Environment ⛅
 
