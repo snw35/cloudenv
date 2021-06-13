@@ -1,12 +1,12 @@
 {
-  "AWS_CLI": "2.2.9",
+  "AWS_CLI": "2.2.11",
   "AWS_IAM_AUTH": "0.5.3",
   "AWS_OKTA": "1.0.11",
   "CLOUD_NUKE": "0.1.30",
   "CONFD": "0.16.0",
-  "EKSCTL": "0.52.0",
+  "EKSCTL": "0.53.0",
   "FLUXCTL": "1.22.2",
-  "GCLOUD": "343.0.0",
+  "GCLOUD": "344.0.0",
   "GLIBC": "2.33-r0",
   "HELM": "3.6.0",
   "K9S": "0.24.10",
@@ -19,7 +19,7 @@
   "TERRAFORM_11": "0.11.15",
   "TERRAFORM_12": "0.12.31",
   "TERRAFORM_DOCS": "0.14.1",
-  "TERRAFORM_LATEST": "0.15.5",
-  "TERRAGRUNT_NEW": "0.29.8",
+  "TERRAFORM_LATEST": "1.0.0",
+  "TERRAGRUNT_NEW": "0.30.3",
   "TERRAGRUNT_OLD": "0.18.7"
 }
