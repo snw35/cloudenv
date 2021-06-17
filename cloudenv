@@ -48,7 +48,7 @@ if [ ! -d $home_directory ]; then
 fi
 
 # Check for ssh agent
-if [ -z "${SSH_AGENT_PID:-}" ] || [ -z "${SSH_AUTH_SOCK:-}" ]; then
+if [ -z "${SSH_AUTH_SOCK:-}" ]; then
   container_ssh_opts=''
 else
   container_ssh_opts="-e SSH_AUTH_SOCK=${SSH_AUTH_SOCK} --mount type=bind,source=`dirname $SSH_AUTH_SOCK`,target=`dirname $SSH_AUTH_SOCK`"
