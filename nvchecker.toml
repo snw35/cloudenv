@@ -36,6 +36,7 @@ prefix = "v"
 [TERRAFORM_LATEST]
 source = "github"
 github = "hashicorp/terraform"
+exclude_regex = ".*(alpha|beta).*"
 use_max_tag = true
 prefix = "v"
 
