@@ -97,10 +97,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.6.1
+ENV HELM_VERSION 3.6.2
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 c64f2c7b1d00c5328b164cea4bbd5e0752c103193037173c9eadea9d6a57eddb
+ENV HELM_SHA256 f3a4be96b8a3b61b14eec1a35072e1d6e695352e7a08751775abf77861a0bf54
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -233,10 +233,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.20.2
+ENV KOPS_VERSION 1.21.0
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 73206a2309ea53ad37a21daca8415b9c368af16457470795dfa072dc9651dbc6
+ENV KOPS_SHA256 7ec37278658504fe4fc5d8e0624148cffccffd8cecd37250ac4b54bae1067eb3
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -323,10 +323,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.54.0
+ENV EKSCTL_VERSION 0.55.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 a08f430bfbe31ff0ef3eee4e7a54bc84076c82e590af90e5e8d1a0cb32dbf6e4
+ENV EKSCTL_SHA256 566ddcfb0c9a3dc3bdc3dc7643f89ac3e6d9b7bf14d94a587bbc4b80a0f7726e
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -435,10 +435,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.2.14
+ENV AWS_CLI_VERSION 2.2.16
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 03b06030ced6970148b2c3e82c1c3461654c71b2d37cb9634ff771ef607aec98
+ENV AWS_CLI_SHA256 829eb9818b4d3cc700daee85f469ffdeaa9f4456476d8ad60e5d61293455a76e
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -452,10 +452,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 346.0.0
+ENV GCLOUD_VERSION 347.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 9d21569ecd66e4278c45594e3ce10fcb2591704756aeb2b0f04bed14f86f9658
+ENV GCLOUD_SHA256 cbc281547fc1e6a41b7c635c0b3f495a4b6aa055a5a603f5da06437f111d2184
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
