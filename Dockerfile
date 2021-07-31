@@ -301,8 +301,7 @@ RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
   && mv ./rakkess-amd64-linux ./rakkess \
   && chmod +x ./rakkess \
   && rm -f ./${RAKKESS_FILENAME} \
-  && rm -f ./LICENSE \
-  && rakkess completion bash > /etc/bash_completion.d/rakkess
+  && rm -f ./LICENSE
 
 
 # Install kubespy
@@ -496,6 +495,7 @@ RUN echo "Test Layer" \
   && kubens --help \
   && mssh --help \
   && okta-awscli --help \
+  && rakkess --help \
   && sam --help \
   && session-manager-plugin --version \
   && terraform-docs \
