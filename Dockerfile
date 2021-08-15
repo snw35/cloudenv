@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.14
+FROM alpine:3.14.1
 
 WORKDIR /usr/bin/
 
@@ -84,10 +84,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.21.3
+ENV KUBECTL_VERSION 1.22.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 631246194fc1931cb897d61e1d542ef2321ec97adcb859a405d3b285ad9dd3d6
+ENV KUBECTL_SHA256 703e70d49b82271535bc66bc7bd469a58c11d47f188889bd37101c9772f14fa1
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -142,10 +142,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 1.0.3
+ENV TERRAFORM_LATEST_VERSION 1.0.4
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 99c4866ffc4d3a749671b1f74d37f907eda1d67d7fc29ed5485aeff592980644
+ENV TERRAFORM_LATEST_SHA256 5c0be4d52de72143e2cd78e417ee2dd582ce229d73784fd19444445fa6e1335e
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -172,10 +172,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.31.3
+ENV TERRAGRUNT_NEW_VERSION 0.31.4
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 7c79777b89a5cd5aab9ae30e33bbcb49b3b43c6c5277d1819c2387ae30277abb
+ENV TERRAGRUNT_NEW_SHA256 06d725649075e6ea5a407c28d4277c676b81004a40e11a9bd48d7305bb9ff190
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -261,10 +261,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.24.14
+ENV K9S_VERSION 0.24.15
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 53018741d4e0e6a8ae9aac14e6ff97dc8d0b263c5da3c329150b13d1bb52750c
+ENV K9S_SHA256 0590c32c20cd22416f2a06fad9155257c156e32c60e8757bf96d5a28cb1720dd
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -277,10 +277,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.23.1
+ENV FLUXCTL_VERSION 1.23.2
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 7801988d46023c7b61da55c80836e68b6c26f33054c7e4b2eac292841c94aed2
+ENV FLUXCTL_SHA256 771dc4f6ba976464618b6f1b39243b751fc33d66e0a41067660166e60fe20604
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -322,10 +322,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.59.0
+ENV EKSCTL_VERSION 0.61.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 84ef1d3aff312ea7c21a0c2765a0705e2458ddb9a28bacfee34bde4c0ac6c183
+ENV EKSCTL_SHA256 692dc1c8bc6f8de389cced994e746e72762ebc188887bb56d19c4b7a2a9c239f
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -405,10 +405,10 @@ RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
 
 
 # Install terraform-docs
-ENV TERRAFORM_DOCS_VERSION 0.14.1
+ENV TERRAFORM_DOCS_VERSION 0.15.0
 ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
 ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
-ENV TERRAFORM_DOCS_SHA256 f0a46b13c126f06eba44178f901bb7b6b5f61a8b89e07a88988c6f45e5fcce19
+ENV TERRAFORM_DOCS_SHA256 e0b399d9dc2eb97853a7e12f1ae678e7160cae4c811646ce70169a8d611f6cf9
 
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
@@ -434,10 +434,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.2.25
+ENV AWS_CLI_VERSION 2.2.29
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 cf2ebceb548815e2c1a936d377bd645af725edaac8d7be2372d75269d28a6784
+ENV AWS_CLI_SHA256 d90a5bd3540eee30d97d75692045b45cf451c374606bea888648267146886894
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -451,10 +451,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 350.0.0
+ENV GCLOUD_VERSION 352.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 861a02dcaed5eb8b4b2fe39640355700af322c1e487226e7bf19356496e28cee
+ENV GCLOUD_SHA256 316d88432378efb55567d2f1851ad7e7481723995b8cefb41f29ee82982f409e
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
