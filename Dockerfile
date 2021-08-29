@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.14.1
+FROM alpine:3.14.2
 
 WORKDIR /usr/bin/
 
@@ -172,10 +172,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.31.5
+ENV TERRAGRUNT_NEW_VERSION 0.31.7
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 e14f8c98b1323ef26f0706fadbb1bce3b9888621534a97cd5789a029c5696f44
+ENV TERRAGRUNT_NEW_SHA256 c1d863e8fa1c994a79338b28ec72dd97a97cff5d485691832c7304b43886a929
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -233,10 +233,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.21.0
+ENV KOPS_VERSION 1.21.1
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 7ec37278658504fe4fc5d8e0624148cffccffd8cecd37250ac4b54bae1067eb3
+ENV KOPS_SHA256 9c73657d75399d74220e0d55f226121b15b568c265f2398891a27e63889eaa4f
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -322,10 +322,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.62.0
+ENV EKSCTL_VERSION 0.63.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 8a58598c9a78fb2944e97ce8b4d4ff18bad4b35bf629a5b939a38b7d97b5e317
+ENV EKSCTL_SHA256 901f55af32f675d77b2a49f71a51fad3f9a1c1de6b507152562928934de60e8c
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -434,10 +434,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.2.31
+ENV AWS_CLI_VERSION 2.2.33
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 4cf74631929e75acbb687b11f2d6644c7159eb95e76df22da4f4a4a74f92a355
+ENV AWS_CLI_SHA256 e15f3602846061f56086de04a3b9aec2b225c202ba5b07ed735ea7e545e83027
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -451,10 +451,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 353.0.0
+ENV GCLOUD_VERSION 354.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 94fcb77632fed5b6fa61d1bf6c619cbfceb63f3d95911bfe15e7caa401df81c0
+ENV GCLOUD_SHA256 d8ea1bd3e2b27d8eaa1fc5b6b8424f6a7a2d6e06323563f54e08a48f3d942b4f
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
