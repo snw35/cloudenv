@@ -108,6 +108,7 @@ source = "github"
 github = "weaveworks/eksctl"
 use_max_tag = true
 exclude_regex = ".*rc.*"
+prefix = "v"
 
 [CLOUD_NUKE]
 source = "github"
