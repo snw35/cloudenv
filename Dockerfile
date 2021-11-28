@@ -172,10 +172,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.35.12
+ENV TERRAGRUNT_NEW_VERSION 0.35.13
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 ee54fc62e64ee9a73e34267883cdc3e459b0ec6e6b57f51032e9778c52756491
+ENV TERRAGRUNT_NEW_SHA256 1eea07fe38fcf53cf2e0eed91716108e4a57c0f54fafbf092c55dea23c4d3318
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -261,10 +261,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.25.4
+ENV K9S_VERSION 0.25.7
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 4d048883cbfeb3c8ba6bdee8a2185e3d6841c2dece5f240d200548d2083aefc6
+ENV K9S_SHA256 b37506da3a797ac3ac3ad22827cf97e1de958ea479528b41855f424d2b97920b
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -277,10 +277,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.24.2
+ENV FLUXCTL_VERSION 1.24.3
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 6dd2f58164ec6f303ae812fd69f3bf7e84d3e21a7418ddf6089044b0333f1539
+ENV FLUXCTL_SHA256 0062e85339b65bf7db74b27b862ec000949e7abb7954b11f34367e0eff9c1ea8
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -322,10 +322,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.74.0
+ENV EKSCTL_VERSION 0.75.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 7231ac188466b7cb989bf7f6e2f0ff6411cca492c6e96de005821ad40bbc7eb1
+ENV EKSCTL_SHA256 7487b1441974e5ec9897648ef11ee5043b4a9dc8b2d6e593fbd07426e7904c73
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -434,10 +434,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.4.0
+ENV AWS_CLI_VERSION 2.4.2
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 4d9c7debe50945da56124a8dd0b04567c2698341d43d042e351abddc5fccfd95
+ENV AWS_CLI_SHA256 52dd2fd8c2537260c37d348824c96913359bb6927366c96cf948a0bc77e8b86f
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -451,10 +451,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 365.0.0
+ENV GCLOUD_VERSION 365.0.1
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 81d0ad64dca3e97d02e873d386bafcc77b416d7c9b45e5ec2387e5075b133fc0
+ENV GCLOUD_SHA256 17003cdba67a868c2518ac16efa60dc6175533b7a9fb87304459784308e30fb0
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
