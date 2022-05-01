@@ -173,10 +173,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.36.7
+ENV TERRAGRUNT_NEW_VERSION 0.36.9
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 be8ff26e4500f6fcc20cd559846436f225ac728ffe93865fddfdc42428f0155d
+ENV TERRAGRUNT_NEW_SHA256 8fa1fd802af37c2820e3cb9ad74b804ed91b76719548dfb12d73e5a08170de7a
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -323,10 +323,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.94.0
+ENV EKSCTL_VERSION 0.95.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 959556b05f72d3b9bae3f7b29e4aaf22b4e878bd039e2513a7db17a220166705
+ENV EKSCTL_SHA256 42babb1566464b6fe0f4740a2553fd32f1014bd1cde179a80aa5ee38dfb86775
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -435,10 +435,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.5.8
+ENV AWS_CLI_VERSION 2.6.1
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 51b5db1fcf49ed674878ac79feceb7bf86a09e2f5d528e043c9bca4ed670dd81
+ENV AWS_CLI_SHA256 2fc54b88a5a81656e3da4838181dba70da27d87e89d5ee5c924352884d6b0c61
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -452,10 +452,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 382.0.0
+ENV GCLOUD_VERSION 383.0.1
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 335e5a2b4099505372914acfccbb978cf9d4efd8047bda59f910c26daefd554e
+ENV GCLOUD_SHA256 b307419274fba599fc5b8352fd27091f8a7dc71cedccb5cd9d37740202b16372
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
