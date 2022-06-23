@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.15.4
+FROM alpine:3.16
 
 WORKDIR /usr/bin/
 
@@ -17,7 +17,7 @@ RUN apk --update --no-cache upgrade -a \
     diffutils \
     fish \
     fzf \
-    fzf-bash-completion \
+    fzf-bash-plugin \
     git \
     gnupg \
     groff \
@@ -46,7 +46,7 @@ RUN apk --update --no-cache upgrade -a \
     wheel \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
-  && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
+  && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/pam.d/useradd \
   && mkdir -p /etc/bash_completion.d \
   && ln -s /usr/bin/python3 /usr/bin/python
 
@@ -85,10 +85,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.24.0
+ENV KUBECTL_VERSION 1.24.2
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 94d686bb6772f6fb59e3a32beff908ab406b79acdfb2427abdc4ac3ce1bb98d7
+ENV KUBECTL_SHA256 f15fb430afd79f79ef7cf94a4e402cd212f02d8ec5a5e6a7ba9c3d5a2f954542
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -98,10 +98,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.8.2
+ENV HELM_VERSION 3.9.0
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 6cb9a48f72ab9ddfecab88d264c2f6508ab3cd42d9c09666be16a7bf006bed7b
+ENV HELM_SHA256 1484ffb0c7a608d8069470f48b88d729e88c41a1b6602f145231e8ea7b43b50a
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -143,10 +143,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 1.1.9
+ENV TERRAFORM_LATEST_VERSION 1.2.3
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 9d2d8a89f5cc8bc1c06cb6f34ce76ec4b99184b07eb776f8b39183b513d7798a
+ENV TERRAFORM_LATEST_SHA256 728b6fbcb288ad1b7b6590585410a98d3b7e05efe4601ef776c37e15e9a83a96
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -173,10 +173,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.37.1
+ENV TERRAGRUNT_NEW_VERSION 0.38.1
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 1d1606fba6a2bc2b9919f1fe78192cd320a3d379feb57a033439faa681cde902
+ENV TERRAGRUNT_NEW_SHA256 260929cdf386864d1545a0c8614b7f6b56dfb8613cef2b8a29e5bcc4d8a7b311
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -186,10 +186,10 @@ RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.8.0
+ENV PACKER_VERSION 1.8.2
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 94c5d65386fa8f17e36d3496fbbdf18d3bfab01306aa8000c14656b63070b7c2
+ENV PACKER_SHA256 675bd82561a2e49f89747e092141c7ce79c2e2a9105e6a2ebd49a26df849a468
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -278,10 +278,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install fluxctl
 # From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.25.1
+ENV FLUXCTL_VERSION 1.25.2
 ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
 ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 d8c971fac4ab7598216f3907bc0acff0ea927b5a1115f2c234764beb75d64818
+ENV FLUXCTL_SHA256 78187b55ef3eac5b18cb26b097fbfb0c6525259867525388de6523c8af841e99
 
 RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
   && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
@@ -323,10 +323,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.97.0
+ENV EKSCTL_VERSION 0.102.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 0e59324979423172195d89fb2c06d7ea57ea7462783413687ca523161379c717
+ENV EKSCTL_SHA256 d5777d20c0c0ed8bd7d7b0c13969e7dce819c1f730f3c81faff3fe125cd538d6
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -435,10 +435,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.7.0
+ENV AWS_CLI_VERSION 2.7.10
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 bf0076dc081c5b7b32f0e75fb0dccf91f319cc746c36228290637bc3c0b3b571
+ENV AWS_CLI_SHA256 97a059788f337548f5a2bfb686d5d850f69be749acddc87f4e017152aed81e03
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -452,10 +452,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 385.0.0
+ENV GCLOUD_VERSION 391.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 cd1839e9343e32f64645f2d3c269340a9c50d0c77d85c9a0a44cd9de2103879e
+ENV GCLOUD_SHA256 e33362a905688979df3391b15d8b5db98cbcba2bb31d1977dca7f890a4909d48
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
