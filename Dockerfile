@@ -323,10 +323,12 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/weaveworks/eksctl/releases
-ENV EKSCTL_VERSION 0.102.0
+# TMP disable upgrade as upstream have tagged non-existant releases in their repo (1.104.0)
+ENV EKSCTL_UPGRADE false
+ENV EKSCTL_VERSION 0.103.0
 ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 d5777d20c0c0ed8bd7d7b0c13969e7dce819c1f730f3c81faff3fe125cd538d6
+ENV EKSCTL_SHA256 7d39e74fa32690f6babfa121eb0fcc97b4f16d91a1ffb5e6839bc993483e014d
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -353,7 +355,6 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_UPGRADE false
 ENV CLOUD_NUKE_VERSION 0.1.18
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
