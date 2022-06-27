@@ -1,10 +1,10 @@
 {
-  "AWS_CLI": "2.7.10",
+  "AWS_CLI": "2.7.11",
   "AWS_IAM_AUTH": "0.5.7",
   "AWS_OKTA": "1.0.11",
   "CLOUD_NUKE": "0.11.8",
   "CONFD": "0.16.0",
-  "EKSCTL": "0.102.0",
+  "EKSCTL": "0.104.0",
   "FLUXCTL": "1.25.2",
   "GCLOUD": "391.0.0",
   "GLIBC": "2.35-r0",
