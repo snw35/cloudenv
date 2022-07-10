@@ -173,10 +173,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.38.3
+ENV TERRAGRUNT_NEW_VERSION 0.38.4
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 1db3f689e059ebc9a57db36d42279c2516649108248844aca73d3f873bfa80f2
+ENV TERRAGRUNT_NEW_SHA256 dfb61761ac47cecbd9c885db673486c08f5ec45408c4b2b604584299013d5479
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -234,10 +234,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.23.2
+ENV KOPS_VERSION 1.24.0
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 376b8df45cb6e39a9cb3d599cce0b45d5a3b1c54b7ee1f3c3d1a3f2d97da97f4
+ENV KOPS_SHA256 2c4f1657caa0a7538bb3de08237b94219a64de7b4be4fae9022d371ddeaaa38d
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -355,10 +355,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_VERSION 0.11.8
+ENV CLOUD_NUKE_VERSION 0.12.2
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 2b79b632aa911dd991c1bfaa833a8e0686233fccd8f508134f480110eb37754d
+ENV CLOUD_NUKE_SHA256 18b17b4529c6ecacde0cc52389c1a8940afeac435d181fddd33aff0a73208927
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
@@ -436,10 +436,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.7.12
+ENV AWS_CLI_VERSION 2.7.14
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 b03e475a0889465bda250f620bec7854e19681a6443bad4f2257a11cc9638564
+ENV AWS_CLI_SHA256 14f875cbc86b16e6cb59ccc171169622cb580fe8f6dd5a0df49103390d8bcc0a
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
