@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.16
+FROM alpine:3.16.1
 
 WORKDIR /usr/bin/
 
@@ -98,10 +98,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.9.1
+ENV HELM_VERSION 3.9.2
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 73df7ddd5ab05e96230304bf0e6e31484b1ba136d0fc22679345c0b4bd43f7ac
+ENV HELM_SHA256 3f5be38068a1829670440ccf00b3b6656fd90d0d9cfd4367539f3b13e4c20531
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -173,10 +173,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.38.5
+ENV TERRAGRUNT_NEW_VERSION 0.38.6
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 5819f5a0164b986a230cdab6599b2021f3421c13e9233d0f8cfdfd3153e427d7
+ENV TERRAGRUNT_NEW_SHA256 2fef737ade1393acd744dcacbf4a6191374499ca0499b85c795d7a4abd2c1483
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -262,10 +262,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.25.21
+ENV K9S_VERSION 0.26.0
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 baa54edb4aace44f2c713f3bffe75ee60994f6a8244d3e50b940e8367922e454
+ENV K9S_SHA256 cddbc88403d1cfb02f3e55558b61ce63a0486f9bb8fcd258fcd104565b794c80
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -355,10 +355,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_VERSION 0.12.3
+ENV CLOUD_NUKE_VERSION 0.16.1
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 f32ac3d468fc5af149dac46e05be2b68e61c01a723af26d973f00dd06dd4ef03
+ENV CLOUD_NUKE_SHA256 660a93824806037965c483466253880853dedfff00b8ab1984575c4bf721e0e1
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
@@ -436,10 +436,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.7.16
+ENV AWS_CLI_VERSION 2.7.18
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 00a5e1c917734f0b661fa9933776003bb867665e3185cdf11a1ee24e013d7f63
+ENV AWS_CLI_SHA256 9479564814b37c1cab5af82ef414ee1d1d5cf32562a417b27f37dd3be3b1103f
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -453,10 +453,10 @@ WORKDIR /opt
 
 # Install gcloud suite
 # From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 393.0.0
+ENV GCLOUD_VERSION 394.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 5ec741fdd83fccdf94acb11564d6e60e9e77104a9fa26e7fff2e8424515a781b
+ENV GCLOUD_SHA256 f68f7842fc3008acef48f1fe80964168c27fe5ca176713068940327d935bedfd
 
 RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
   && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
