@@ -85,10 +85,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.24.4
+ENV KUBECTL_VERSION 1.25.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 4a76c70217581ba327f0ad0a0a597c1a02c62222bb80fbfea4f2f5cb63f3e2d8
+ENV KUBECTL_SHA256 e23cc7092218c95c22d8ee36fb9499194a36ac5b5349ca476886b7edc0203885
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -98,10 +98,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.9.3
+ENV HELM_VERSION 3.9.4
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 2d07360a9d93b18488f1ddb9de818b92ba738acbec6e1c66885a88703fa7b21c
+ENV HELM_SHA256 31960ff2f76a7379d9bac526ddf889fb79241191f1dbe2a24f7864ddcb3f6560
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -143,10 +143,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 1.2.7
+ENV TERRAFORM_LATEST_VERSION 1.2.8
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 dfd7c44a5b6832d62860a01095a15b53616fb3ea4441ab89542f9364e3fca718
+ENV TERRAFORM_LATEST_SHA256 3e9c46d6f37338e90d5018c156d89961b0ffb0f355249679593aff99f9abe2a2
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -173,10 +173,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.38.7
+ENV TERRAGRUNT_NEW_VERSION 0.38.8
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 c3dd39836d968c9299647d9b950ba9110922c6a910c60d8dcc30e8549333aac1
+ENV TERRAGRUNT_NEW_SHA256 f1a5b1355c4a9ea807131f27b44bfbfe04dc25a3c4cd353910a2e68e0d7efafd
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -355,10 +355,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_VERSION 0.17.0
+ENV CLOUD_NUKE_VERSION 0.19.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 03106ad46d6177368659a29176bdead22cb20391a00bc0442b246c8e1d53aa9e
+ENV CLOUD_NUKE_SHA256 90f59c7b291691fb7de76b3fb68c759608c8e4b3b0136862767484843900a08e
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
@@ -436,10 +436,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.7.25
+ENV AWS_CLI_VERSION 2.7.27
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 41e9e00b6708901006b425824e474bfa1f5e1ef5ee0bff4d1b85dfc6f103fbfc
+ENV AWS_CLI_SHA256 6a0ea8a4df5b2da48beb02dc8f2eb152f613738d24888382f1a0726f544c587a
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
