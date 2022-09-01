@@ -52,7 +52,7 @@ The following software is installed and checked for updates weekly:
  * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
  * [Datadog CLI](https://github.com/DataDog/datadogpy)
  * [EKS CLI (Elastic Kubernetes Service CLI)](https://eksctl.io/)
- * [Fluxctl](https://www.weave.works/docs/cloud/latest/tasks/deploy/manual-configuration/)
+ * [FluxCD](https://fluxcd.io/flux/)
  * [Gcloud Suite](https://cloud.google.com/sdk/)
  * [Hashicorp Packer](https://www.packer.io/)
  * [Hashicorp Terraform](https://www.terraform.io/)

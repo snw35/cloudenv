@@ -92,10 +92,11 @@ use_latest_release = false
 use_max_tag = true
 prefix = "v"
 
-[FLUXCTL]
+[FLUX2]
 source = "github"
-github = "fluxcd/flux"
+github = "fluxcd/flux2"
 use_latest_release = true
+prefix = "v"
 
 [RAKKESS]
 source = "github"

@@ -276,17 +276,18 @@ RUN wget $K9S_URL/$K9S_FILENAME \
   && rm -f ./${K9S_FILENAME}
 
 
-# Install fluxctl
-# From https://github.com/fluxcd/flux/releases
-ENV FLUXCTL_VERSION 1.25.3
-ENV FLUXCTL_URL https://github.com/fluxcd/flux/releases/download/${FLUXCTL_VERSION}
-ENV FLUXCTL_FILENAME fluxctl_linux_amd64
-ENV FLUXCTL_SHA256 45e33f79dcd7b6894074e316bd120413d60d97742fad6ed43fe6e332158e810d
+# Install flux2
+# From https://github.com/fluxcd/flux2/releases
+ENV FLUX2_VERSION 0.33.0
+ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
+ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
+ENV FLUX2_SHA256 b640626c705fb71eb8c676700257a7092178968f9e06c3e62c87d827cfa35017
 
-RUN wget $FLUXCTL_URL/$FLUXCTL_FILENAME \
-  && echo "$FLUXCTL_SHA256  ./$FLUXCTL_FILENAME" | sha256sum -c - \
-  && chmod +x ./${FLUXCTL_FILENAME} \
-  && mv ./${FLUXCTL_FILENAME} ./fluxctl
+RUN wget $FLUX2_URL/$FLUX2_FILENAME \
+  && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
+  && tar -xzf ./${FLUX2_FILENAME} \
+  && chmod +x ./flux \
+  && rm -f ./${FLUX2_FILENAME}
 
 
 # Install rakkess
@@ -488,7 +489,7 @@ RUN echo "Test Layer" \
   && confd -version \
   && cookiecutter -h \
   && eksctl \
-  && fluxctl \
+  && flux \
   && helm \
   && kompose -h \
   && kops \
