@@ -2,6 +2,11 @@
 oldver = "old_ver.json"
 newver = "new_ver.json"
 
+[BASE]
+source = "container"
+container = "library/alpine"
+include_regex = "\\d+\\.\\d+\\.?\\d?"
+
 [GCLOUD]
 source = "regex"
 regex = 'google-cloud-sdk-anthos-auth_(\d*\.\d*\.\d*).orig_amd64.tar.gz'
