@@ -6,7 +6,7 @@ The Cloud Environment ⛅
 
 This is a suite of modern cloud tooling that wraps seamlessly over your existing shell. It provides:
 
- * Infrastructure-as-code (IaC) tools for Amazon AWS and Google GCP.
+ * Infrastructure-as-code (IaC) tools for Amazon AWS.
  * Authentication tools for Okta and AWS.
  * A large collection of Kubernetes and container tools.
 
@@ -53,7 +53,6 @@ The following software is installed and checked for updates weekly:
  * [Datadog CLI](https://github.com/DataDog/datadogpy)
  * [EKS CLI (Elastic Kubernetes Service CLI)](https://eksctl.io/)
  * [FluxCD](https://fluxcd.io/flux/)
- * [Gcloud Suite](https://cloud.google.com/sdk/)
  * [Hashicorp Packer](https://www.packer.io/)
  * [Hashicorp Terraform](https://www.terraform.io/)
  * [HCL Format](https://github.com/hashicorp/hcl2)

@@ -67,17 +67,18 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install glibc
-ENV GLIBC_VERSION 2.34-r0
+ENV GLIBC_VERSION 2.35-r0
 ENV GLIBC_URL https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}
 ENV GLIBC_FILENAME glibc-${GLIBC_VERSION}.apk
-ENV GLIBC_SHA256 3ef4a8d71777b3ccdd540e18862d688e32aa1c7bc5a1c0170271a43d0e736486
-ENV GLIBC_UPGRADE false
+ENV GLIBC_SHA256 02fe2d91f53eab93c64d74485b80db575cfb4de40bc0d12bf55839fbe16cb041
 
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
   && wget $GLIBC_URL/$GLIBC_FILENAME \
   && wget $GLIBC_URL/glibc-bin-${GLIBC_VERSION}.apk \
   && echo "$GLIBC_SHA256  ./$GLIBC_FILENAME" | sha256sum -c - \
-  && apk add --no-cache ./$GLIBC_FILENAME ./glibc-bin-${GLIBC_VERSION}.apk \
+  && apk add --no-cache --force-overwrite ./$GLIBC_FILENAME ./glibc-bin-${GLIBC_VERSION}.apk \
+  && rm -f /lib64/ld-linux-x86-64.so.2 \
+  && ln -s /usr/glibc-compat/lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
   && rm -f ./$GLIBC_FILENAME \
   && rm -f glibc-bin-${GLIBC_VERSION}.apk
 
@@ -85,10 +86,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.25.0
+ENV KUBECTL_VERSION 1.25.2
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 e23cc7092218c95c22d8ee36fb9499194a36ac5b5349ca476886b7edc0203885
+ENV KUBECTL_SHA256 8639f2b9c33d38910d706171ce3d25be9b19fc139d0e3d4627f38ce84f9040eb
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -98,10 +99,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.9.4
+ENV HELM_VERSION 3.10.0
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 31960ff2f76a7379d9bac526ddf889fb79241191f1dbe2a24f7864ddcb3f6560
+ENV HELM_SHA256 bf56beb418bb529b5e0d6d43d56654c5a03f89c98400b409d1013a33d9586474
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -143,10 +144,10 @@ RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
 
 # Install terraform latest
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 1.2.8
+ENV TERRAFORM_LATEST_VERSION 1.3.0
 ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
 ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 3e9c46d6f37338e90d5018c156d89961b0ffb0f355249679593aff99f9abe2a2
+ENV TERRAFORM_LATEST_SHA256 380ca822883176af928c80e5771d1c0ac9d69b13c6d746e6202482aedde7d457
 
 RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
   && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
@@ -173,10 +174,10 @@ RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
 
 # Install terragrunt 19+
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.38.9
+ENV TERRAGRUNT_NEW_VERSION 0.38.12
 ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
 ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 c5c3fc6bc42b21e5f229d307f9b9493b9167a19cff423d6cc1e980658cff63b5
+ENV TERRAGRUNT_NEW_SHA256 7545d60ef9861526456d086a808e08055687ffbe18d1ff6be95dba8b1797761a
 
 RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
   && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
@@ -234,10 +235,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.24.2
+ENV KOPS_VERSION 1.25.0
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 51485299a280a595b06c303495fb303fbac09d31ecf089c61dcc3768a1c4fffc
+ENV KOPS_SHA256 2d2df43c96d6ff2f322361f8cbc158b9ce124d372edec990e2c48f9051def22b
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -262,10 +263,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.26.3
+ENV K9S_VERSION 0.26.5
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 3447ac17cfa46fe91ab2bfcb021d43f7f2d40ac37c7b573241a511b85fc162cf
+ENV K9S_SHA256 8ae556d05b4744f7b79cc71549e4096daa9c6b913be88ee43be42ef800137bc3
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -278,10 +279,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 0.33.0
+ENV FLUX2_VERSION 0.34.0
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 b640626c705fb71eb8c676700257a7092178968f9e06c3e62c87d827cfa35017
+ENV FLUX2_SHA256 9f72f4b821d534f4298fa33c93e28bc0ef13f851f634e4249a63f3c797f94412
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -437,10 +438,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.7.29
+ENV AWS_CLI_VERSION 2.7.34
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 37dc344830eba9d0376f52fce82fbcbcd32bd554e1ec6b5d2c36554e328eaf17
+ENV AWS_CLI_SHA256 daf9253f0071b5cfee9532bc5220bedd7a5d29d4e0f92b42b9e3e4c496341e88
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -451,20 +452,6 @@ RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
 
 
 WORKDIR /opt
-
-# Install gcloud suite
-# From https://cloud.google.com/sdk/docs/quickstart-linux
-ENV GCLOUD_VERSION 375.0.0
-ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
-ENV GCLOUD_FILENAME google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
-ENV GCLOUD_SHA256 3f93d42965a0311f3d7e4e9fd85cd4ef68b5133a0a7a329f0f6aa18f4c2f9fc9
-
-RUN wget $GCLOUD_URL/$GCLOUD_FILENAME \
-  && echo "$GCLOUD_SHA256  ./$GCLOUD_FILENAME" | sha256sum -c - \
-  && tar -xzf ./$GCLOUD_FILENAME \
-  && rm ./$GCLOUD_FILENAME \
-  && ./google-cloud-sdk/install.sh --quiet
-
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY clearokta /usr/bin/clearokta
@@ -478,7 +465,6 @@ RUN echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
   && chmod +x /usr/bin/clearokta
 
 RUN echo "Test Layer" \
-  && /opt/google-cloud-sdk/bin/gcloud version \
   && aws --version \
   && aws_okta_keyman --help \
   && aws-connect -v \

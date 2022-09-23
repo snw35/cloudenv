@@ -7,11 +7,6 @@ source = "container"
 container = "library/alpine"
 include_regex = "\\d+\\.\\d+\\.?\\d?"
 
-[GCLOUD]
-source = "regex"
-regex = 'google-cloud-sdk-anthos-auth_(\d*\.\d*\.\d*).orig_amd64.tar.gz'
-url = "https://storage.googleapis.com/cloud-sdk-release"
-
 [KUBECTL]
 source = "cmd"
 cmd = "wget -qO- https://storage.googleapis.com/kubernetes-release/release/stable.txt"
