@@ -116,14 +116,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then . '/opt/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google-cloud-sdk/completion.bash.inc'; fi
-
-. /opt/google-cloud-sdk/completion.bash.inc
-. /opt/google-cloud-sdk/path.bash.inc
-
 # aws cli bash completion
 complete -C '/usr/local/bin/aws_completer' aws

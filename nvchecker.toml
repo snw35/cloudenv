@@ -19,35 +19,14 @@ use_max_tag = true
 exclude_regex = ".*rc.*"
 prefix = "v"
 
-[TERRAFORM_11]
-source = "github"
-github = "hashicorp/terraform"
-use_max_tag = true
-include_regex = "v0\\.11\\..*"
-prefix = "v"
-
-[TERRAFORM_12]
-source = "github"
-github = "hashicorp/terraform"
-use_max_tag = true
-include_regex = "v0\\.12\\..*"
-prefix = "v"
-
-[TERRAFORM_LATEST]
+[TERRAFORM]
 source = "github"
 github = "hashicorp/terraform"
 exclude_regex = ".*(alpha|beta|rc\\d|dev).*"
 use_max_tag = true
 prefix = "v"
 
-[TERRAGRUNT_OLD]
-source = "github"
-github = "gruntwork-io/terragrunt"
-use_max_tag = true
-include_regex = "v0\\.18\\..*"
-prefix = "v"
-
-[TERRAGRUNT_NEW]
+[TERRAGRUNT]
 source = "github"
 github = "gruntwork-io/terragrunt"
 use_latest_release = true

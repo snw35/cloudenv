@@ -57,7 +57,7 @@ The following software is installed and checked for updates weekly:
  * [Hashicorp Terraform](https://www.terraform.io/)
  * [HCL Format](https://github.com/hashicorp/hcl2)
  * [Helm](https://github.com/helm/helm)
- * [K9s](https://k9ss.io/)
+ * [K9s](https://k9scli.io/)
  * [Kompose](http://kompose.io/)
  * [Kops](https://github.com/kubernetes/kops)
  * [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
@@ -81,29 +81,12 @@ One instance of cloudenv will be run per user, named 'cloudenv-username', and mu
 
 ### Terraform and Terragrunt Versions
 
-Terraform and Terragrunt are not backwards compatible with certain previous major versions, so multiple sets of versions are included. By default, the latest versions of Terraform and Terragrunt are used.
+Terraform and Terragrunt have been reasonably backwards-compatible since version 1.0.0 was released. This image used to contain widely-used previous versions (0.11 and 0.12) though 1.0.0 has been out for long enough now that they have been removed to reduce the image size.
 
-To run Terragrunt with a specific version of Terraform:
+If you temporarily require older versions of terraform or terragrunt, then they can be installed inside the container by e.g fetching the binaries with wget:
 
-#### Terraform 11 (requires Terragrunt 18)
-
-```shell
-export TERRAGRUNT_TFPATH=/usr/bin/terraform11
-terragrunt18 plan
-```
-
-#### Terraform 12
-
-```shell
-export TERRAGRUNT_TFPATH=/usr/bin/terraform12
-terragrunt plan
-```
-
-#### Terraform Latest
-
-```shell
-terragrunt plan
-```
+ * https://github.com/gruntwork-io/terragrunt/releases
+ * https://github.com/hashicorp/terraform/releases
 
 ### Changing The Shell
 

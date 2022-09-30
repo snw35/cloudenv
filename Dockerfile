@@ -114,74 +114,30 @@ RUN wget $HELM_URL/$HELM_FILENAME \
   && helm completion bash > /etc/bash_completion.d/helm
 
 
-# Install terraform 11
+# Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_11_VERSION 0.11.15
-ENV TERRAFORM_11_URL https://releases.hashicorp.com/terraform/$TERRAFORM_11_VERSION
-ENV TERRAFORM_11_FILENAME terraform_${TERRAFORM_11_VERSION}_linux_amd64.zip
-ENV TERRAFORM_11_SHA256 e6c8c884de6c353cf98252c5e11faf972d4b30b5d070ab5ff70eaf92660a5aac
+ENV TERRAFORM_VERSION 1.3.0
+ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
+ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+ENV TERRAFORM_SHA256 380ca822883176af928c80e5771d1c0ac9d69b13c6d746e6202482aedde7d457
 
-RUN wget $TERRAFORM_11_URL/$TERRAFORM_11_FILENAME \
-  && echo "$TERRAFORM_11_SHA256  ./$TERRAFORM_11_FILENAME" | sha256sum -c - \
-  && unzip ./$TERRAFORM_11_FILENAME \
-  && rm ./$TERRAFORM_11_FILENAME \
-  && chmod +x ./terraform \
-  && mv ./terraform ./terraform11
-
-# Install terraform 12
-# From https://www.terraform.io/downloads.html
-ENV TERRAFORM_12_VERSION 0.12.31
-ENV TERRAFORM_12_URL https://releases.hashicorp.com/terraform/$TERRAFORM_12_VERSION
-ENV TERRAFORM_12_FILENAME terraform_${TERRAFORM_12_VERSION}_linux_amd64.zip
-ENV TERRAFORM_12_SHA256 e5eeba803bc7d8d0cae7ef04ba7c3541c0abd8f9e934a5e3297bf738b31c5c6d
-
-RUN wget $TERRAFORM_12_URL/$TERRAFORM_12_FILENAME \
-  && echo "$TERRAFORM_12_SHA256  ./$TERRAFORM_12_FILENAME" | sha256sum -c - \
-  && unzip ./$TERRAFORM_12_FILENAME \
-  && rm ./$TERRAFORM_12_FILENAME \
-  && chmod +x ./terraform \
-  && mv ./terraform ./terraform12
-
-# Install terraform latest
-# From https://www.terraform.io/downloads.html
-ENV TERRAFORM_LATEST_VERSION 1.3.0
-ENV TERRAFORM_LATEST_URL https://releases.hashicorp.com/terraform/$TERRAFORM_LATEST_VERSION
-ENV TERRAFORM_LATEST_FILENAME terraform_${TERRAFORM_LATEST_VERSION}_linux_amd64.zip
-ENV TERRAFORM_LATEST_SHA256 380ca822883176af928c80e5771d1c0ac9d69b13c6d746e6202482aedde7d457
-
-RUN wget $TERRAFORM_LATEST_URL/$TERRAFORM_LATEST_FILENAME \
-  && echo "$TERRAFORM_LATEST_SHA256  ./$TERRAFORM_LATEST_FILENAME" | sha256sum -c - \
-  && unzip ./$TERRAFORM_LATEST_FILENAME \
-  && rm ./$TERRAFORM_LATEST_FILENAME \
-  && chmod +x ./terraform \
-  && mv ./terraform ./terraform-latest
-
-# Use Terrafrom latest by default
-RUN ln -s ./terraform-latest ./terraform
+RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
+  && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
+  && unzip ./$TERRAFORM_FILENAME \
+  && rm ./$TERRAFORM_FILENAME \
+  && chmod +x ./terraform
 
 
-# Install terragrunt 18
+# Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_OLD_VERSION 0.18.7
-ENV TERRAGRUNT_OLD_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_OLD_VERSION
-ENV TERRAGRUNT_OLD_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_OLD_SHA256 3a45138e77fb41e0884b9491c67dcdeacd06418cd10a1e16ea0cc03976f1b288
+ENV TERRAGRUNT_VERSION 0.38.12
+ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
+ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
+ENV TERRAGRUNT_SHA256 7545d60ef9861526456d086a808e08055687ffbe18d1ff6be95dba8b1797761a
 
-RUN wget $TERRAGRUNT_OLD_URL/$TERRAGRUNT_OLD_FILENAME \
-  && echo "$TERRAGRUNT_OLD_SHA256  ./$TERRAGRUNT_OLD_FILENAME" | sha256sum -c - \
-  && mv ./$TERRAGRUNT_OLD_FILENAME ./terragrunt18 \
-  && chmod +x ./terragrunt18
-
-# Install terragrunt 19+
-# From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_NEW_VERSION 0.38.12
-ENV TERRAGRUNT_NEW_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_NEW_VERSION
-ENV TERRAGRUNT_NEW_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_NEW_SHA256 7545d60ef9861526456d086a808e08055687ffbe18d1ff6be95dba8b1797761a
-
-RUN wget $TERRAGRUNT_NEW_URL/$TERRAGRUNT_NEW_FILENAME \
-  && echo "$TERRAGRUNT_NEW_SHA256  ./$TERRAGRUNT_NEW_FILENAME" | sha256sum -c - \
-  && mv ./$TERRAGRUNT_NEW_FILENAME ./terragrunt \
+RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
+  && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
+  && mv ./$TERRAGRUNT_FILENAME ./terragrunt \
   && chmod +x ./terragrunt
 
 
@@ -488,11 +444,8 @@ RUN echo "Test Layer" \
   && sam --help \
   && session-manager-plugin --version \
   && terraform-docs \
-  && terraform-latest -h \
-  && terraform11 -h \
-  && terraform12 -h \
-  && terragrunt -h \
-  && terragrunt18 -h
+  && terraform -h \
+  && terragrunt -h
 
 COPY bashrc /etc/bashrc
 
