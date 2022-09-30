@@ -116,10 +116,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.3.0
+ENV TERRAFORM_VERSION 1.3.1
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 380ca822883176af928c80e5771d1c0ac9d69b13c6d746e6202482aedde7d457
+ENV TERRAFORM_SHA256 0847b14917536600ba743a759401c45196bf89937b51dd863152137f32791899
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -130,10 +130,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.38.12
+ENV TERRAGRUNT_VERSION 0.39.0
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 7545d60ef9861526456d086a808e08055687ffbe18d1ff6be95dba8b1797761a
+ENV TERRAGRUNT_SHA256 19c08b0cfc926dbb823dc2599055fcb33d2048edd21708edd11932c8e3f56746
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -191,10 +191,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.25.0
+ENV KOPS_VERSION 1.25.1
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 2d2df43c96d6ff2f322361f8cbc158b9ce124d372edec990e2c48f9051def22b
+ENV KOPS_SHA256 c73b1a93a6930ad3f9cc4db02b1effb9f395590dd7cd66888c5d0e01dbb702c7
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -219,10 +219,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.26.5
+ENV K9S_VERSION 0.26.6
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_x86_64.tar.gz
-ENV K9S_SHA256 8ae556d05b4744f7b79cc71549e4096daa9c6b913be88ee43be42ef800137bc3
+ENV K9S_SHA256 7abe5d029a29d8108ab405889ea2a8f731765d79333920ac7c2942c6e16d1bd4
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -235,10 +235,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 0.34.0
+ENV FLUX2_VERSION 0.35.0
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 9f72f4b821d534f4298fa33c93e28bc0ef13f851f634e4249a63f3c797f94412
+ENV FLUX2_SHA256 e45b99be8a19df2784257d06256ce8f7a3581fe6232c6de0b51c0e4c9dcacb44
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -313,10 +313,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_VERSION 0.19.0
+ENV CLOUD_NUKE_VERSION 0.20.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 90f59c7b291691fb7de76b3fb68c759608c8e4b3b0136862767484843900a08e
+ENV CLOUD_NUKE_SHA256 16cae0d3b295cfe6b3a808c6b81acbc709bf302a6e84a88a72882cf30e1e60bc
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
