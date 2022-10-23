@@ -1,5 +1,5 @@
 {
-  "AWS_CLI": "2.8.3",
+  "AWS_CLI": "2.8.5",
   "AWS_IAM_AUTH": "0.5.9",
   "AWS_OKTA": "1.0.11",
   "BASE": "3.16.2",
@@ -9,14 +9,14 @@
   "FLUX2": "0.35.0",
   "GLIBC": "2.35-r0",
   "HELM": "3.10.1",
-  "K9S": "0.26.6",
+  "K9S": "0.26.7",
   "KOMPOSE": "1.26.1",
-  "KOPS": "1.25.1",
+  "KOPS": "1.25.2",
   "KUBECTL": "1.25.3",
   "KUBECTX": "0.9.4",
   "PACKER": "1.8.3",
   "RAKKESS": "0.5.0",
-  "TERRAFORM": "1.3.2",
+  "TERRAFORM": "1.3.3",
   "TERRAFORM_DOCS": "0.16.0",
-  "TERRAGRUNT": "0.39.1"
+  "TERRAGRUNT": "0.39.2"
 }
