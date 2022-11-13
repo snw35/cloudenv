@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.16.2
+FROM alpine:3.16.3
 
 WORKDIR /usr/bin/
 
@@ -86,10 +86,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.25.3
+ENV KUBECTL_VERSION 1.25.4
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 f57e568495c377407485d3eadc27cda25310694ef4ffc480eeea81dea2b60624
+ENV KUBECTL_SHA256 e4e569249798a09f37e31b8b33571970fcfbdecdd99b1b81108adc93ca74b522
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.10.1
+ENV HELM_VERSION 3.10.2
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 c12d2cd638f2d066fec123d0bd7f010f32c643afdf288d39a4610b1f9cb32af3
+ENV HELM_SHA256 2315941a13291c277dac9f65e75ead56386440d3907e0540bf157ae70f188347
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -130,10 +130,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.40.0
+ENV TERRAGRUNT_VERSION 0.40.2
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 afab0f69b603fd7cf9091fe87ea99cf176613aaa0efbec881ea8524501cf5e03
+ENV TERRAGRUNT_SHA256 f943e4e4eb6069906ebb850067b7192dd86c6772ac0802b0bd5b3d44a212d7b4
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -394,10 +394,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.8.9
+ENV AWS_CLI_VERSION 2.8.12
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 66ce7e305a8fa4e8a140ed30766e6d67a39e299ad2413fdf347da176890597d9
+ENV AWS_CLI_SHA256 0e36d013b675145603a7c86af8f8090f9875bd246808f1aabdb8cf55420d09d3
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
