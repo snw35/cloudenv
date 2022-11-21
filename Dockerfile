@@ -246,22 +246,6 @@ RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && rm -f ./${FLUX2_FILENAME}
 
 
-# Install rakkess
-# From https://github.com/corneliusweig/rakkess/releases
-ENV RAKKESS_VERSION 0.5.0
-ENV RAKKESS_URL https://github.com/corneliusweig/rakkess/releases/download/v${RAKKESS_VERSION}
-ENV RAKKESS_FILENAME rakkess-amd64-linux.tar.gz
-ENV RAKKESS_SHA256 f9d90b3d2d96c3afc76adb1d92755a11b82f27800d44864416479b128f3f991e
-
-RUN wget $RAKKESS_URL/$RAKKESS_FILENAME \
-  && echo "$RAKKESS_SHA256  ./$RAKKESS_FILENAME" | sha256sum -c - \
-  && tar -xzf ./${RAKKESS_FILENAME} \
-  && mv ./rakkess-amd64-linux ./rakkess \
-  && chmod +x ./rakkess \
-  && rm -f ./${RAKKESS_FILENAME} \
-  && rm -f ./LICENSE
-
-
 # Install kubespy
 # From https://github.com/pulumi/kubespy/releases
 ENV KUBESPY_VERSION 0.4.0

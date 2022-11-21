@@ -77,12 +77,6 @@ github = "fluxcd/flux2"
 use_latest_release = true
 prefix = "v"
 
-[RAKKESS]
-source = "github"
-github = "corneliusweig/rakkess"
-use_latest_release = true
-prefix = "v"
-
 [EKSCTL]
 source = "github"
 github = "weaveworks/eksctl"

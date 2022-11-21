@@ -64,7 +64,6 @@ The following software is installed and checked for updates weekly:
  * [Kubectx](https://github.com/ahmetb/kubectx)
  * [Kubespy](https://github.com/pulumi/kubespy)
  * [Okta AWS CLI](https://github.com/jmhale/okta-awscli)
- * [Rakkess](https://github.com/corneliusweig/rakkess)
  * [Terraform Docs](https://github.com/terraform-docs/terraform-docs)
  * [Terragrunt](https://github.com/gruntwork-io/terragrunt)
 
