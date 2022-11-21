@@ -47,8 +47,7 @@ RUN apk --update --no-cache upgrade -a \
   && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
   && chmod +x /usr/local/bin/ecs-cli \
   && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/pam.d/useradd \
-  && mkdir -p /etc/bash_completion.d \
-  && ln -s /usr/bin/python3 /usr/bin/python
+  && mkdir -p /etc/bash_completion.d
 
 # Install software / modules that need build_base
 RUN apk --update --no-cache add --virtual build.deps \
