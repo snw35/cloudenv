@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.16.3
+FROM alpine:3.17
 
 WORKDIR /usr/bin/
 
@@ -115,10 +115,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.3.4
+ENV TERRAFORM_VERSION 1.3.5
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 b24210f28191fa2a08efe69f54e3db2e87a63369ac4f5dcaf9f34dc9318eb1a8
+ENV TERRAFORM_SHA256 ac28037216c3bc41de2c22724e863d883320a770056969b8d211ca8af3d477cf
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -157,10 +157,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.5.9
+ENV AWS_IAM_AUTH_VERSION 0.5.11
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 b192431c22d720c38adbf53b016c33ab17105944ee73b25f485aa52c9e9297a7
+ENV AWS_IAM_AUTH_SHA256 c2bd2760e96444683b2e132af9385df8a03bc3b3cba1146189754e6212d4f22b
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -204,10 +204,10 @@ RUN wget $KOPS_URL/$KOPS_FILENAME \
 
 # Install kompose
 # From https://github.com/kubernetes/kompose/releases
-ENV KOMPOSE_VERSION 1.26.1
+ENV KOMPOSE_VERSION 1.27.0
 ENV KOMPOSE_URL https://github.com/kubernetes/kompose/releases/download/v${KOMPOSE_VERSION}
 ENV KOMPOSE_FILENAME kompose-linux-amd64
-ENV KOMPOSE_SHA256 cd85b8c205dc63985e9bde4911b15c8556029e09671599919ed81bff8453a36f
+ENV KOMPOSE_SHA256 6ae92c67f17a2170ac1b6d69214ed6452ea507bdb0df4eee8ea792f33107710d
 
 RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
@@ -377,10 +377,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.8.12
+ENV AWS_CLI_VERSION 2.9.0
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 0e36d013b675145603a7c86af8f8090f9875bd246808f1aabdb8cf55420d09d3
+ENV AWS_CLI_SHA256 26d24165b8eaf1141fde1c69742169025802ff8c135c7875f4e494a8eede3fa5
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
