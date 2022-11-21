@@ -423,7 +423,6 @@ RUN echo "Test Layer" \
   && kubens --help \
   && mssh --help \
   && okta-awscli --help \
-  && rakkess --help \
   && sam --help \
   && session-manager-plugin --version \
   && terraform-docs \
