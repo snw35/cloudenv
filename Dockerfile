@@ -115,10 +115,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.3.5
+ENV TERRAFORM_VERSION 1.3.6
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 ac28037216c3bc41de2c22724e863d883320a770056969b8d211ca8af3d477cf
+ENV TERRAFORM_SHA256 bb44a4c2b0a832d49253b9034d8ccbd34f9feeb26eda71c665f6e7fa0861f49b
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -129,10 +129,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.41.0
+ENV TERRAGRUNT_VERSION 0.42.3
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 96a843ba998a58339a1fc1f7426848cf4afeb0bcb0f7cad749f86a1366aa00e1
+ENV TERRAGRUNT_SHA256 d6351697b3f26666133c969f98b24d357a1efd07c0f17db69bba3890497449f8
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -157,10 +157,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.5.10
+ENV AWS_IAM_AUTH_VERSION 0.5.12
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 7b4478a699cf9814f3d39b61586d8f1db7b4a7103a089b653cefcd5dc587ed21
+ENV AWS_IAM_AUTH_SHA256 2b0d7e9bf920c1d07e0a58493127ca693bd8dfd930618d92415335c85fdfc5e9
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -377,10 +377,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.9.1
+ENV AWS_CLI_VERSION 2.9.4
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 1ad26363e566283647d9b91a16edeb78ca48a82e3f7292dc0a00a26ba59bfd69
+ENV AWS_CLI_SHA256 96150f1cd07b258d9ec93567b67ede9f6f1ce92350c79f9d29eba9d3bb94d466
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
