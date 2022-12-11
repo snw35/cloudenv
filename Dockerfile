@@ -85,10 +85,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.25.4
+ENV KUBECTL_VERSION 1.26.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 e4e569249798a09f37e31b8b33571970fcfbdecdd99b1b81108adc93ca74b522
+ENV KUBECTL_SHA256 b6769d8ac6a0ed0f13b307d289dc092ad86180b08f5b5044af152808c04950ae
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -377,10 +377,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.9.4
+ENV AWS_CLI_VERSION 2.9.6
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 96150f1cd07b258d9ec93567b67ede9f6f1ce92350c79f9d29eba9d3bb94d466
+ENV AWS_CLI_SHA256 8f1de286d2c66cc0d0d26f205fdb17d5ed073f1e97f305c522e2d1fd89d5c854
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
