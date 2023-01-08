@@ -1,5 +1,5 @@
 {
-  "AWS_CLI": "2.9.12",
+  "AWS_CLI": "2.9.13",
   "AWS_IAM_AUTH": "0.6.2",
   "AWS_OKTA": "1.0.11",
   "BASE": "3.17.0",
@@ -15,7 +15,7 @@
   "KUBECTL": "1.26.0",
   "KUBECTX": "0.9.4",
   "PACKER": "1.8.5",
-  "TERRAFORM": "1.3.6",
+  "TERRAFORM": "1.3.7",
   "TERRAFORM_DOCS": "0.16.0",
-  "TERRAGRUNT": "0.42.5"
+  "TERRAGRUNT": "0.42.7"
 }
