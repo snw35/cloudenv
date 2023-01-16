@@ -248,18 +248,16 @@ RUN wget $FLUX2_URL/$FLUX2_FILENAME \
 
 # Install kubespy
 # From https://github.com/pulumi/kubespy/releases
-ENV KUBESPY_VERSION 0.4.0
+ENV KUBESPY_VERSION 0.6.1
 ENV KUBESPY_URL https://github.com/pulumi/kubespy/releases/download/v${KUBESPY_VERSION}
-ENV KUBESPY_FILENAME kubespy-linux-amd64.tar.gz
-ENV KUBESPY_SHA256 04e3c2d3583e3817e95dfa5041ad97b9fca9d4349f088c3520a233cca16cac55
+ENV KUBESPY_FILENAME kubespy-v${KUBESPY_VERSION}-linux-amd64.tar.gz
+ENV KUBESPY_SHA256 e7b21ee2055e76bbdd6a00267eb8789e430119b1df3ab69497d1201fefa24d83
 
 RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
   && echo "$KUBESPY_SHA256  ./$KUBESPY_FILENAME" | sha256sum -c - \
   && tar -xzf ./${KUBESPY_FILENAME} \
-  && mv ./releases/kubespy-linux-amd64/kubespy ./ \
   && chmod +x ./kubespy \
   && rm -f ./${KUBESPY_FILENAME} \
-  && rm -rf ./releases
 
 
 # Install eksctl
