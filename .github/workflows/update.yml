@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master", "main", "mainline" ]
+  pull_request:
+    branches: [ "master", "main", "mainline" ]
+  schedule:
+    - cron:  '05 15 * * 0'
+  workflow_dispatch:
+    inputs:
+      TAG_COMMAND:
+        description: 'Override the image tag by supplying a command that will be run and the output taken.'
+        required: false
+      IMAGE_TAG:
+        description: "Override the image tag by supplying an environment variable within the Dockerfile that will be used."
+        required: false
+
+jobs:
+  call-upstream-workflow:
+    uses: snw35/cicd/.github/workflows/github.yaml@main
+    with:
+      TAG_COMMAND: 'date -I'
+    secrets: inherit
