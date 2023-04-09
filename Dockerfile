@@ -129,10 +129,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.45.0
+ENV TERRAGRUNT_VERSION 0.45.2
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 3d7f453c2162712cd6fef29b8c68d38126dba86a188d0eb41358701ef051a919
+ENV TERRAGRUNT_SHA256 f6e43f576ae5f8c6f24c15105334185cddf39342bbeea334408ef0415e1045da
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -234,10 +234,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 0.41.2
+ENV FLUX2_VERSION 2.0.0-rc.1
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 13f5ab2a93812c26c6b921274c40451d1b29a259da4e9c4d38b112cc4dad562a
+ENV FLUX2_SHA256 e8db99c8b4cdfc1540384aa8a2e72aba49f20e4515fd7b4eb24c225e23110c0f
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -296,10 +296,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_VERSION 0.27.1
+ENV CLOUD_NUKE_VERSION 0.29.2
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 18c59e8beca4ec8a1e5d9fa699e00cd8eb3aaa728dd2f5bdd1397fbfc4988e32
+ENV CLOUD_NUKE_SHA256 beacd2fa26684bf3800dfe6c9b61088551bfb3f90374d086e60e6dd83e17a285
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
@@ -377,10 +377,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.11.8
+ENV AWS_CLI_VERSION 2.11.11
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 dec1ac85b7dcaceba2290f0f6a12b700d0666b3c4e21b2ea016dce108622c2d8
+ENV AWS_CLI_SHA256 d6fc357fe2ab655c82a227c5ed092686f3ad3a28838c5ea172dab098bc6d810f
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
