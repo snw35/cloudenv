@@ -66,10 +66,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install glibc
-ENV GLIBC_VERSION 2.35-r0
+ENV GLIBC_VERSION 2.35-r1
 ENV GLIBC_URL https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}
 ENV GLIBC_FILENAME glibc-${GLIBC_VERSION}.apk
-ENV GLIBC_SHA256 02fe2d91f53eab93c64d74485b80db575cfb4de40bc0d12bf55839fbe16cb041
+ENV GLIBC_SHA256 276f43ce9b2d5878422bca94ca94e882a7eb263abe171d233ac037201ffcaf06
 
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
   && wget $GLIBC_URL/$GLIBC_FILENAME \
@@ -85,10 +85,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.26.3
+ENV KUBECTL_VERSION 1.27.1
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 026c8412d373064ab0359ed0d1a25c975e9ce803a093d76c8b30c5996ad73e75
+ENV KUBECTL_SHA256 7fe3a762d926fb068bae32c399880e946e8caf3d903078bea9b169dcd5c17f6d
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -115,10 +115,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.4.4
+ENV TERRAFORM_VERSION 1.4.5
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 67541c1f6631befcc25b764028e5605e59234d4424e60a256518ee1e8dd50593
+ENV TERRAFORM_SHA256 ce10e941cd11554b15a189cd00191c05abc20dff865599d361bdb863c5f406a9
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -296,10 +296,10 @@ RUN apk --update --no-cache add --virtual build.deps \
 
 
 # Install cloud-nuke (temp disable upgrading again)
-ENV CLOUD_NUKE_VERSION 0.29.2
+ENV CLOUD_NUKE_VERSION 0.29.4
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 beacd2fa26684bf3800dfe6c9b61088551bfb3f90374d086e60e6dd83e17a285
+ENV CLOUD_NUKE_SHA256 3e86b655591571e1ebcb8faea3897fbc2136215b1620376e04dbb7d267fe2180
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
   && echo "$CLOUD_NUKE_SHA256  ./$CLOUD_NUKE_FILENAME" | sha256sum -c - \
@@ -377,10 +377,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.11.11
+ENV AWS_CLI_VERSION 2.11.13
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 d6fc357fe2ab655c82a227c5ed092686f3ad3a28838c5ea172dab098bc6d810f
+ENV AWS_CLI_SHA256 b2cb1516016503141013905a074ac6c7278fbffa1993fefbaadffb29e8f55a63
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
