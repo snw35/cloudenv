@@ -1,7 +1,6 @@
 {
   "AWS_CLI": "2.11.13",
   "AWS_IAM_AUTH": "0.6.2",
-  "AWS_OKTA": "1.0.11",
   "BASE": "3.17.3",
   "CLOUD_NUKE": "0.29.4",
   "CONFD": "0.16.0",

@@ -44,7 +44,6 @@ The following software is installed and checked for updates weekly:
  * [AWS Export Credentials](https://github.com/benkehoe/aws-export-credentials)
  * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
  * [AWS Okta Keyman](https://github.com/nathan-v/aws_okta_keyman)
- * [AWS Okta](https://github.com/segmentio/aws-okta)
  * [AWS SAM CLI](https://github.com/aws/aws-sam-cli)
  * [AWS Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
  * [Cloud Nuke](https://github.com/gruntwork-io/cloud-nuke)

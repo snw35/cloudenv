@@ -96,12 +96,6 @@ github = "kelseyhightower/confd"
 use_max_tag = true
 prefix = "v"
 
-[AWS_OKTA]
-source = "github"
-github = "segmentio/aws-okta"
-use_max_tag = true
-prefix = "v"
-
 [TERRAFORM_DOCS]
 source = "github"
 github = "terraform-docs/terraform-docs"

@@ -321,32 +321,6 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
   && mkdir -p /etc/confd/templates
 
 
-# Install aws-okta
-# Upstream has stopped providing pre-built binaries
-ENV AWS_OKTA_VERSION 1.0.11
-ENV AWS_OKTA_URL https://github.com/segmentio/aws-okta/archive
-ENV AWS_OKTA_FILENAME v${AWS_OKTA_VERSION}.tar.gz
-ENV AWS_OKTA_SHA256 444a84cd9c81097a7c462f806605193c5676879133255cfa0f610b7d14756b65
-
-RUN wget $AWS_OKTA_URL/$AWS_OKTA_FILENAME \
-  && echo "$AWS_OKTA_SHA256  ./$AWS_OKTA_FILENAME" | sha256sum -c - \
-  && tar -xzf ./$AWS_OKTA_FILENAME \
-  && apk --update --no-cache add --virtual build.deps \
-    go \
-  && export CGO_ENABLED=0 \
-  && cd ./aws-okta-${AWS_OKTA_VERSION} \
-  && go build \
-  && cd .. \
-  && mv ./aws-okta-${AWS_OKTA_VERSION}/aws-okta /usr/bin/aws-okta \
-  && rm -rf ./aws-okta-${AWS_OKTA_VERSION} \
-  && rm -rf ./$AWS_OKTA_FILENAME \
-  && go clean -cache \
-  && apk del build.deps \
-  && rm -rf /root/go/ \
-  && rm -rf /root/.cache \
-  && /usr/bin/aws-okta completion bash > /etc/bash_completion.d/aws-okta
-
-
 # Install terraform-docs
 ENV TERRAFORM_DOCS_VERSION 0.16.0
 ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
