@@ -383,7 +383,6 @@ RUN echo "Test Layer" \
   && aws-connect -v \
   && aws-export-credentials --help \
   && aws-iam-authenticator \
-  && aws-okta \
   && cloud-nuke \
   && confd -version \
   && cookiecutter -h \
