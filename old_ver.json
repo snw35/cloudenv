@@ -1,5 +1,5 @@
 {
-  "AWS_CLI": "2.13.3",
+  "AWS_CLI": "2.13.5",
   "AWS_IAM_AUTH": "0.6.10",
   "BASE": "3.18.2",
   "CLOUD_NUKE": "0.32.0",
@@ -14,7 +14,7 @@
   "KUBECTL": "1.27.4",
   "KUBECTX": "0.9.5",
   "PACKER": "1.9.2",
-  "TERRAFORM": "1.5.3",
+  "TERRAFORM": "1.5.4",
   "TERRAFORM_DOCS": "0.16.0",
-  "TERRAGRUNT": "0.48.4"
+  "TERRAGRUNT": "0.48.5"
 }
