@@ -85,10 +85,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.28.0
+ENV KUBECTL_VERSION 1.28.1
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 4717660fd1466ec72d59000bb1d9f5cdc91fac31d491043ca62b34398e0799ce
+ENV KUBECTL_SHA256 e7a7d6f9d06fab38b4128785aa80f65c54f6675a0d2abef655259ddd852274e1
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -115,10 +115,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.5.5
+ENV TERRAFORM_VERSION 1.5.6
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 ad0c696c870c8525357b5127680cd79c0bdf58179af9acd091d43b1d6482da4a
+ENV TERRAFORM_SHA256 3de5135eecbdb882c7c941920846cc63b0685209f9f8532c6fc1460d9c58e347
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -129,10 +129,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.50.4
+ENV TERRAGRUNT_VERSION 0.50.8
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 bca1fdac0eb33fa77cf3d622f40c9b53dc5380855a6d6ef58f82abc5b1e941ee
+ENV TERRAGRUNT_SHA256 5e8e233c8e4cabcbf12c09de3e13c2b1fba7e10da122799696b274de0ed518a8
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -234,10 +234,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.0.1
+ENV FLUX2_VERSION 2.1.0
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 bff7a54421a591eaae0c13d1f7bd6420b289dd76d0642cb3701897c9d02c6df7
+ENV FLUX2_SHA256 fe6d32da40d5f876434e964c46bc07d00af138c560e063fdcfa8f73e37224087
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -352,10 +352,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.13.11
+ENV AWS_CLI_VERSION 2.13.13
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 8e2146b409a3c840524cca52f221437d1c31d90242dbd772ed835d6b870952ac
+ENV AWS_CLI_SHA256 7204f9facf709ad8869a02d678cf67261668431460e67436cdfd239059a2ac8f
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
