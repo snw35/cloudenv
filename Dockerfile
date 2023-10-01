@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.18.3
+FROM alpine:3.18.4
 
 WORKDIR /usr/bin/
 
@@ -98,10 +98,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.12.3
+ENV HELM_VERSION 3.13.0
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 1b2313cd198d45eab00cc37c38f6b1ca0a948ba279c29e322bdf426d406129b5
+ENV HELM_SHA256 138676351483e61d12dfade70da6c03d471bbdcac84eaadeb5e1d06fa114a24f
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -129,10 +129,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.51.4
+ENV TERRAGRUNT_VERSION 0.51.7
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 c0f39c80bdb1652df6a03d783adc049c52901567d47b8205d6af6f398dc44aaf
+ENV TERRAGRUNT_SHA256 e2cd5235650f6a68c7d9ccb8c4cb007b120d536922dd0982474b7379e86d2a87
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -204,10 +204,10 @@ RUN wget $KOPS_URL/$KOPS_FILENAME \
 
 # Install kompose
 # From https://github.com/kubernetes/kompose/releases
-ENV KOMPOSE_VERSION 1.30.0
+ENV KOMPOSE_VERSION 1.31.0
 ENV KOMPOSE_URL https://github.com/kubernetes/kompose/releases/download/v${KOMPOSE_VERSION}
 ENV KOMPOSE_FILENAME kompose-linux-amd64
-ENV KOMPOSE_SHA256 904a97dd429a0fb13e7d9501d62ae41c8cb743b5016cafd58b7236a14f64c36b
+ENV KOMPOSE_SHA256 04e16f878253fc91a175c22f030638640a3d70a2af6740b2fefefa31d2b7ee02
 
 RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
   && echo "$KOMPOSE_SHA256  ./$KOMPOSE_FILENAME" | sha256sum -c - \
@@ -352,10 +352,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.13.21
+ENV AWS_CLI_VERSION 2.13.22
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 fa5efe6e3871625d57f784253fc0ea5bba74567453c2773c088b574c86559754
+ENV AWS_CLI_SHA256 0e9fbdbef8b6c2b2f9e86d7368bf640da7e917a23373b347c44a9d1827677256
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
