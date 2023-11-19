@@ -85,10 +85,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.28.3
+ENV KUBECTL_VERSION 1.28.4
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 0c680c90892c43e5ce708e918821f92445d1d244f9b3d7513023bcae9a6246d1
+ENV KUBECTL_SHA256 893c92053adea6edbbd4e959c871f5c21edce416988f968bec565d115383f7b8
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -98,10 +98,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.13.1
+ENV HELM_VERSION 3.13.2
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 98c363564d00afd0cc3088e8f830f2a0eeb5f28755b3d8c48df89866374a1ed0
+ENV HELM_SHA256 55a8e6dce87a1e52c61e0ce7a89bf85b38725ba3e8deb51d4a08ade8a2c70b2d
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -115,10 +115,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.6.3
+ENV TERRAFORM_VERSION 1.6.4
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 caa432f110db519bf9b7c84df23ead398e59b6cc3da2938f010200f1ee8f2ae4
+ENV TERRAFORM_SHA256 569fc3d526dcf57eb5af4764843b87b36a7cb590fc50f94a07757c1189256775
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -129,10 +129,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.53.1
+ENV TERRAGRUNT_VERSION 0.53.4
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 a9c8e57ea7de6a9be389252ee1c702eae16d68bc341110f48f0fc6818c1a5cfd
+ENV TERRAGRUNT_SHA256 4cf5658a38018dc476e31e9d3432e2d47711fdf1bf277dc814cddd0fbffff184
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -190,10 +190,10 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
 
 # Install Kops
 # From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.28.0
+ENV KOPS_VERSION 1.28.1
 ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
 ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 ae9190c450d451c86dca92c5c320b3b69f6f94cfb9abc7131891c47ebf613b43
+ENV KOPS_SHA256 a039e0e90598f81867d546fac2c71ea6907be33aca3d34fe1b9dfae4b27547a3
 
 RUN wget $KOPS_URL/$KOPS_FILENAME \
   && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.27.4
+ENV K9S_VERSION 0.28.2
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_amd64.tar.gz
-ENV K9S_SHA256 e507831ebd5f9b8c0380f212669f352c6e34cb760c916b498babae8be83c4392
+ENV K9S_SHA256 3dc8238a554ad2051b91931f9da154188e222a9a1accc4410d7a87a654aab34e
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -352,10 +352,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.13.32
+ENV AWS_CLI_VERSION 2.13.37
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 8275aae7347e978237e4636d6a60d4fc5e42cd07e82abb6e54c0b6eb2fb0c592
+ENV AWS_CLI_SHA256 ea1a23fd4ac46a4c75efd1fd94f0bacf80ddd9b4e0e412cba3566cfe653e161a
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
