@@ -1,8 +1,8 @@
 {
-  "AWS_CLI": "2.13.37",
+  "AWS_CLI": "2.13.38",
   "AWS_IAM_AUTH": "0.6.11",
   "BASE": "3.18.4",
-  "CLOUD_NUKE": "0.32.0",
+  "CLOUD_NUKE": "0.33.0",
   "CONFD": "0.16.0",
   "EKSCTL": "0.164.0",
   "FLUX2": "2.1.2",
@@ -16,5 +16,5 @@
   "PACKER": "1.9.4",
   "TERRAFORM": "1.6.4",
   "TERRAFORM_DOCS": "0.16.0",
-  "TERRAGRUNT": "0.53.4"
+  "TERRAGRUNT": "0.53.6"
 }
