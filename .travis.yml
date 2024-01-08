@@ -1,6 +1,0 @@
-import:
-- snw35/cicd:travis/travis.yml@main
-
-env:
-  global:
-    - TAG_COMMAND="date -I"
