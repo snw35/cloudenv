@@ -1,7 +1,6 @@
 [__config__]
 oldver = "old_ver.json"
 newver = "new_ver.json"
-keyfile = "keyfile.toml"
 
 [BASE]
 source = "container"

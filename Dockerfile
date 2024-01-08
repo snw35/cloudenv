@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20231218-slim
+FROM debian:bookworm-20231120-slim
 
 WORKDIR /usr/bin/
 
