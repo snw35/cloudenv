@@ -1,11 +1,12 @@
 [__config__]
 oldver = "old_ver.json"
 newver = "new_ver.json"
+keyfile = "keyfile.toml"
 
 [BASE]
 source = "container"
-container = "library/alpine"
-include_regex = "\\d+\\.\\d+\\.?\\d?"
+container = "library/debian"
+include_regex = "bookworm-\\d*-slim"
 
 [KUBECTL]
 source = "cmd"
@@ -50,14 +51,6 @@ github = "ahmetb/kubectx"
 use_latest_release = true
 prefix = "v"
 
-[KOPS]
-source = "github"
-github = "kubernetes/kops"
-use_latest_release = false
-use_max_tag = true
-exclude_regex = ".*(alpha|beta).*"
-prefix = "v"
-
 [KOMPOSE]
 source = "github"
 github = "kubernetes/kompose"
@@ -71,6 +64,13 @@ use_latest_release = false
 use_max_tag = true
 prefix = "v"
 
+[KUBESPY]
+source = "github"
+github = "pulumi/kubespy"
+use_latest_release = false
+use_max_tag = true
+prefix = "v"
+
 [FLUX2]
 source = "github"
 github = "fluxcd/flux2"
@@ -79,7 +79,7 @@ prefix = "v"
 
 [EKSCTL]
 source = "github"
-github = "weaveworks/eksctl"
+github = "eksctl-io/eksctl"
 use_max_tag = true
 exclude_regex = ".*rc.*"
 prefix = "v"
@@ -101,11 +101,6 @@ source = "github"
 github = "terraform-docs/terraform-docs"
 use_latest_release = true
 prefix = "v"
-
-[GLIBC]
-source = "github"
-github = "sgerrand/alpine-pkg-glibc"
-use_max_tag = true
 
 [AWS_CLI]
 source = "github"

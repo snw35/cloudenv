@@ -6,7 +6,7 @@ The Cloud Environment ⛅
 
 This is a suite of modern cloud tooling that wraps seamlessly over your existing shell. It provides:
 
- * Infrastructure-as-code (IaC) tools for Amazon AWS.
+ * Infrastructure-as-code (IaC) tools.
  * Authentication tools for Okta and AWS.
  * A large collection of Kubernetes and container tools.
 
@@ -14,7 +14,7 @@ Tested on Mac and Linux with both Podman and Docker.
 
 ## How To Use
 
-If you are using Docker, first add your user to the 'docker' group so you can run docker commands directly. Podman users do not need to do this.
+If you are using Docker on Linux, first add your user to the 'docker' group so you can run docker commands directly. Podman users do not need to do this.
 
 Install the `cloudenv` command:
 
@@ -22,17 +22,13 @@ Install the `cloudenv` command:
 sudo curl https://raw.githubusercontent.com/snw35/cloudenv/master/cloudenv -o /usr/local/bin/cloudenv && sudo chmod +x /usr/local/bin/cloudenv;
 ```
 
-Run the `cloudenv` command as your own user (not as root). It will pull the latest version of the container image (around 1.5GB), start the container, and drop you into the shell:
+Run the `cloudenv` command as your own user (not as root). It will pull the latest version of the container image (around 2GB), start the container, and drop you into the shell:
 
 `⛅user@cloudenv-user:~$`
 
 Everything should work as you expect. The bash shell contains common utilities (git, curl, ssh, etc) and all of the installed tools (listed below) with working bash-completion for those that support it. If your session has an ssh-agent running with cached credentials, then these will continue to work and be available for git/ssh etc.
 
-There may be updates to the 'cloudenv' script itself, which won't be automatically applied. Check below for the last update and re-run the install command above if needed:
-
- * 2020-05-20 - Add debug logging with CLOUDENV_DBG flag.
- * 2020-05-19 - Add multi-user support.
- * 2020-05-14 - Add Podman support, consolidate clouenv script.
+There may be updates to the 'cloudenv' script itself which won't be automatically applied, so re-run the install command above if you experience any issues launching the tool.
 
 ## Included Software
 
@@ -58,7 +54,6 @@ The following software is installed and checked for updates weekly:
  * [Helm](https://github.com/helm/helm)
  * [K9s](https://k9scli.io/)
  * [Kompose](http://kompose.io/)
- * [Kops](https://github.com/kubernetes/kops)
  * [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
  * [Kubectx](https://github.com/ahmetb/kubectx)
  * [Kubespy](https://github.com/pulumi/kubespy)
@@ -79,21 +74,19 @@ One instance of cloudenv will be run per user, named 'cloudenv-username', and mu
 
 ### Terraform and Terragrunt Versions
 
-Terraform and Terragrunt have been reasonably backwards-compatible since version 1.0.0 was released. This image used to contain widely-used previous versions (0.11 and 0.12) though 1.0.0 has been out for long enough now that they have been removed to reduce the image size.
-
-If you temporarily require older versions of terraform or terragrunt, then they can be installed inside the container by e.g fetching the binaries with wget:
+If you require other versions of terraform or terragrunt, then they can be installed inside the container by e.g fetching the binaries with wget:
 
  * https://github.com/gruntwork-io/terragrunt/releases
  * https://github.com/hashicorp/terraform/releases
 
 ### Changing The Shell
 
-By default, a custom bash shell is run inside the container. You can change this to a plain fish or a bash session that will use your host machine's shell configuration. To do this, edit the `cloudenv` script and change the "user_shell" variable to `fish` or `bash`.
+By default, a custom bash shell is run inside the container. You can change this to a plain fish or a bash session that will use your host machine's shell configuration. To do this, edit the `cloudenv` script and change the "user_shell" variable to `zsh`, `fish` or `bash`.
 
 
 ### Remove The Container
 
-The container is left running in the background after you run the command for the first time. It won't re-start itself after a reboot, but will be in the stopped state. If you'd like to clean it up, then you can run the following: `docker/podman rm -f cloudenv`
+The container is left running in the background after you run the command for the first time. It won't re-start itself after a reboot, but will be in the stopped state. If you'd like to clean it up, then you can run the following: `docker/podman rm -f cloudenv-*`
 
 
 ## Why?

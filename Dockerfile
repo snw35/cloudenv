@@ -1,94 +1,63 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM alpine:3.18.4
+FROM debian:bookworm-20231218-slim
 
 WORKDIR /usr/bin/
 
-# Install base deps and pip modules
-RUN apk --update --no-cache upgrade -a \
-  && apk --update --no-cache add \
+# Install base packages and deps
+RUN apt-get update \
+  && apt-get install -y \
     bash \
     bash-completion \
-    bind-tools \
+    bind9-utils \
     ca-certificates \
     coreutils \
     curl \
     diffutils \
     fish \
     fzf \
-    fzf-bash-plugin \
     git \
     gnupg \
     groff \
-    iputils \
-    jq \
+    iputils-ping \
+    iputils-tracepath \
     keychain \
-    libusb \
-    ncurses \
+    make \
     net-tools \
     nmap \
     openssh-client \
-    openssl \
-    perl \
-    py3-pip \
-    python3 \
-    shadow \
-    su-exec \
+    python3-pip \
     tmux \
     tzdata \
-  && pip install --upgrade pip \
-  && pip install --no-cache-dir  \
-    aws-export-credentials \
-    cookiecutter \
-    datadog \
-    okta-awscli \
-    wheel \
-  && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
-  && chmod +x /usr/local/bin/ecs-cli \
-  && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/pam.d/useradd \
-  && mkdir -p /etc/bash_completion.d
+    unzip \
+    vim \
+    wget \
+    zsh \
+  && apt-get clean
 
-# Install software / modules that need build_base
-RUN apk --update --no-cache add --virtual build.deps \
-    build-base \
-    cargo \
-    libffi-dev \
-    openssl-dev \
-    python3-dev \
-    rust \
-  && pip install --no-cache-dir \
+# Install pip apps
+RUN pip install --no-cache-dir --break-system-packages \
     aws-okta-keyman \
     aws-sam-cli \
     ec2instanceconnectcli \
     keyrings.cryptfile \
-  && apk del build.deps
-
-
-# Install glibc
-ENV GLIBC_VERSION 2.35-r1
-ENV GLIBC_URL https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}
-ENV GLIBC_FILENAME glibc-${GLIBC_VERSION}.apk
-ENV GLIBC_SHA256 276f43ce9b2d5878422bca94ca94e882a7eb263abe171d233ac037201ffcaf06
-
-RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-  && wget $GLIBC_URL/$GLIBC_FILENAME \
-  && wget $GLIBC_URL/glibc-bin-${GLIBC_VERSION}.apk \
-  && echo "$GLIBC_SHA256  ./$GLIBC_FILENAME" | sha256sum -c - \
-  && apk add --no-cache --force-overwrite ./$GLIBC_FILENAME ./glibc-bin-${GLIBC_VERSION}.apk \
-  && rm -f /lib64/ld-linux-x86-64.so.2 \
-  && ln -s /usr/glibc-compat/lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
-  && rm -f ./$GLIBC_FILENAME \
-  && rm -f glibc-bin-${GLIBC_VERSION}.apk
+    aws-export-credentials \
+    cookiecutter \
+    datadog \
+    okta-awscli \
+  && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
+  && chmod +x /usr/local/bin/ecs-cli \
+  && mkdir -p /etc/bash_completion.d
 
 
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.28.4
+ENV KUBECTL_VERSION 1.29.0
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 893c92053adea6edbbd4e959c871f5c21edce416988f968bec565d115383f7b8
+ENV KUBECTL_SHA256 0e03ab096163f61ab610b33f37f55709d3af8e16e4dcc1eb682882ef80f96fd5
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -98,10 +67,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.13.2
+ENV HELM_VERSION 3.13.3
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 55a8e6dce87a1e52c61e0ce7a89bf85b38725ba3e8deb51d4a08ade8a2c70b2d
+ENV HELM_SHA256 bbb6e7c6201458b235f335280f35493950dcd856825ddcfd1d3b40ae757d5c7d
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -115,10 +84,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.6.4
+ENV TERRAFORM_VERSION 1.6.6
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 569fc3d526dcf57eb5af4764843b87b36a7cb590fc50f94a07757c1189256775
+ENV TERRAFORM_SHA256 d117883fd98b960c5d0f012b0d4b21801e1aea985e26949c2d1ebb39af074f00
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -129,10 +98,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.53.6
+ENV TERRAGRUNT_VERSION 0.54.12
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 be7ead3c0fcababe1402ce850a335f42c312fa0381c4e8be9b9a1918248d10f3
+ENV TERRAGRUNT_SHA256 70fe63eaee52f47f0b4b84b2e35c3e7071f214adab58c810ef052d4f1eb87d53
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -142,10 +111,10 @@ RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.9.4
+ENV PACKER_VERSION 1.10.0
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 6cd5269c4245aa8c99e551d1b862460d63fe711c58bec618fade25f8492e80d9
+ENV PACKER_SHA256 a8442e7041db0a7db48f468e353ee07fa6a7b35276ec62f60813c518ca3296c1
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -157,10 +126,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.6.11
+ENV AWS_IAM_AUTH_VERSION 0.6.14
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 8593d0c5125f8fba4589008116adf12519cdafa56e1bfa6b11a277e2886fc3c8
+ENV AWS_IAM_AUTH_SHA256 b2286e24ab852aa5e8e483f6ed5674f58de5fa47f9ae4cbf48a3be9588ac5c7b
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -188,20 +157,6 @@ RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
   && chmod +x ./kubens
 
 
-# Install Kops
-# From https://github.com/kubernetes/kops/releases
-ENV KOPS_VERSION 1.28.1
-ENV KOPS_URL https://github.com/kubernetes/kops/releases/download/v${KOPS_VERSION}
-ENV KOPS_FILENAME kops-linux-amd64
-ENV KOPS_SHA256 a039e0e90598f81867d546fac2c71ea6907be33aca3d34fe1b9dfae4b27547a3
-
-RUN wget $KOPS_URL/$KOPS_FILENAME \
-  && echo "$KOPS_SHA256  ./$KOPS_FILENAME" | sha256sum -c - \
-  && chmod +x ./${KOPS_FILENAME} \
-  && mv ./${KOPS_FILENAME} ./kops \
-  && kops completion bash > /etc/bash_completion.d/kops
-
-
 # Install kompose
 # From https://github.com/kubernetes/kompose/releases
 ENV KOMPOSE_VERSION 1.31.2
@@ -218,10 +173,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.28.2
+ENV K9S_VERSION 0.30.8
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_amd64.tar.gz
-ENV K9S_SHA256 3dc8238a554ad2051b91931f9da154188e222a9a1accc4410d7a87a654aab34e
+ENV K9S_SHA256 40752ef7192eefab50e012cc24d521fb615bdd1d517717cffe1dc341378aaf85
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -234,10 +189,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.1.2
+ENV FLUX2_VERSION 2.2.2
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 61b360b50d6cfc34410730b1cebeb75f5eda2b484e47b9a083412f51ad56de68
+ENV FLUX2_SHA256 292945a94ae370b91fe004e1f41b16063fc87371a61a1fd29958dfd959140a60
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -248,28 +203,24 @@ RUN wget $FLUX2_URL/$FLUX2_FILENAME \
 
 # Install kubespy
 # From https://github.com/pulumi/kubespy/releases
-ENV KUBESPY_VERSION 0.4.0
+ENV KUBESPY_VERSION 0.6.2
 ENV KUBESPY_URL https://github.com/pulumi/kubespy/releases/download/v${KUBESPY_VERSION}
-ENV KUBESPY_FILENAME kubespy-linux-amd64.tar.gz
-ENV KUBESPY_SHA256 04e3c2d3583e3817e95dfa5041ad97b9fca9d4349f088c3520a233cca16cac55
+ENV KUBESPY_FILENAME kubespy-v${KUBESPY_VERSION}-linux-amd64.tar.gz
+ENV KUBESPY_SHA256 08631639ef1cd8371cdec37eb53dcf4e55ae97ffcd2f808b37609f82a42c6f1c
 
 RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
   && echo "$KUBESPY_SHA256  ./$KUBESPY_FILENAME" | sha256sum -c - \
   && tar -xzf ./${KUBESPY_FILENAME} \
-  && mv ./releases/kubespy-linux-amd64/kubespy ./ \
   && chmod +x ./kubespy \
-  && rm -f ./${KUBESPY_FILENAME} \
-  && rm -rf ./releases
+  && rm -f ./${KUBESPY_FILENAME} ./LICENSE ./README.md
 
 
 # Install eksctl
-# From https://github.com/weaveworks/eksctl/releases
-# TMP disable upgrade as upstream have tagged non-existant releases in their repo (1.104.0)
-ENV EKSCTL_UPGRADE false
-ENV EKSCTL_VERSION 0.103.0
-ENV EKSCTL_URL https://github.com/weaveworks/eksctl/releases/download/v${EKSCTL_VERSION}
+# From https://github.com/eksctl-io/eksctl/releases
+ENV EKSCTL_VERSION 0.167.0
+ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 7d39e74fa32690f6babfa121eb0fcc97b4f16d91a1ffb5e6839bc993483e014d
+ENV EKSCTL_SHA256 0433cb1ecabdbe7398dd6cd8b886824daacb4b4fc6bbfef9e28d9d664410a3a2
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -280,22 +231,18 @@ RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
 
 
 # Install the AWS session manager plugin
-ENV AWSSMP_VERSION 1.1.31.0
-ENV AWSSMP_URL https://s3.amazonaws.com/session-manager-downloads/plugin/${AWSSMP_VERSION}/linux_64bit
-ENV AWSSMP_FILENAME session-manager-plugin.rpm
-ENV AWSSMP_SHA256 6a4abafaa921a5ff242bb8dfff18d528f1544e22571ba03b3a5d7d4d3cf28072
+ENV AWSSMP_VERSION 1.2.536.0
+ENV AWSSMP_URL https://s3.amazonaws.com/session-manager-downloads/plugin/${AWSSMP_VERSION}/ubuntu_64bit
+ENV AWSSMP_FILENAME session-manager-plugin.deb
+ENV AWSSMP_SHA256 c49839338045e4ef4e44c3aec7574919add1c45c4b0b979e9c84ea53fb75553b
 
-RUN apk --update --no-cache add --virtual build.deps \
-    rpm2cpio \
-  && wget $AWSSMP_URL/$AWSSMP_FILENAME \
+RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
   && echo "$AWSSMP_SHA256  ./$AWSSMP_FILENAME" | sha256sum -c - \
-  && rpm2cpio ./session-manager-plugin.rpm | cpio -idmv \
-  && mv ./usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin/ \
-  && rm -rf ./etc ./usr ./var ./$AWSSMP_FILENAME \
-  && apk del build.deps
+  && dpkg -i ./${AWSSMP_FILENAME} \
+  && rm ./$AWSSMP_FILENAME
 
 
-# Install cloud-nuke (temp disable upgrading again)
+# Install cloud-nuke
 ENV CLOUD_NUKE_VERSION 0.33.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
@@ -323,10 +270,10 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 
 # Install terraform-docs
-ENV TERRAFORM_DOCS_VERSION 0.16.0
+ENV TERRAFORM_DOCS_VERSION 0.17.0
 ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
 ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
-ENV TERRAFORM_DOCS_SHA256 328c16cd6552b3b5c4686b8d945a2e2e18d2b8145b6b66129cd5491840010182
+ENV TERRAFORM_DOCS_SHA256 8e436d0c44db49c2ccd95deede05c3deba324b34a274be06cd9ba9cdf644e795
 
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
@@ -352,10 +299,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.13.38
+ENV AWS_CLI_VERSION 2.15.8
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 4adbee4312a38d3e0b6754d519cfbe09301cc063df1947f137219a9d92fcb85a
+ENV AWS_CLI_SHA256 d802cf143f7ae2155e36269ba00037290f327fc579c6a1c5d5cf72673f3af123
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -391,16 +338,16 @@ RUN echo "Test Layer" \
   && flux \
   && helm \
   && kompose -h \
-  && kops \
   && kubectl \
   && kubectx --help \
   && kubens --help \
+  && kubespy \
   && mssh --help \
   && okta-awscli --help \
   && sam --help \
   && session-manager-plugin --version \
-  && terraform-docs \
   && terraform -h \
+  && terraform-docs \
   && terragrunt -h
 
 COPY bashrc /etc/bashrc
