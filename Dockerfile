@@ -7,7 +7,7 @@ WORKDIR /usr/bin/
 
 # Install base packages and deps
 RUN apt-get update \
-  && apt-get install -y \
+  && apt-get install --no-install-recommends -y \
     bash \
     bash-completion \
     bind9-utils \
@@ -324,6 +324,17 @@ RUN echo "# Added at containter build-time" >> /etc/ssh/ssh_config \
   && echo "ServerAliveCountMax 3" >> /etc/ssh/ssh_config \
   && chmod +x /docker-entrypoint.sh \
   && chmod +x /usr/bin/clearokta
+
+# Install latest su-exec
+RUN curl -o /usr/local/bin/su-exec.c https://raw.githubusercontent.com/ncopa/su-exec/master/su-exec.c \
+  && fetch_deps='gcc libc-dev' \
+  && apt-get install -y --no-install-recommends $fetch_deps \
+  && rm -rf /var/lib/apt/lists/* \
+  && gcc -Wall /usr/local/bin/su-exec.c -o/usr/local/bin/su-exec \
+  && chown root:root /usr/local/bin/su-exec \
+  && chmod 0755 /usr/local/bin/su-exec \
+  && rm /usr/local/bin/su-exec.c \
+  && apt-get purge -y --auto-remove $fetch_deps
 
 RUN echo "Test Layer" \
   && aws --version \
