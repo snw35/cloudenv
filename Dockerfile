@@ -23,6 +23,7 @@ RUN apt-get update \
     iputils-ping \
     iputils-tracepath \
     keychain \
+    less \
     make \
     net-tools \
     nmap \
