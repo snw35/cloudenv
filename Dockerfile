@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.55.9
+ENV TERRAGRUNT_VERSION 0.55.11
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 d22ca74f4be92288127cf8acc2991ef81b88b2b573857f5665df661d10453a4b
+ENV TERRAGRUNT_SHA256 5dd7901fd796da1d5b12f6e86977ab6d053f1b18c8e74c311ede304e7c53ab53
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -174,10 +174,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.31.9
+ENV K9S_VERSION 0.32.0
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_amd64.tar.gz
-ENV K9S_SHA256 075a588642e35cd68394b8ad0df474423650945ef8a786767b7fbce0a4764fea
+ENV K9S_SHA256 3efa7e95695504d6fe8d12745368d8a908241c4949f631776aded2ddc506c6a6
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.172.0
+ENV EKSCTL_VERSION 0.173.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 84d8ea4c99c1d119bedd7d4aaa61ea3b6f23e24f415cf1bf9471bae3a801c78d
+ENV EKSCTL_SHA256 0ba1256a6bcaf751b56d8518cf6676055e7ab8942ef5b16324476a6a9e2cfe43
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.15.23
+ENV AWS_CLI_VERSION 2.15.25
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 77c6c3d1ac23638b07a02587ed6b1d4adc84c561c9ecc7df1ff3778e43a4b49b
+ENV AWS_CLI_SHA256 711df4aaa91d9ebb55b9c92d7562890cc4f000efafa163c09bdb03be3d35de1a
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
