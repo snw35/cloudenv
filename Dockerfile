@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20240311-slim
+FROM debian:bookworm-20240408-slim
 
 WORKDIR /usr/bin/
 
@@ -68,10 +68,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.14.3
+ENV HELM_VERSION 3.14.4
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 3c90f24e180f8c207b8a18e5ec82cb0fa49858a7a0a86e4ed52a98398681e00b
+ENV HELM_SHA256 a5844ef2c38ef6ddf3b5a8f7d91e7e0e8ebc39a38bb3fc8013d629c1ef29c259
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.7.5
+ENV TERRAFORM_VERSION 1.8.0
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 3ff056b5e8259003f67fd0f0ed7229499cfb0b41f3ff55cc184088589994f7a5
+ENV TERRAFORM_SHA256 dcc4670379a22213e72faa6cb709b3391e7e54967e40288ecf591e2b83cfd39e
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.56.2
+ENV TERRAGRUNT_VERSION 0.57.0
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 510debf06f3c0c162bcac0cc3ce59debc8fb91bd6ddb1f9cec0cf4051c9470c4
+ENV TERRAGRUNT_SHA256 d4a01ceb50cf6ca38283fe89f2933252f6c6ae2cee7e4e9977620bda9c619df4
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -204,10 +204,10 @@ RUN wget $FLUX2_URL/$FLUX2_FILENAME \
 
 # Install kubespy
 # From https://github.com/pulumi/kubespy/releases
-ENV KUBESPY_VERSION 0.6.2
+ENV KUBESPY_VERSION 0.6.3
 ENV KUBESPY_URL https://github.com/pulumi/kubespy/releases/download/v${KUBESPY_VERSION}
 ENV KUBESPY_FILENAME kubespy-v${KUBESPY_VERSION}-linux-amd64.tar.gz
-ENV KUBESPY_SHA256 08631639ef1cd8371cdec37eb53dcf4e55ae97ffcd2f808b37609f82a42c6f1c
+ENV KUBESPY_SHA256 a1e9a38fd9afddeaec6c5c992aee8cb9ddaeabf9d6f122241754426a79d9b86e
 
 RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
   && echo "$KUBESPY_SHA256  ./$KUBESPY_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.34.0
+ENV CLOUD_NUKE_VERSION 0.35.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 80dd318b5d97479199d31af405eebc1f8f4dbcad168714d2f8d1da3010c0d5af
+ENV CLOUD_NUKE_SHA256 ea924f19b638abb4024cf67d55a904cff732c6852c3c3fb19e45a9981bc2c0bd
 ENV DISABLE_TELEMETRY TRUE
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.15.36
+ENV AWS_CLI_VERSION 2.15.38
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 a0ecf9dba2b5b4cc8714e03710d56a52fad7e3024c55a7e8a65e1cd44da3a80f
+ENV AWS_CLI_SHA256 3ad6c4b2b830884bf800fc9300f1b5340188f06da765dbee4a2f923fe081b56c
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
