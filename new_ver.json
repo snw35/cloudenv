@@ -1,5 +1,5 @@
 {
-  "AWS_CLI": "2.15.38",
+  "AWS_CLI": "2.15.40",
   "AWS_IAM_AUTH": "0.6.14",
   "BASE": "bookworm-20240408-slim",
   "CLOUD_NUKE": "0.35.0",
@@ -9,11 +9,11 @@
   "HELM": "3.14.4",
   "K9S": "0.32.4",
   "KOMPOSE": "1.32.0",
-  "KUBECTL": "1.29.3",
+  "KUBECTL": "1.30.0",
   "KUBECTX": "0.9.5",
   "KUBESPY": "0.6.3",
   "PACKER": "1.10.2",
-  "TERRAFORM": "1.8.0",
+  "TERRAFORM": "1.8.1",
   "TERRAFORM_DOCS": "0.17.0",
-  "TERRAGRUNT": "0.57.0"
+  "TERRAGRUNT": "0.57.5"
 }
