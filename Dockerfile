@@ -119,7 +119,7 @@ ENV PACKER_SHA256 6ed412d212e6948f956a92099d6f941ddb470ff30ab40432622f5e68d594ec
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
-  && unzip ./$PACKER_FILENAME \
+  && unzip -o ./$PACKER_FILENAME \
   && rm ./$PACKER_FILENAME \
   && chmod +x ./packer
 
