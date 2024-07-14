@@ -1,5 +1,5 @@
 {
-  "AWS_CLI": "2.17.12",
+  "AWS_CLI": "2.17.13",
   "AWS_IAM_AUTH": "0.6.22",
   "BASE": "bookworm-20240701-slim",
   "CLOUD_NUKE": "0.37.1",
@@ -15,5 +15,5 @@
   "PACKER": "1.11.1",
   "TERRAFORM": "1.9.2",
   "TERRAFORM_DOCS": "0.18.0",
-  "TERRAGRUNT": "0.61.1"
+  "TERRAGRUNT": "0.62.0"
 }
