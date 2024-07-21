@@ -55,10 +55,10 @@ RUN pip install --no-cache-dir --break-system-packages \
 # Install KUBECTL
 # From https://storage.googleapis.com/kubernetes-release/release/stable.txt
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-ENV KUBECTL_VERSION 1.30.2
+ENV KUBECTL_VERSION 1.30.3
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VERSION/bin/linux/amd64
 ENV KUBECTL_FILENAME kubectl
-ENV KUBECTL_SHA256 c6e9c45ce3f82c90663e3c30db3b27c167e8b19d83ed4048b61c1013f6a7c66e
+ENV KUBECTL_SHA256 abd83816bd236b266c3643e6c852b446f068fe260f3296af1a25b550854ec7e5
 
 RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
   && echo "$KUBECTL_SHA256  ./$KUBECTL_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.62.0
+ENV TERRAGRUNT_VERSION 0.63.2
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 3eef9e02602e6c8f9be8439d1dd7a480c24e7846acb8b4d0101a292f11efc8a5
+ENV TERRAGRUNT_SHA256 b9f3d028e43cd65a42acecf075379dff15275b6b8dc4e95132b43b0399f02b94
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.186.0
+ENV EKSCTL_VERSION 0.187.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 f526bb8a3866f074bb3022c851e12e309cac9005b3a2d48a95d1ac4c3ae9ff8b
+ENV EKSCTL_SHA256 5c3741a95ba71b41473776e9610483c94f62db2760ac0b90fe1d2184a80fc0ad
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.17.13
+ENV AWS_CLI_VERSION 2.17.14
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 7b3f23c17ba4e0c3a6d77d367ebe89192bb79f7fc06b7890d7d1fd19e9199d30
+ENV AWS_CLI_SHA256 486334adf064c8ca2b1e73478032eb3f85b44605a710d2fbeefdaa01e77f958e
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
