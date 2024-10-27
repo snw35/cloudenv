@@ -1,10 +1,10 @@
 {
-  "AWS_CLI": "2.18.10",
+  "AWS_CLI": "2.18.15",
   "AWS_IAM_AUTH": "0.6.27",
   "BASE": "bookworm-20241016-slim",
   "CLOUD_NUKE": "0.37.2",
   "CONFD": "0.16.0",
-  "EKSCTL": "0.193.0",
+  "EKSCTL": "0.194.0",
   "FLUX2": "2.4.0",
   "HELM": "3.16.2",
   "K9S": "0.32.5",
