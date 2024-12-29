@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20241202-slim
+FROM debian:bookworm-20241223-slim
 
 WORKDIR /usr/bin/
 
@@ -68,10 +68,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.16.3
+ENV HELM_VERSION 3.16.4
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 f5355c79190951eed23c5432a3b920e071f4c00a64f75e077de0dd4cb7b294ea
+ENV HELM_SHA256 fc307327959aa38ed8f9f7e66d45492bb022a66c3e5da6063958254b9767d179
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.10.2
+ENV TERRAFORM_VERSION 1.10.3
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 c347b0223c12d315baf8c9cc69913d5dbeb4388e96abe17805be4da9b63b5cdd
+ENV TERRAFORM_SHA256 ea3020db6b53c25a4a84e40cdc36c1a86df26967d718219ab4c71b44435da81e
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.69.13
+ENV TERRAGRUNT_VERSION 0.71.1
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 6208c496f9bff82563b8b434e3040d7c8b9327a9cac6f3f9ea7ca5648aebeae5
+ENV TERRAGRUNT_SHA256 8fc451e6c7d87d0e1adc7297959a72aab28f034c7ab8e684ad0ed5f5f4d9b12c
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.6.28
+ENV AWS_IAM_AUTH_VERSION 0.6.29
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 213359cc4da44294516c197617c210f578eaba2a188131591269247206547d75
+ENV AWS_IAM_AUTH_SHA256 3eb662fc197510d27418ae57a10d71c864d15ecab4b5c2b04e495175a8f87d8f
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.37.2
+ENV CLOUD_NUKE_VERSION 0.38.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 938928cb8b4275a5847e88623199af54c46a68d136bf47d0159acbb33bb6fc13
+ENV CLOUD_NUKE_SHA256 ee6f1faa14f3d76a1ce871b34daf58c3c9c91d4321e5e50b5be0068bf72db603
 ENV DISABLE_TELEMETRY TRUE
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.22.17
+ENV AWS_CLI_VERSION 2.22.26
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 31fde09ad58ada32a9e754d50b451fa54c93a970e686ec75a0c4ef22843abdbd
+ENV AWS_CLI_SHA256 fb4f7f7f0c52ee0a2bbf109e6b88558a7f48a0e47cd9e39f73cd6714c5a9984f
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
