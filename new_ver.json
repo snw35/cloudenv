@@ -1,10 +1,10 @@
 {
-  "AWS_CLI": "2.22.26",
+  "AWS_CLI": "2.22.33",
   "AWS_IAM_AUTH": "0.6.29",
   "BASE": "bookworm-20241223-slim",
-  "CLOUD_NUKE": "0.38.0",
+  "CLOUD_NUKE": "0.38.1",
   "CONFD": "0.16.0",
-  "EKSCTL": "0.199.0",
+  "EKSCTL": "0.200.0",
   "FLUX2": "2.4.0",
   "HELM": "3.16.4",
   "K9S": "0.32.7",
@@ -13,7 +13,7 @@
   "KUBECTX": "0.9.5",
   "KUBESPY": "0.6.3",
   "PACKER": "1.11.2",
-  "TERRAFORM": "1.10.3",
+  "TERRAFORM": "1.10.4",
   "TERRAFORM_DOCS": "0.19.0",
-  "TERRAGRUNT": "0.71.1"
+  "TERRAGRUNT": "0.72.0"
 }
