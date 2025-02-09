@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20250113-slim
+FROM debian:bookworm-20250203-slim
 
 WORKDIR /usr/bin/
 
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.72.6
+ENV TERRAGRUNT_VERSION 0.72.9
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 df63a41576b8b4129b498da5b698b5792a5a228ea5012bbecdcbe49d4d662be3
+ENV TERRAGRUNT_SHA256 97f1fddb9854be39781956d70df945118838c865f20e2fb95eef70680072e998
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.6.29
+ENV AWS_IAM_AUTH_VERSION 0.6.30
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 3eb662fc197510d27418ae57a10d71c864d15ecab4b5c2b04e495175a8f87d8f
+ENV AWS_IAM_AUTH_SHA256 a36dd03a75833d5846cb044cfbaaae15800cefa346805647fe454c5d1871d1c6
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.38.1
+ENV CLOUD_NUKE_VERSION 0.38.2
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 194986f1b13fe1d9c96b71e83638fcef03e15a966d7e6dc51cfbe6b32aea991e
+ENV CLOUD_NUKE_SHA256 2ea89d9df5103ec1f3eda8fc84c9f6bbe42c3f34c06848c837bf9a2a1458ba50
 ENV DISABLE_TELEMETRY TRUE
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.23.11
+ENV AWS_CLI_VERSION 2.24.0
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 d9cad44c58bbf5f43cfccd291d688d5297356608aeaa487ce65c4ac81251f4c7
+ENV AWS_CLI_SHA256 4e3c39d9881cb6f893ea93219d971390864b1f7e3756197413a7de38ce059609
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
