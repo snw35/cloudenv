@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20250203-slim
+FROM debian:bookworm-20250224-slim
 
 WORKDIR /usr/bin/
 
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.10.5
+ENV TERRAFORM_VERSION 1.11.0
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 0566a24f5332098b15716ebc394be503f4094acba5ba529bf5eb0698ed5e2a90
+ENV TERRAFORM_SHA256 069e531fd4651b9b510adbd7e27dd648b88d66d5f369a2059aadbb4baaead1c1
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.73.11
+ENV TERRAGRUNT_VERSION 0.73.16
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 077251538b8fc959b5786b3d338a5df18e5ce19d2f8b64186011d45771188871
+ENV TERRAGRUNT_SHA256 713cc10b0fe00eb8cbe33c0a4b44604aa66149c7d1441a29e8af3f2b17f951c1
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -190,10 +190,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.5.0
+ENV FLUX2_VERSION 2.5.1
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 6d9ee65232269a81c765604d88d7afe347330aceb1c77f0bc45a2d1f93802fce
+ENV FLUX2_SHA256 f64c85db4b94aefcdf6e0f2825c32573fc2bd234e5489ff332fee62776973ec3
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.204.0
+ENV EKSCTL_VERSION 0.205.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 2ae2d581115d3658e38c104a851a85d1972b8f535e011a3aa5af6eb96d4e142f
+ENV EKSCTL_SHA256 52f52276276d421f03790fbdc1b02e783c369f4863fc6dc83cf116f2f89ca5c4
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.24.10
+ENV AWS_CLI_VERSION 2.24.15
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 dd0ef95dcd5cdfca48aa410fe777fd460e0a0d4bc14f38650ea1b4af294e9eaf
+ENV AWS_CLI_SHA256 2b8b4a414cad4e03cd1d472da2effec0142b63a5121543d789130c933bc3be21
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
