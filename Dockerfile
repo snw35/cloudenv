@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20250317-slim
+FROM debian:bookworm-20250407-slim
 
 WORKDIR /usr/bin/
 
@@ -68,10 +68,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 3.17.2
+ENV HELM_VERSION 3.17.3
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 90c28792a1eb5fb0b50028e39ebf826531ebfcf73f599050dbd79bab2f277241
+ENV HELM_SHA256 ee88b3c851ae6466a3de507f7be73fe94d54cbf2987cbaa3d1a3832ea331f2cd
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.11.3
+ENV TERRAFORM_VERSION 1.11.4
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 377c8c18e2beab24f721994859236e98383350bf767921436511370d1f7c472b
+ENV TERRAFORM_SHA256 1ce994251c00281d6845f0f268637ba50c0005657eb3cf096b92f753b42ef4dc
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.77.1
+ENV TERRAGRUNT_VERSION 0.77.14
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 3aa637b7535232c45e7c8a364274624cf04c0e8285743b5f4b16c90ce4cfbef7
+ENV TERRAGRUNT_SHA256 d1f43e747959f5bc9c5954938c2e0a40b01c115656f32d921b6a63a3b43340e1
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.6.30
+ENV AWS_IAM_AUTH_VERSION 0.6.31
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 a36dd03a75833d5846cb044cfbaaae15800cefa346805647fe454c5d1871d1c6
+ENV AWS_IAM_AUTH_SHA256 a0a828913d71305792eeca4ff71f2abce6d9fcff7b7612b765f760012aad4727
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -174,10 +174,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.40.10
+ENV K9S_VERSION 0.50.2
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_amd64.tar.gz
-ENV K9S_SHA256 490bbfcb9314e59c0b1396e1d896786dc944fa9f83062296f454fef97aee0a54
+ENV K9S_SHA256 7d3d420fb0085f6c069a032e71a67de8b152daea94abdaafcb16ade3e30f22e2
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.206.0
+ENV EKSCTL_VERSION 0.207.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 06a7a46a83e250907c02a3ad07163e96498e11b63a692bb09b763809e59b3b97
+ENV EKSCTL_SHA256 f503e7d19879ded5786ccf63c68c7ca4991496d6d8e88c68324cb3d62013db14
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -271,10 +271,10 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 
 # Install terraform-docs
-ENV TERRAFORM_DOCS_VERSION 0.19.0
+ENV TERRAFORM_DOCS_VERSION 0.20.0
 ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
 ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
-ENV TERRAFORM_DOCS_SHA256 dd741a0ece81059a478684b414d95d72b8b74fa58f50ac4036b4e8b56130d64b
+ENV TERRAFORM_DOCS_SHA256 34ae01772412bb11474e6718ea62113e38ff5964ee570a98c69fafe3a6dff286
 
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.25.6
+ENV AWS_CLI_VERSION 2.26.1
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 0ca8ad95c5efb174ceb7f8e2293495b85e278dc32e1577e07cf539d50dbffa57
+ENV AWS_CLI_SHA256 d8b544c0214b275a4c3d1ee228077aeba5f9e28eb471f6cbad404f4527aebb88
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
