@@ -1,11 +1,11 @@
 {
-  "AWS_CLI": "2.27.40",
+  "AWS_CLI": "2.27.45",
   "AWS_IAM_AUTH": "0.7.3",
   "BASE": "bookworm-20250610-slim",
   "CLOUD_NUKE": "0.41.0",
   "CONFD": "0.16.0",
   "EKSCTL": "0.210.0",
-  "FLUX2": "2.6.2",
+  "FLUX2": "2.6.3",
   "HELM": "3.18.3",
   "K9S": "0.50.6",
   "KOMPOSE": "1.36.0",
@@ -15,5 +15,5 @@
   "PACKER": "1.13.1",
   "TERRAFORM": "1.12.2",
   "TERRAFORM_DOCS": "0.20.0",
-  "TERRAGRUNT": "0.81.10"
+  "TERRAGRUNT": "0.82.3"
 }
