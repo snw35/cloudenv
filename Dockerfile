@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20250630-slim
+FROM debian:bookworm-20250721-slim
 
 WORKDIR /usr/bin/
 
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.27.55
+ENV AWS_CLI_VERSION 2.27.60
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 06c43658b5fd71a729455de9a1c09b011d565036513f5c7096af699f4eec755a
+ENV AWS_CLI_SHA256 e28192b4337c8d5fb813b974a965377a4a9621e308417722c6d320c5b86db96b
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \

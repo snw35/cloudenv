@@ -1,7 +1,7 @@
 {
-  "AWS_CLI": "2.27.55",
+  "AWS_CLI": "2.27.60",
   "AWS_IAM_AUTH": "0.7.4",
-  "BASE": "bookworm-20250630-slim",
+  "BASE": "bookworm-20250721-slim",
   "CLOUD_NUKE": "0.41.0",
   "CONFD": "0.16.0",
   "EKSCTL": "0.211.0",
