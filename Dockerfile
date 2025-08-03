@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.83.2
+ENV TERRAGRUNT_VERSION 0.84.0
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 db5ecb13589a6e666efe1dfcca8308a6cc623bba5b47b2e739391b7aab8ecbda
+ENV TERRAGRUNT_SHA256 bf603ae58d9e968b117eb99a3f043e3972eed569d725d4ca8493491ce97cf165
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -112,10 +112,10 @@ RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.13.1
+ENV PACKER_VERSION 1.14.0
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 c3401da41a47d51e2ef3e78a76f625c753b6f19e81681e4cdc3bc6e6f8c699c0
+ENV PACKER_SHA256 ce313ccd3f7f9606cb2eb02db49607960fbaa1ed76bf24b7c4a0850ce743d66a
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.4
+ENV AWS_IAM_AUTH_VERSION 0.7.5
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 85c20d45e1067535db642f5fa1666e13de1761ae8577d13526bf19c1a8caabac
+ENV AWS_IAM_AUTH_SHA256 aef183b5b92f2cb135107234c7440f43638caa337190190cdd2ad9fd6bc4928e
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.211.0
+ENV EKSCTL_VERSION 0.212.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 5fa1c47e90631e5839acf34a7c184a656a4be7d84c2f20ce2204bf980290bbd8
+ENV EKSCTL_SHA256 7e8ce616bfbc7beb156dc72e1693efe2cab79a64bcbf726c44d8c4d11ebdb3f5
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.41.0
+ENV CLOUD_NUKE_VERSION 0.42.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 4db382b82d799c4b7595d964e6190a08de7fb6afc269fe33d6de2ade3fe00a7a
+ENV CLOUD_NUKE_SHA256 73affc0220540a6251bc2fc43083fdc1229a16b6e6b03d3abf149511b9c3dbdf
 ENV DISABLE_TELEMETRY TRUE
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.27.60
+ENV AWS_CLI_VERSION 2.28.1
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 e28192b4337c8d5fb813b974a965377a4a9621e308417722c6d320c5b86db96b
+ENV AWS_CLI_SHA256 76e9fe6f81524c94896bb3c8b1854929a04c4959a0459751f3ac67c1b292636a
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
