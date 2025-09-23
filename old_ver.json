@@ -1,19 +1,93 @@
 {
-  "AWS_CLI": "2.28.1",
-  "AWS_IAM_AUTH": "0.7.5",
-  "BASE": "bookworm-20250721-slim",
-  "CLOUD_NUKE": "0.42.0",
-  "CONFD": "0.16.0",
-  "EKSCTL": "0.212.0",
-  "FLUX2": "2.6.4",
-  "HELM": "3.18.4",
-  "K9S": "0.50.9",
-  "KOMPOSE": "1.36.0",
-  "KUBECTL": "1.31.0",
-  "KUBECTX": "0.9.5",
-  "KUBESPY": "0.6.3",
-  "PACKER": "1.14.0",
-  "TERRAFORM": "1.12.2",
-  "TERRAFORM_DOCS": "0.20.0",
-  "TERRAGRUNT": "0.84.0"
+  "version": 2,
+  "data": {
+    "AWS_CLI": {
+      "version": "2.30.7",
+      "gitref": "refs/tags/2.30.7",
+      "revision": "92645a9f36f7680773d13c6c90cf90dca6a32980",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.30.7"
+    },
+    "AWS_IAM_AUTH": {
+      "version": "0.7.7",
+      "gitref": "refs/tags/v0.7.7",
+      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.7"
+    },
+    "BASE": {
+      "version": "bookworm-20250908-slim"
+    },
+    "CLOUD_NUKE": {
+      "version": "0.42.0",
+      "gitref": "refs/tags/v0.42.0",
+      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.42.0"
+    },
+    "CONFD": {
+      "version": "0.16.0",
+      "gitref": "refs/tags/v0.16.0",
+      "revision": "7217b0ca0c454bcdf90fce1e86787d3f6d56e15a",
+      "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
+    },
+    "EKSCTL": {
+      "version": "0.214.0",
+      "gitref": "refs/tags/v0.214.0",
+      "revision": "75a66cf9a2d53b1a608ad6b8f1f76d6a93c33a19",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.214.0"
+    },
+    "FLUX2": {
+      "version": "2.6.4",
+      "gitref": "refs/tags/v2.6.4",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.6.4"
+    },
+    "HELM": {
+      "version": "4.0.0-alpha.1",
+      "gitref": "refs/tags/v4.0.0-alpha.1",
+      "revision": "fdaf883aeaa3c808b76ca0d1c06e7781129543c2",
+      "url": "https://github.com/helm/helm/releases/tag/v4.0.0-alpha.1"
+    },
+    "K9S": {
+      "version": "0.50.12",
+      "gitref": "refs/tags/v0.50.12",
+      "revision": "02344ac1f1c679e39f1d98b94e7dc6a3bf876a0a",
+      "url": "https://github.com/derailed/k9s/releases/tag/v0.50.12"
+    },
+    "KOMPOSE": {
+      "version": "1.37.0",
+      "gitref": "refs/tags/v1.37.0",
+      "url": "https://github.com/kubernetes/kompose/releases/tag/v1.37.0"
+    },
+    "KUBECTL": {
+      "version": "1.31.0"
+    },
+    "KUBECTX": {
+      "version": "0.9.5",
+      "gitref": "refs/tags/v0.9.5",
+      "url": "https://github.com/ahmetb/kubectx/releases/tag/v0.9.5"
+    },
+    "KUBESPY": {
+      "version": "0.6.3",
+      "gitref": "refs/tags/v0.6.3",
+      "revision": "318db5007c800a5624187ef7d1b785f4dfaae554",
+      "url": "https://github.com/pulumi/kubespy/releases/tag/v0.6.3"
+    },
+    "PACKER": {
+      "version": "1.14.2",
+      "gitref": "refs/tags/v1.14.2",
+      "url": "https://github.com/hashicorp/packer/releases/tag/v1.14.2"
+    },
+    "TERRAFORM": {
+      "version": "1.13.3",
+      "gitref": "refs/tags/v1.13.3",
+      "revision": "9eaccddfede10d61aa6e11ee0770a71be73974ff",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.13.3"
+    },
+    "TERRAFORM_DOCS": {
+      "version": "0.20.0",
+      "gitref": "refs/tags/v0.20.0",
+      "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
+    },
+    "TERRAGRUNT": {
+      "version": "0.87.5",
+      "gitref": "refs/tags/v0.87.5",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.87.5"
+    }
+  }
 }
