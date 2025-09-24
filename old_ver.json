@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.30.7",
-      "gitref": "refs/tags/2.30.7",
-      "revision": "92645a9f36f7680773d13c6c90cf90dca6a32980",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.30.7"
+      "version": "2.31.0",
+      "gitref": "refs/tags/2.31.0",
+      "revision": "83d11fedd2429f5eb052c50151d1bfcc998ff32d",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.0"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.7",
@@ -38,10 +38,10 @@
       "url": "https://github.com/fluxcd/flux2/releases/tag/v2.6.4"
     },
     "HELM": {
-      "version": "4.0.0-alpha.1",
-      "gitref": "refs/tags/v4.0.0-alpha.1",
-      "revision": "fdaf883aeaa3c808b76ca0d1c06e7781129543c2",
-      "url": "https://github.com/helm/helm/releases/tag/v4.0.0-alpha.1"
+      "version": "3.19.0",
+      "gitref": "refs/tags/v3.19.0",
+      "revision": "34b5244f3037b71c8859e86d9ba95f2ebaf7b266",
+      "url": "https://github.com/helm/helm/releases/tag/v3.19.0"
     },
     "K9S": {
       "version": "0.50.12",
