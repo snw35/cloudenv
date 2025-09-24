@@ -16,7 +16,7 @@ prefix = "v"
 source = "github"
 github = "helm/helm"
 use_max_tag = true
-exclude_regex = ".*rc.*"
+exclude_regex = ".*rc.*|.*alpha.*|.*beta.*"
 prefix = "v"
 
 [TERRAFORM]
