@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.31.0",
-      "gitref": "refs/tags/2.31.0",
-      "revision": "83d11fedd2429f5eb052c50151d1bfcc998ff32d",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.0"
+      "version": "2.31.3",
+      "gitref": "refs/tags/2.31.3",
+      "revision": "25b7b689bab2f012e00af965e2db7ff63005e349",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.3"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.7",
@@ -44,10 +44,10 @@
       "url": "https://github.com/helm/helm/releases/tag/v3.19.0"
     },
     "K9S": {
-      "version": "0.50.12",
-      "gitref": "refs/tags/v0.50.12",
-      "revision": "02344ac1f1c679e39f1d98b94e7dc6a3bf876a0a",
-      "url": "https://github.com/derailed/k9s/releases/tag/v0.50.12"
+      "version": "0.50.13",
+      "gitref": "refs/tags/v0.50.13",
+      "revision": "29b99167d236324a520056ddfcd22b5371e78272",
+      "url": "https://github.com/derailed/k9s/releases/tag/v0.50.13"
     },
     "KOMPOSE": {
       "version": "1.37.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.87.5",
-      "gitref": "refs/tags/v0.87.5",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.87.5"
+      "version": "0.88.0",
+      "gitref": "refs/tags/v0.88.0",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.88.0"
     }
   }
 }
