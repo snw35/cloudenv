@@ -2,23 +2,23 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.31.3",
-      "gitref": "refs/tags/2.31.3",
-      "revision": "25b7b689bab2f012e00af965e2db7ff63005e349",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.3"
+      "version": "2.31.8",
+      "gitref": "refs/tags/2.31.8",
+      "revision": "bb204bad6a99e7fd1226d1ce11a84bf021d6b082",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.8"
     },
     "AWS_IAM_AUTH": {
-      "version": "0.7.7",
-      "gitref": "refs/tags/v0.7.7",
-      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.7"
+      "version": "0.7.8",
+      "gitref": "refs/tags/v0.7.8",
+      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.8"
     },
     "BASE": {
-      "version": "bookworm-20250908-slim"
+      "version": "bookworm-20250929-slim"
     },
     "CLOUD_NUKE": {
-      "version": "0.42.0",
-      "gitref": "refs/tags/v0.42.0",
-      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.42.0"
+      "version": "0.43.0",
+      "gitref": "refs/tags/v0.43.0",
+      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.43.0"
     },
     "CONFD": {
       "version": "0.16.0",
@@ -27,15 +27,15 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.214.0",
-      "gitref": "refs/tags/v0.214.0",
-      "revision": "75a66cf9a2d53b1a608ad6b8f1f76d6a93c33a19",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.214.0"
+      "version": "0.215.0",
+      "gitref": "refs/tags/v0.215.0",
+      "revision": "83e9e71aa507ac8973934f97a997508fe4236401",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.215.0"
     },
     "FLUX2": {
-      "version": "2.6.4",
-      "gitref": "refs/tags/v2.6.4",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.6.4"
+      "version": "2.7.0",
+      "gitref": "refs/tags/v2.7.0",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.0"
     },
     "HELM": {
       "version": "3.19.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.88.0",
-      "gitref": "refs/tags/v0.88.0",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.88.0"
+      "version": "0.88.1",
+      "gitref": "refs/tags/v0.88.1",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.88.1"
     }
   }
 }

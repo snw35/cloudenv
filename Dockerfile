@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20250908-slim
+FROM debian:bookworm-20250929-slim
 
 WORKDIR /usr/bin/
 
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.88.0
+ENV TERRAGRUNT_VERSION 0.88.1
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 8b3b8d8563ebaa57c9ee54ad0f44b6d21a4fc299aec3c0fb4c5058a7680e3bfb
+ENV TERRAGRUNT_SHA256 acca7801f824648a61b69efe0c740e70201696b41c95ad30a8f4bdb4795db1be
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.7
+ENV AWS_IAM_AUTH_VERSION 0.7.8
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 0eb99e8f1ce1db908a56002efff6fe1f20a16b9e775b2f7ada2c3b9c77292bb6
+ENV AWS_IAM_AUTH_SHA256 19145c00f8492253e63d2eb9019fa907b528deffa6b7f2e205e860e213b8e8d6
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -190,10 +190,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.6.4
+ENV FLUX2_VERSION 2.7.0
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 9d3e21ad53baa0d5a062e1bd6f1a22d18b95906c682845bca9ffa272cff8a590
+ENV FLUX2_SHA256 81ee173d47fd6df1015a1c82d083f6242c95e67badc0a33c00cb9d8a64233d14
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.214.0
+ENV EKSCTL_VERSION 0.215.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 5c127d8dc0ce8c01c5a6d09c56d01d7c67c8180d66cde935898a613e54dcb0cc
+ENV EKSCTL_SHA256 8d17b7709c0109cb7477d681fb112e9a19dc91e4b4aacb881c2c3fad734c6683
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.42.0
+ENV CLOUD_NUKE_VERSION 0.43.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 73affc0220540a6251bc2fc43083fdc1229a16b6e6b03d3abf149511b9c3dbdf
+ENV CLOUD_NUKE_SHA256 4c27c404102a6c453f603c6ae8d292ad00159fab556b75338a93bb0aabc900d7
 ENV DISABLE_TELEMETRY TRUE
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.31.3
+ENV AWS_CLI_VERSION 2.31.8
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 5004f50f49b0acb7d788649898bdc5057234c855dc0c5519bdb2bf425e0aaeb3
+ENV AWS_CLI_SHA256 e0a2f495d50f058706954f36b26674fc2d2e37965ee03d47b934981f0d7732a7
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
