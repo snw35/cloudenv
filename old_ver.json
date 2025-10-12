@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.31.8",
-      "gitref": "refs/tags/2.31.8",
-      "revision": "bb204bad6a99e7fd1226d1ce11a84bf021d6b082",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.8"
+      "version": "2.31.13",
+      "gitref": "refs/tags/2.31.13",
+      "revision": "e868b4cac344a690dadcb541fa02761ce5bbfaa2",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.13"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.8",
@@ -33,9 +33,9 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.215.0"
     },
     "FLUX2": {
-      "version": "2.7.0",
-      "gitref": "refs/tags/v2.7.0",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.0"
+      "version": "2.7.2",
+      "gitref": "refs/tags/v2.7.2",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.2"
     },
     "HELM": {
       "version": "3.19.0",
@@ -44,10 +44,10 @@
       "url": "https://github.com/helm/helm/releases/tag/v3.19.0"
     },
     "K9S": {
-      "version": "0.50.13",
-      "gitref": "refs/tags/v0.50.13",
-      "revision": "29b99167d236324a520056ddfcd22b5371e78272",
-      "url": "https://github.com/derailed/k9s/releases/tag/v0.50.13"
+      "version": "0.50.15",
+      "gitref": "refs/tags/v0.50.15",
+      "revision": "760a280db2c0bd0fe60be978a5c5e8bb94f319b2",
+      "url": "https://github.com/derailed/k9s/releases/tag/v0.50.15"
     },
     "KOMPOSE": {
       "version": "1.37.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.88.1",
-      "gitref": "refs/tags/v0.88.1",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.88.1"
+      "version": "0.90.0",
+      "gitref": "refs/tags/v0.90.0",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.90.0"
     }
   }
 }
