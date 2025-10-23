@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:bookworm-20250929-slim
+FROM debian:bookworm-20251020-slim
 
 WORKDIR /usr/bin/
 
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.13.3
+ENV TERRAFORM_VERSION 1.13.4
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 71fc43d92ea09907be5d416d2405a6a9c2d1ceaed633f5e175c0af26e8c4b365
+ENV TERRAFORM_SHA256 98aa516201e948306698efd9954ab4cc0d1227c2578ba56245898b5f679e590b
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 0.90.0
+ENV TERRAGRUNT_VERSION 0.91.2
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 d14f3b28b6c7de5ba609ba219fda354797ecc1d7d0201944aa8136d0eb2744c4
+ENV TERRAGRUNT_SHA256 e40fd4a7c19bc493d9bd666bd8de5cac74704419919e27ec90d6ebb8e2ed2eac
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -174,10 +174,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.50.15
+ENV K9S_VERSION 0.50.16
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_amd64.tar.gz
-ENV K9S_SHA256 c66513543ad8ae7a82856a6dd767d28d11b5abcdcd78d67added0934b6433d34
+ENV K9S_SHA256 bda09dc030a08987fe2b3bed678b15b52f23d6705e872d561932d4ca07db7818
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.31.13
+ENV AWS_CLI_VERSION 2.31.20
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 c56dcd82ecf39cc0bfd4b680272e4740e558fe00b574de75d905fcd4dc5f1e26
+ENV AWS_CLI_SHA256 7ce2a5d761caed8f4cd03d7101e8528871ab672bee950a4f883022db2c31e194
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
