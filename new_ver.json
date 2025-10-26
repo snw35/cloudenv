@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.31.20",
-      "gitref": "refs/tags/2.31.20",
-      "revision": "3f70c9272b09ff4018993f5039651f19e6940de7",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.20"
+      "version": "2.31.22",
+      "gitref": "refs/tags/2.31.22",
+      "revision": "ae5ac2156636b750fedc4f32b52507a2828807d6",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.22"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.8",
@@ -16,9 +16,9 @@
       "version": "bookworm-20251020-slim"
     },
     "CLOUD_NUKE": {
-      "version": "0.43.0",
-      "gitref": "refs/tags/v0.43.0",
-      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.43.0"
+      "version": "0.44.0",
+      "gitref": "refs/tags/v0.44.0",
+      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.44.0"
     },
     "CONFD": {
       "version": "0.16.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.91.2",
-      "gitref": "refs/tags/v0.91.2",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.91.2"
+      "version": "0.91.5",
+      "gitref": "refs/tags/v0.91.5",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.91.5"
     }
   }
 }
