@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.31.27",
-      "gitref": "refs/tags/2.31.27",
-      "revision": "9b612927dab7c5795200a911bad72c4c3c03d533",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.27"
+      "version": "2.31.32",
+      "gitref": "refs/tags/2.31.32",
+      "revision": "75b7c900179dc4854dfbd62ee7929216c26ceb33",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.32"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.8",
@@ -13,12 +13,12 @@
       "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.8"
     },
     "BASE": {
-      "version": "bookworm-20251020-slim"
+      "version": "bookworm-20251103-slim"
     },
     "CLOUD_NUKE": {
-      "version": "0.44.0",
-      "gitref": "refs/tags/v0.44.0",
-      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.44.0"
+      "version": "0.45.0",
+      "gitref": "refs/tags/v0.45.0",
+      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.45.0"
     },
     "CONFD": {
       "version": "0.16.0",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.14.2"
     },
     "TERRAFORM": {
-      "version": "1.13.4",
-      "gitref": "refs/tags/v1.13.4",
-      "revision": "e15f8b30b6e1ecf0d09bbe143c1525d9d2d51b54",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.13.4"
+      "version": "1.13.5",
+      "gitref": "refs/tags/v1.13.5",
+      "revision": "328813676aec7a4e2a491484f91b5e0b67847b6c",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.13.5"
     },
     "TERRAFORM_DOCS": {
       "version": "0.20.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.93.0",
-      "gitref": "refs/tags/v0.93.0",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.0"
+      "version": "0.93.3",
+      "gitref": "refs/tags/v0.93.3",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.3"
     }
   }
 }
