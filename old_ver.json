@@ -2,15 +2,15 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.31.32",
-      "gitref": "refs/tags/2.31.32",
-      "revision": "75b7c900179dc4854dfbd62ee7929216c26ceb33",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.32"
+      "version": "2.31.37",
+      "gitref": "refs/tags/2.31.37",
+      "revision": "fb9bfc1ac5311c5638e9c57115be73eae6649f36",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.31.37"
     },
     "AWS_IAM_AUTH": {
-      "version": "0.7.8",
-      "gitref": "refs/tags/v0.7.8",
-      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.8"
+      "version": "0.7.9",
+      "gitref": "refs/tags/v0.7.9",
+      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.9"
     },
     "BASE": {
       "version": "bookworm-20251103-slim"
@@ -27,10 +27,10 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.216.0",
-      "gitref": "refs/tags/v0.216.0",
-      "revision": "fecac11b7cee2e7bb0db18162dc059ffbad56c77",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.216.0"
+      "version": "0.217.0",
+      "gitref": "refs/tags/v0.217.0",
+      "revision": "22d70b0ee9f7633a3282892c4df270138ed67b51",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.217.0"
     },
     "FLUX2": {
       "version": "2.7.3",
@@ -38,10 +38,10 @@
       "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.3"
     },
     "HELM": {
-      "version": "3.19.0",
-      "gitref": "refs/tags/v3.19.0",
-      "revision": "34b5244f3037b71c8859e86d9ba95f2ebaf7b266",
-      "url": "https://github.com/helm/helm/releases/tag/v3.19.0"
+      "version": "4.0.0",
+      "gitref": "refs/tags/v4.0.0",
+      "revision": "764dbb78d39435b31ff855f2af7aa40833a14bfb",
+      "url": "https://github.com/helm/helm/releases/tag/v4.0.0"
     },
     "K9S": {
       "version": "0.50.16",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.93.3",
-      "gitref": "refs/tags/v0.93.3",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.3"
+      "version": "0.93.8",
+      "gitref": "refs/tags/v0.93.8",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.8"
     }
   }
 }
