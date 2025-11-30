@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.32.3",
-      "gitref": "refs/tags/2.32.3",
-      "revision": "1b5cba361385b450a52efc9c06a1e61c62aa3435",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.32.3"
+      "version": "2.32.6",
+      "gitref": "refs/tags/2.32.6",
+      "revision": "b20daffa05ddfa6f94e824d4fc75902f04e93f83",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.32.6"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.9",
@@ -27,21 +27,21 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.217.0",
-      "gitref": "refs/tags/v0.217.0",
-      "revision": "22d70b0ee9f7633a3282892c4df270138ed67b51",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.217.0"
+      "version": "0.219.0",
+      "gitref": "refs/tags/v0.219.0",
+      "revision": "e8fcf704e8c96638cc7f08ef1d7e47c56e36abdd",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.219.0"
     },
     "FLUX2": {
-      "version": "2.7.3",
-      "gitref": "refs/tags/v2.7.3",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.3"
+      "version": "2.7.5",
+      "gitref": "refs/tags/v2.7.5",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.5"
     },
     "HELM": {
-      "version": "4.0.0",
-      "gitref": "refs/tags/v4.0.0",
-      "revision": "764dbb78d39435b31ff855f2af7aa40833a14bfb",
-      "url": "https://github.com/helm/helm/releases/tag/v4.0.0"
+      "version": "4.0.1",
+      "gitref": "refs/tags/v4.0.1",
+      "revision": "ff06e268b69748b34cc89ae4debb1c1744c2f7f5",
+      "url": "https://github.com/helm/helm/releases/tag/v4.0.1"
     },
     "K9S": {
       "version": "0.50.16",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.20.0"
     },
     "TERRAGRUNT": {
-      "version": "0.93.10",
-      "gitref": "refs/tags/v0.93.10",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.10"
+      "version": "0.93.11",
+      "gitref": "refs/tags/v0.93.11",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.11"
     }
   }
 }
