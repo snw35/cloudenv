@@ -20,7 +20,7 @@ jobs:
   update-images:
     strategy:
       matrix:
-        workdir: [neo]
+        workdir: [.]
     uses: snw35/cicd/.github/workflows/github.yaml@main
     with:
       WORKDIR: ${{ matrix.workdir }}
