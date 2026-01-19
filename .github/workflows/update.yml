@@ -17,8 +17,18 @@ on:
         required: false
 
 jobs:
-  call-upstream-workflow:
+  update-images:
+    strategy:
+      matrix:
+        workdir: [neo]
     uses: snw35/cicd/.github/workflows/github.yaml@main
     with:
+      WORKDIR: ${{ matrix.workdir }}
       TAG_COMMAND: 'date -I'
+    secrets: inherit
+
+  create-release:
+    needs: update-images
+    if: github.ref_name == github.event.repository.default_branch && needs.update-images.outputs.changed == 'true'
+    uses: snw35/cicd/.github/workflows/create-release.yaml@main
     secrets: inherit
