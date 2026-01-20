@@ -5,7 +5,7 @@ newver = "new_ver.json"
 [BASE]
 source = "container"
 container = "library/debian"
-include_regex = "bookworm-\\d*-slim"
+include_regex = "trixie-\\d*-slim"
 
 [KUBECTL]
 source = "cmd"
