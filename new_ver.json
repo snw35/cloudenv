@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.33.6",
-      "gitref": "refs/tags/2.33.6",
-      "revision": "b93e26787fc03a8bbb72aad135584d5639e951c5",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.33.6"
+      "version": "2.33.12",
+      "gitref": "refs/tags/2.33.12",
+      "revision": "231cdec503f2444ba8e462b39f9af51c8c5b48d2",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.33.12"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.10",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.14.3"
     },
     "TERRAFORM": {
-      "version": "1.14.3",
-      "gitref": "refs/tags/v1.14.3",
-      "revision": "9fb1177c3566c247c72e6c36ca219463c4b6be2b",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.3"
+      "version": "1.14.4",
+      "gitref": "refs/tags/v1.14.4",
+      "revision": "3054e67ab7cdb9f944fd1d90dd6f6d57238b034c",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.4"
     },
     "TERRAFORM_DOCS": {
       "version": "0.21.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.21.0"
     },
     "TERRAGRUNT": {
-      "version": "0.98.0",
-      "gitref": "refs/tags/v0.98.0",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.98.0"
+      "version": "0.99.1",
+      "gitref": "refs/tags/v0.99.1",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.1"
     }
   }
 }
