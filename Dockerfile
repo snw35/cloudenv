@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20260112-slim
+FROM debian:trixie-20260202-slim
 
 WORKDIR /usr/bin/
 
@@ -112,10 +112,10 @@ RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.14.3
+ENV PACKER_VERSION 1.15.0
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 95041cc0a30f05d5583be26a7c0b715f488e461418ce0c5d88ba204cb092bef1
+ENV PACKER_SHA256 2fd1149c5c6c7604ced64d7b56638af05f6b7ed3f6835182bc913ddaba1f16b8
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.221.0
+ENV EKSCTL_VERSION 0.222.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 9c04d16e5a0be350f9c383088ed99eac2cf1af830d25360c34588854e9e06cda
+ENV EKSCTL_SHA256 e7d9e9586c0bfef6fd386be8fcd314234be687d39ff6dcf801ebe938cb13ff7e
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.33.12
+ENV AWS_CLI_VERSION 2.33.17
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 2ab3a8ce348b8efdb62b6423b664422dc2c9ac2165ca5875dde8846dad9e9c61
+ENV AWS_CLI_SHA256 b20124fd54ba9c46998cfc9cb461a46016cc182af0fffbfa359f1063552da554
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \

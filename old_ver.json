@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.33.12",
-      "gitref": "refs/tags/2.33.12",
-      "revision": "231cdec503f2444ba8e462b39f9af51c8c5b48d2",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.33.12"
+      "version": "2.33.17",
+      "gitref": "refs/tags/2.33.17",
+      "revision": "51dd718a482ff7b165c4ccb2ab2d53a667957b60",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.33.17"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.10",
@@ -13,7 +13,7 @@
       "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.10"
     },
     "BASE": {
-      "version": "trixie-20260112-slim"
+      "version": "trixie-20260202-slim"
     },
     "CLOUD_NUKE": {
       "version": "0.46.0",
@@ -27,10 +27,10 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.221.0",
-      "gitref": "refs/tags/v0.221.0",
-      "revision": "33106f36b0e98d9b5b056a284d5882e7a24a1ef9",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.221.0"
+      "version": "0.222.0",
+      "gitref": "refs/tags/v0.222.0",
+      "revision": "1f4104942e23059f2db46fd0a6c08f06440a172b",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.222.0"
     },
     "FLUX2": {
       "version": "2.7.5",
@@ -69,9 +69,9 @@
       "url": "https://github.com/pulumi/kubespy/releases/tag/v0.6.3"
     },
     "PACKER": {
-      "version": "1.14.3",
-      "gitref": "refs/tags/v1.14.3",
-      "url": "https://github.com/hashicorp/packer/releases/tag/v1.14.3"
+      "version": "1.15.0",
+      "gitref": "refs/tags/v1.15.0",
+      "url": "https://github.com/hashicorp/packer/releases/tag/v1.15.0"
     },
     "TERRAFORM": {
       "version": "1.14.4",
