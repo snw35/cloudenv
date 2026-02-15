@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.33.17",
-      "gitref": "refs/tags/2.33.17",
-      "revision": "51dd718a482ff7b165c4ccb2ab2d53a667957b60",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.33.17"
+      "version": "2.33.22",
+      "gitref": "refs/tags/2.33.22",
+      "revision": "17e3df667e1ff419ebe1eadf4e2e1baf0a734783",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.33.22"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.10",
@@ -27,10 +27,10 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.222.0",
-      "gitref": "refs/tags/v0.222.0",
-      "revision": "1f4104942e23059f2db46fd0a6c08f06440a172b",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.222.0"
+      "version": "0.223.0",
+      "gitref": "refs/tags/v0.223.0",
+      "revision": "a179be6a2721e65978cc19f096ba7d98f2b1237d",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.223.0"
     },
     "FLUX2": {
       "version": "2.7.5",
@@ -38,10 +38,10 @@
       "url": "https://github.com/fluxcd/flux2/releases/tag/v2.7.5"
     },
     "HELM": {
-      "version": "4.1.0",
-      "gitref": "refs/tags/v4.1.0",
-      "revision": "b61551abe853225b881d13ba16f1973e1e34e7f9",
-      "url": "https://github.com/helm/helm/releases/tag/v4.1.0"
+      "version": "4.1.1",
+      "gitref": "refs/tags/v4.1.1",
+      "revision": "3cd6d8523c834f1808ba62b90b5ac2be8a75b94e",
+      "url": "https://github.com/helm/helm/releases/tag/v4.1.1"
     },
     "K9S": {
       "version": "0.50.18",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.15.0"
     },
     "TERRAFORM": {
-      "version": "1.14.4",
-      "gitref": "refs/tags/v1.14.4",
-      "revision": "3054e67ab7cdb9f944fd1d90dd6f6d57238b034c",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.4"
+      "version": "1.14.5",
+      "gitref": "refs/tags/v1.14.5",
+      "revision": "cd1e42f77b0f25e132a661bb2d72cf7e0a90a2c5",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.14.5"
     },
     "TERRAFORM_DOCS": {
       "version": "0.21.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.21.0"
     },
     "TERRAGRUNT": {
-      "version": "0.99.1",
-      "gitref": "refs/tags/v0.99.1",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.1"
+      "version": "0.99.2",
+      "gitref": "refs/tags/v0.99.2",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.2"
     }
   }
 }
