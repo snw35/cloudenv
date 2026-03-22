@@ -2,23 +2,23 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.34.9",
-      "gitref": "refs/tags/2.34.9",
-      "revision": "fbcaaa2a5609e6fd03b845d9489f7292fcac7b78",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.9"
+      "version": "2.34.14",
+      "gitref": "refs/tags/2.34.14",
+      "revision": "06883780e69e31fecaac3541e50eedfeb0bc00f5",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.14"
     },
     "AWS_IAM_AUTH": {
-      "version": "0.7.11",
-      "gitref": "refs/tags/v0.7.11",
-      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.11"
+      "version": "0.7.12",
+      "gitref": "refs/tags/v0.7.12",
+      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.12"
     },
     "BASE": {
-      "version": "trixie-20260223-slim"
+      "version": "trixie-20260316-slim"
     },
     "CLOUD_NUKE": {
-      "version": "0.46.0",
-      "gitref": "refs/tags/v0.46.0",
-      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.46.0"
+      "version": "0.47.0",
+      "gitref": "refs/tags/v0.47.0",
+      "url": "https://github.com/gruntwork-io/cloud-nuke/releases/tag/v0.47.0"
     },
     "CONFD": {
       "version": "0.16.0",
@@ -33,9 +33,9 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.224.0"
     },
     "FLUX2": {
-      "version": "2.8.2",
-      "gitref": "refs/tags/v2.8.2",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.8.2"
+      "version": "2.8.3",
+      "gitref": "refs/tags/v2.8.3",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.8.3"
     },
     "HELM": {
       "version": "4.1.3",
@@ -58,9 +58,9 @@
       "version": "1.31.0"
     },
     "KUBECTX": {
-      "version": "0.9.5",
-      "gitref": "refs/tags/v0.9.5",
-      "url": "https://github.com/ahmetb/kubectx/releases/tag/v0.9.5"
+      "version": "0.10.0",
+      "gitref": "refs/tags/v0.10.0",
+      "url": "https://github.com/ahmetb/kubectx/releases/tag/v0.10.0"
     },
     "KUBESPY": {
       "version": "0.6.3",

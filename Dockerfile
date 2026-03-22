@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20260223-slim
+FROM debian:trixie-20260316-slim
 
 WORKDIR /usr/bin/
 
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.11
+ENV AWS_IAM_AUTH_VERSION 0.7.12
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 8523d92af5680dbc7af81a75be63ffdb36040e061e8e318d322e01dceff85a1f
+ENV AWS_IAM_AUTH_SHA256 73cca6175225ac72f4e0b8b23ca214043a98097ce6047d159b1bb3abde1bfce5
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -140,10 +140,10 @@ RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
 
 # Install Kubectx
 # From https://github.com/ahmetb/kubectx/releases
-ENV KUBECTX_VERSION 0.9.5
+ENV KUBECTX_VERSION 0.10.0
 ENV KUBECTX_URL https://github.com/ahmetb/kubectx/archive
 ENV KUBECTX_FILENAME v${KUBECTX_VERSION}.tar.gz
-ENV KUBECTX_SHA256 c94392fba8dfc5c8075161246749ef71c18f45da82759084664eb96027970004
+ENV KUBECTX_SHA256 efcedc14a1cb7e4d0c9b0e8b50fbecf5a24b337f8df7b018fb70a50420fcd27a
 
 RUN wget $KUBECTX_URL/$KUBECTX_FILENAME \
   && echo "$KUBECTX_SHA256  ./$KUBECTX_FILENAME" | sha256sum -c - \
@@ -190,10 +190,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.8.2
+ENV FLUX2_VERSION 2.8.3
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 711a0ac3d1ea15e957c2775af11ddc48a505b6adaa8fa5db5a65355ee6f49cde
+ENV FLUX2_SHA256 e8b3f87ae73f37656af087cec1bd82ce9034860c2a5d427042d2ee9135fcc8bc
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.34.9
+ENV AWS_CLI_VERSION 2.34.14
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 9100eee6468edd00eac08e7acdd5ea6c761584264bbe2234dc4fe48e123b05b1
+ENV AWS_CLI_SHA256 05f820e8df6bdc2b1c296afd1b63d3fecd39ac0725fd823004f110191c8180dd
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
