@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.34.19",
-      "gitref": "refs/tags/2.34.19",
-      "revision": "8d4299d7ad11386dd239dde9282e097164b8f47c",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.19"
+      "version": "2.34.24",
+      "gitref": "refs/tags/2.34.24",
+      "revision": "8abe0859a92a2ebedb2e370438810cf6706122c1",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.24"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.12",
@@ -27,10 +27,10 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.224.0",
-      "gitref": "refs/tags/v0.224.0",
-      "revision": "68dcbecee2ea7b9952a3195b72e885ecfdd58496",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.224.0"
+      "version": "0.225.0",
+      "gitref": "refs/tags/v0.225.0",
+      "revision": "46346ca91c5276fa7e6fba1ccec27602cf353010",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.225.0"
     },
     "FLUX2": {
       "version": "2.8.3",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.21.0"
     },
     "TERRAGRUNT": {
-      "version": "0.99.5",
-      "gitref": "refs/tags/v0.99.5",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.5"
+      "version": "1.0.0",
+      "gitref": "refs/tags/v1.0.0",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0"
     }
   }
 }
