@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20260421-slim
+FROM debian:trixie-20260505-slim
 
 WORKDIR /usr/bin/
 
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.15.1
+ENV TERRAFORM_VERSION 1.15.2
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 0921fee8c8435253ca49390a02109e906042e611a4e17f69e922261f5176c74f
+ENV TERRAFORM_SHA256 c56ff2bc7e6ce9b3879a50392b03c2ea074b47688bf503ff966c87fb01b2aab8
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 1.0.3
+ENV TERRAGRUNT_VERSION 1.0.4
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 e27c202df4383712e55b39e36dedd9439688ac3ac745c1f71521437f831274b1
+ENV TERRAGRUNT_SHA256 387509aa15d3f38a93d0888ace2bd67c3e5eea841e1f4d585ea2174d566f35e9
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.14
+ENV AWS_IAM_AUTH_VERSION 0.7.15
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 b38b52cbb0037b76dde09bd83032de87a925fd6e257aa7b235870d2f78207dac
+ENV AWS_IAM_AUTH_SHA256 3c7872017e02132325374ebfaf01b9abcc2f93b42b7dfc1caef0f8d48433bb34
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -271,10 +271,10 @@ RUN wget $CONFD_URL/$CONFD_FILENAME \
 
 
 # Install terraform-docs
-ENV TERRAFORM_DOCS_VERSION 0.22.0
+ENV TERRAFORM_DOCS_VERSION 0.23.0
 ENV TERRAFORM_DOCS_URL https://github.com/terraform-docs/terraform-docs/releases/download/v$TERRAFORM_DOCS_VERSION
 ENV TERRAFORM_DOCS_FILENAME terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
-ENV TERRAFORM_DOCS_SHA256 8ec66616777c66f3e622af4f2853e8ae399f38908ad4b262c9c526dd42501369
+ENV TERRAFORM_DOCS_SHA256 80b8cd1d08b44e1182a39177adafc6901650a22e0a7f52cfeffcdbd44e8b0938
 
 RUN wget $TERRAFORM_DOCS_URL/$TERRAFORM_DOCS_FILENAME \
   && echo "$TERRAFORM_DOCS_SHA256  ./$TERRAFORM_DOCS_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.34.41
+ENV AWS_CLI_VERSION 2.34.45
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 634b14ec79f0437d5f82562365532bb79f106478fa472fc199aa24fde10023d4
+ENV AWS_CLI_SHA256 2b382fd5c1e8d73f6aaca18e5850758fb9f70a20af9c17deb3078df0dd4af095
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
