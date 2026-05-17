@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.34.45",
-      "gitref": "refs/tags/2.34.45",
-      "revision": "b1536efb1e1846205360baef1bb6eaaa49f8df95",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.45"
+      "version": "2.34.48",
+      "gitref": "refs/tags/2.34.48",
+      "revision": "7fd179867947f9b9ce34dcd4c794c02b7a462f25",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.48"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.15",
@@ -33,15 +33,15 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.226.0"
     },
     "FLUX2": {
-      "version": "2.8.6",
-      "gitref": "refs/tags/v2.8.6",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.8.6"
+      "version": "2.8.7",
+      "gitref": "refs/tags/v2.8.7",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.8.7"
     },
     "HELM": {
-      "version": "4.1.4",
-      "gitref": "refs/tags/v4.1.4",
-      "revision": "3ace9aea1f4c2a929e1a06af4d7cf66e5690dc19",
-      "url": "https://github.com/helm/helm/releases/tag/v4.1.4"
+      "version": "4.2.0",
+      "gitref": "refs/tags/v4.2.0",
+      "revision": "943523e04bde90bfbd5b6f2aa1fe7089749e6bbd",
+      "url": "https://github.com/helm/helm/releases/tag/v4.2.0"
     },
     "K9S": {
       "version": "0.50.18",
@@ -74,15 +74,15 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.15.3"
     },
     "TERRAFORM": {
-      "version": "1.15.2",
-      "gitref": "refs/tags/v1.15.2",
-      "revision": "750e6168cc69f1143cfe7acd364ba2b5b9d97f34",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.2"
+      "version": "1.15.3",
+      "gitref": "refs/tags/v1.15.3",
+      "revision": "94363314099a4b374a521f19fa43aa4f09cc5da9",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.3"
     },
     "TERRAFORM_DOCS": {
-      "version": "0.23.0",
-      "gitref": "refs/tags/v0.23.0",
-      "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.23.0"
+      "version": "0.24.0",
+      "gitref": "refs/tags/v0.24.0",
+      "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.24.0"
     },
     "TERRAGRUNT": {
       "version": "1.0.4",
