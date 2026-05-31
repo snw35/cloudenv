@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.34.53",
-      "gitref": "refs/tags/2.34.53",
-      "revision": "69d41cc6b8484c3bad44f02671e75f71bd1926c2",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.53"
+      "version": "2.34.57",
+      "gitref": "refs/tags/2.34.57",
+      "revision": "9d53b2c512bf2e2225a00fa112f5545b86e31154",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.34.57"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.16",
@@ -27,10 +27,10 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.226.0",
-      "gitref": "refs/tags/v0.226.0",
-      "revision": "daf9a0614861ce91e67278171818432f873daf63",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.226.0"
+      "version": "0.227.0",
+      "gitref": "refs/tags/v0.227.0",
+      "revision": "b219d445a0b94fb1d47a6b9ecb92d77b978b21fa",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.227.0"
     },
     "FLUX2": {
       "version": "2.8.8",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.15.3"
     },
     "TERRAFORM": {
-      "version": "1.15.4",
-      "gitref": "refs/tags/v1.15.4",
-      "revision": "6781b1a9991548a60c062f1d8aa68d86171a0123",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.4"
+      "version": "1.15.5",
+      "gitref": "refs/tags/v1.15.5",
+      "revision": "aa593a05e2811f9da7eb74460b203a85285899eb",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.5"
     },
     "TERRAFORM_DOCS": {
       "version": "0.24.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.24.0"
     },
     "TERRAGRUNT": {
-      "version": "1.0.5",
-      "gitref": "refs/tags/v1.0.5",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.5"
+      "version": "1.0.6",
+      "gitref": "refs/tags/v1.0.6",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.6"
     }
   }
 }
