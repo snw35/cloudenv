@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 1.0.6
+ENV TERRAGRUNT_VERSION 1.0.7
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 896dfcd22a1110ea7ccb4b767b01dc9452853d1c246d4c8ec4395da2febb2ba1
+ENV TERRAGRUNT_SHA256 d3d9c04811a252763f38b89d6237db3b244f36b336684bad82772f5fe3f49442
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -112,10 +112,10 @@ RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.15.3
+ENV PACKER_VERSION 1.15.4
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 9ed712c9a8f223c7985d7d21c6b65744bf1c66b8aca333232b96f5ae3fd9c90d
+ENV PACKER_SHA256 15f97a6a99645c7d5308c609973b5280837b38e112beac413ccbce80da927cf1
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.16
+ENV AWS_IAM_AUTH_VERSION 0.7.17
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 c9586953372361f4760cc5cb33bc2a0c7992efd15d6028c2bde45d46a724b369
+ENV AWS_IAM_AUTH_SHA256 2bb2b5073eb5302dd6faf8fa1009982e062f56cd9c8e3ab17c4c6587b2ad721f
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -174,10 +174,10 @@ RUN wget $KOMPOSE_URL/$KOMPOSE_FILENAME \
 
 # Install k9s
 # From https://github.com/derailed/k9s/releases
-ENV K9S_VERSION 0.50.18
+ENV K9S_VERSION 0.51.0
 ENV K9S_URL https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}
 ENV K9S_FILENAME k9s_Linux_amd64.tar.gz
-ENV K9S_SHA256 0b697ed4aa80997f7de4deeed6f1fba73df191b28bf691b1f28d2f45fa2a9e9b
+ENV K9S_SHA256 c3752ad51a5a4015a113819c4eeb6e55a4d0e4b8e652494797532f6fc8161dd7
 
 RUN wget $K9S_URL/$K9S_FILENAME \
   && echo "$K9S_SHA256  ./$K9S_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.34.57
+ENV AWS_CLI_VERSION 2.34.63
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 7a83eadaf8bf974e9e5b31d396c036349014e7237caaff32c8f79007448307fb
+ENV AWS_CLI_SHA256 bc15b053ef5710be63c9d8c54089ec6847737457a936a10b120a0a4d08c7c771
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
