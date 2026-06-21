@@ -68,10 +68,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 4.2.1
+ENV HELM_VERSION 4.2.2
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 479dca836e5b45e8bd222400c5591b0e3a647378f03ff96597180db97c17fdae
+ENV HELM_SHA256 9adafecab4d406853bba163a70e9f104f47dbbf65ce24b7653bae7e36150bcb6
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.17
+ENV AWS_IAM_AUTH_VERSION 0.7.18
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 2bb2b5073eb5302dd6faf8fa1009982e062f56cd9c8e3ab17c4c6587b2ad721f
+ENV AWS_IAM_AUTH_SHA256 fbebd5350dd1a5f377097fd1b2e1ca8c5a5e7ecb35cc44ddc694b775d498d7a5
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.35.4
+ENV AWS_CLI_VERSION 2.35.9
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 eb037f2df27b653b24b7942fdd7c62bb350354a906c16f70e82d92a2ce49084b
+ENV AWS_CLI_SHA256 b331d4822a22612915f22f89cfd0e07895c7b6837999fca8fb9f6c2a370a54c0
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
