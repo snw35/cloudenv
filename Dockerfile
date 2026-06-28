@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20260610-slim
+FROM debian:trixie-20260623-slim
 
 WORKDIR /usr/bin/
 
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.15.6
+ENV TERRAFORM_VERSION 1.15.7
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 a7150d3b0e1b5c466ad42e8c499954a3c54645f8b56b385fa025d34f7e88faa9
+ENV TERRAFORM_SHA256 73bbb8f5188ad75d4fb853fd100ae4d7e146ef7af7db18776109642fdb7759d2
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.227.0
+ENV EKSCTL_VERSION 0.228.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 479d1b69b8df8b21f31a23aff19c481475c87db58d1e729c4535b32822ca1abb
+ENV EKSCTL_SHA256 967ec8b9eccc070f22c8be83ec5b008a69d243cefda0a41ca9008a6bfd13eb23
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.35.9
+ENV AWS_CLI_VERSION 2.35.11
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 b331d4822a22612915f22f89cfd0e07895c7b6837999fca8fb9f6c2a370a54c0
+ENV AWS_CLI_SHA256 d4bbcb5532c8bf43f9149f1b1e0d09f77f388df088656e349570637c06b76d2d
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
