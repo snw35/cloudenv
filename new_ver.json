@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.35.21",
-      "gitref": "refs/tags/2.35.21",
-      "revision": "f8b4a8172ca61b28c2c3d7371ddef95a52b7847d",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.35.21"
+      "version": "2.36.2",
+      "gitref": "refs/tags/2.36.2",
+      "revision": "9c061e941cfb542583af0e38f98f7bb5edc2d2be",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.2"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.18",
@@ -13,7 +13,7 @@
       "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.18"
     },
     "BASE": {
-      "version": "trixie-20260623-slim"
+      "version": "trixie-20260713-slim"
     },
     "CLOUD_NUKE": {
       "version": "0.52.0",
@@ -33,9 +33,9 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.229.0"
     },
     "FLUX2": {
-      "version": "2.9.1",
-      "gitref": "refs/tags/v2.9.1",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.1"
+      "version": "2.9.2",
+      "gitref": "refs/tags/v2.9.2",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.2"
     },
     "HELM": {
       "version": "4.2.3",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.24.0"
     },
     "TERRAGRUNT": {
-      "version": "1.1.0",
-      "gitref": "refs/tags/v1.1.0",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.0"
+      "version": "1.1.1",
+      "gitref": "refs/tags/v1.1.1",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.1"
     }
   }
 }
