@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.2",
-      "gitref": "refs/tags/2.36.2",
-      "revision": "9c061e941cfb542583af0e38f98f7bb5edc2d2be",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.2"
+      "version": "2.36.8",
+      "gitref": "refs/tags/2.36.8",
+      "revision": "4a29502f2bb0d0ae23d3b222932baa77363c1ce2",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.8"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.18",
@@ -33,9 +33,9 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.229.0"
     },
     "FLUX2": {
-      "version": "2.9.2",
-      "gitref": "refs/tags/v2.9.2",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.2"
+      "version": "2.9.3",
+      "gitref": "refs/tags/v2.9.3",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.3"
     },
     "HELM": {
       "version": "4.2.3",
@@ -69,9 +69,9 @@
       "url": "https://github.com/pulumi/kubespy/releases/tag/v0.6.3"
     },
     "PACKER": {
-      "version": "1.15.4",
-      "gitref": "refs/tags/v1.15.4",
-      "url": "https://github.com/hashicorp/packer/releases/tag/v1.15.4"
+      "version": "1.16.0",
+      "gitref": "refs/tags/v1.16.0",
+      "url": "https://github.com/hashicorp/packer/releases/tag/v1.16.0"
     },
     "TERRAFORM": {
       "version": "1.15.8",
