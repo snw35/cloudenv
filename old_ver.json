@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.14",
-      "gitref": "refs/tags/2.36.14",
-      "revision": "b5dc4c0dd86e86d8b6a1524b2ec6930d4b4b5d1e",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.14"
+      "version": "2.36.19",
+      "gitref": "refs/tags/2.36.19",
+      "revision": "8f8e9a97bacb5f839b991b3f84894420dc590d80",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.19"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.18",
@@ -13,7 +13,7 @@
       "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.18"
     },
     "BASE": {
-      "version": "trixie-20260713-slim"
+      "version": "trixie-20260803-slim"
     },
     "CLOUD_NUKE": {
       "version": "0.52.0",
@@ -33,9 +33,9 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.229.0"
     },
     "FLUX2": {
-      "version": "2.9.3",
-      "gitref": "refs/tags/v2.9.3",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.3"
+      "version": "2.9.4",
+      "gitref": "refs/tags/v2.9.4",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.4"
     },
     "HELM": {
       "version": "4.2.3",
