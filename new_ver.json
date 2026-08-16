@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.19",
-      "gitref": "refs/tags/2.36.19",
-      "revision": "8f8e9a97bacb5f839b991b3f84894420dc590d80",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.19"
+      "version": "2.36.24",
+      "gitref": "refs/tags/2.36.24",
+      "revision": "1910aff184348bb61d561254dadb840775a3ae4d",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.24"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.18",
@@ -27,10 +27,10 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.229.0",
-      "gitref": "refs/tags/v0.229.0",
-      "revision": "39001a6971b4aca726dd5228d033134f552a7a35",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.229.0"
+      "version": "0.230.0",
+      "gitref": "refs/tags/v0.230.0",
+      "revision": "5e725db6f7432312a16e66b2a5608e3de5e1d37b",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.230.0"
     },
     "FLUX2": {
       "version": "2.9.4",
@@ -38,10 +38,10 @@
       "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.4"
     },
     "HELM": {
-      "version": "4.2.3",
-      "gitref": "refs/tags/v4.2.3",
-      "revision": "2204ce0f528781a059a1035c775a9cb1aad70067",
-      "url": "https://github.com/helm/helm/releases/tag/v4.2.3"
+      "version": "4.2.4",
+      "gitref": "refs/tags/v4.2.4",
+      "revision": "f0917316d866318df5162c8142035295d85e304b",
+      "url": "https://github.com/helm/helm/releases/tag/v4.2.4"
     },
     "K9S": {
       "version": "0.51.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.24.0"
     },
     "TERRAGRUNT": {
-      "version": "1.1.2",
-      "gitref": "refs/tags/v1.1.2",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.2"
+      "version": "1.1.3",
+      "gitref": "refs/tags/v1.1.3",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.3"
     }
   }
 }
