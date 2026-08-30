@@ -2,18 +2,18 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.29",
-      "gitref": "refs/tags/2.36.29",
-      "revision": "0f3b28c74c88e631685f69025d7947417f99b067",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.29"
+      "version": "2.36.34",
+      "gitref": "refs/tags/2.36.34",
+      "revision": "3d61c76c9d954fd51807a9d092c3411687e3a6d8",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.34"
     },
     "AWS_IAM_AUTH": {
-      "version": "0.7.19",
-      "gitref": "refs/tags/v0.7.19",
-      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.19"
+      "version": "0.7.20",
+      "gitref": "refs/tags/v0.7.20",
+      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.20"
     },
     "BASE": {
-      "version": "trixie-20260803-slim"
+      "version": "trixie-20260824-slim"
     },
     "CLOUD_NUKE": {
       "version": "0.52.0",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.16.0"
     },
     "TERRAFORM": {
-      "version": "1.15.9",
-      "gitref": "refs/tags/v1.15.9",
-      "revision": "87488977e32a400445e0c0b4d95c0713a5eee941",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.9"
+      "version": "1.16.0",
+      "gitref": "refs/tags/v1.16.0",
+      "revision": "bfe8a941dc45f9f39227b2cd0adc21069ba99319",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.0"
     },
     "TERRAFORM_DOCS": {
       "version": "0.24.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.24.0"
     },
     "TERRAGRUNT": {
-      "version": "1.1.3",
-      "gitref": "refs/tags/v1.1.3",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.3"
+      "version": "1.1.4",
+      "gitref": "refs/tags/v1.1.4",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.4"
     }
   }
 }
