@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.34",
-      "gitref": "refs/tags/2.36.34",
-      "revision": "3d61c76c9d954fd51807a9d092c3411687e3a6d8",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.34"
+      "version": "2.36.40",
+      "gitref": "refs/tags/2.36.40",
+      "revision": "6021887c7b15ae67582191411aec7b2648c44b37",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.40"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.20",
@@ -33,9 +33,9 @@
       "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.230.0"
     },
     "FLUX2": {
-      "version": "2.9.4",
-      "gitref": "refs/tags/v2.9.4",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.4"
+      "version": "2.9.5",
+      "gitref": "refs/tags/v2.9.5",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.5"
     },
     "HELM": {
       "version": "4.2.4",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.16.0"
     },
     "TERRAFORM": {
-      "version": "1.16.0",
-      "gitref": "refs/tags/v1.16.0",
-      "revision": "bfe8a941dc45f9f39227b2cd0adc21069ba99319",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.0"
+      "version": "1.16.1",
+      "gitref": "refs/tags/v1.16.1",
+      "revision": "58e916f6706597d9d87898f9ecedf811b68c6f29",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.1"
     },
     "TERRAFORM_DOCS": {
       "version": "0.24.0",
