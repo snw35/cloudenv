@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.40",
-      "gitref": "refs/tags/2.36.40",
-      "revision": "6021887c7b15ae67582191411aec7b2648c44b37",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.40"
+      "version": "2.36.44",
+      "gitref": "refs/tags/2.36.44",
+      "revision": "6827f38c02803a2bc0d430e5f0d917201f80fe3f",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.44"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.20",
@@ -38,10 +38,10 @@
       "url": "https://github.com/fluxcd/flux2/releases/tag/v2.9.5"
     },
     "HELM": {
-      "version": "4.2.4",
-      "gitref": "refs/tags/v4.2.4",
-      "revision": "f0917316d866318df5162c8142035295d85e304b",
-      "url": "https://github.com/helm/helm/releases/tag/v4.2.4"
+      "version": "4.3.0",
+      "gitref": "refs/tags/v4.3.0",
+      "revision": "f11d6ecf74ffca340e3d5d6335b744967c4088c2",
+      "url": "https://github.com/helm/helm/releases/tag/v4.3.0"
     },
     "K9S": {
       "version": "0.51.0",
@@ -74,10 +74,10 @@
       "url": "https://github.com/hashicorp/packer/releases/tag/v1.16.0"
     },
     "TERRAFORM": {
-      "version": "1.16.1",
-      "gitref": "refs/tags/v1.16.1",
-      "revision": "58e916f6706597d9d87898f9ecedf811b68c6f29",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.1"
+      "version": "1.16.2",
+      "gitref": "refs/tags/v1.16.2",
+      "revision": "82e042fb6372443813f6759056308d6adc642fa1",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.2"
     },
     "TERRAFORM_DOCS": {
       "version": "0.24.0",
