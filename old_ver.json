@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.36.44",
-      "gitref": "refs/tags/2.36.44",
-      "revision": "6827f38c02803a2bc0d430e5f0d917201f80fe3f",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.44"
+      "version": "2.36.49",
+      "gitref": "refs/tags/2.36.49",
+      "revision": "7799fae62b09cd13b1458c003bf088999ec412e6",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.49"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.20",
@@ -13,7 +13,7 @@
       "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.20"
     },
     "BASE": {
-      "version": "trixie-20260824-slim"
+      "version": "trixie-20260918-slim"
     },
     "CLOUD_NUKE": {
       "version": "0.52.0",
@@ -69,15 +69,15 @@
       "url": "https://github.com/pulumi/kubespy/releases/tag/v0.6.3"
     },
     "PACKER": {
-      "version": "1.16.0",
-      "gitref": "refs/tags/v1.16.0",
-      "url": "https://github.com/hashicorp/packer/releases/tag/v1.16.0"
+      "version": "1.16.1",
+      "gitref": "refs/tags/v1.16.1",
+      "url": "https://github.com/hashicorp/packer/releases/tag/v1.16.1"
     },
     "TERRAFORM": {
-      "version": "1.16.2",
-      "gitref": "refs/tags/v1.16.2",
-      "revision": "82e042fb6372443813f6759056308d6adc642fa1",
-      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.2"
+      "version": "1.16.3",
+      "gitref": "refs/tags/v1.16.3",
+      "revision": "42121cd5ca5e1ab1d37e286540ce11acf70e290a",
+      "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.3"
     },
     "TERRAFORM_DOCS": {
       "version": "0.24.0",
@@ -85,9 +85,9 @@
       "url": "https://github.com/terraform-docs/terraform-docs/releases/tag/v0.24.0"
     },
     "TERRAGRUNT": {
-      "version": "1.1.4",
-      "gitref": "refs/tags/v1.1.4",
-      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.4"
+      "version": "1.1.5",
+      "gitref": "refs/tags/v1.1.5",
+      "url": "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.1.5"
     }
   }
 }
