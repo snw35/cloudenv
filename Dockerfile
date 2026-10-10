@@ -362,6 +362,10 @@ RUN echo "Test Layer" \
   && terraform-docs \
   && terragrunt -h
 
+# Version variable for published image
+ENV CLOUDENV_VERSION 2026-10-04
+ENV CLOUDENV_UPGRADE false
+
 COPY bashrc /etc/bashrc
 
 ENV SSH_AUTH_SOCK /tmp/agent.sock

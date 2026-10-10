@@ -1,34 +1,31 @@
 name: Docker Image CI
 
+# Thin caller of the shared container-update workflow. To reuse in another repo,
+# change only the values marked "<--" below (and the branch names if needed).
+
 on:
   push:
     branches: [ "master", "main", "mainline" ]
   pull_request:
     branches: [ "master", "main", "mainline" ]
   schedule:
-    - cron:  '05 15 * * 0'
+    - cron: '05 15 * * 0'
   workflow_dispatch:
-    inputs:
-      TAG_COMMAND:
-        description: 'Override the image tag by supplying a command that will be run and the output taken.'
-        required: false
-      IMAGE_TAG:
-        description: "Override the image tag by supplying an environment variable within the Dockerfile that will be used."
-        required: false
 
 jobs:
-  update-images:
-    strategy:
-      matrix:
-        workdir: [.]
-    uses: snw35/cicd/.github/workflows/github.yaml@main
+  container-update:
+    # One run at a time per repo; `queue: max` keeps every waiting run instead of
+    # replacing the older one.
+    concurrency:
+      group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.run_id) || format('container-update-{0}', github.repository) }}
+      queue: max
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      packages: write
+    uses: snw35/cicd/.github/workflows/container-update.yaml@main
     with:
-      WORKDIR: ${{ matrix.workdir }}
-      TAG_COMMAND: 'date -I'
-    secrets: inherit
-
-  create-release:
-    needs: update-images
-    if: github.ref_name == github.event.repository.default_branch && needs.update-images.outputs.changed == 'true'
-    uses: snw35/cicd/.github/workflows/create-release.yaml@main
+      WORKDIRS: '["."]'   # <-- folders holding a Dockerfile; '["."]' for a root Dockerfile
+      IMAGE_TAG: CLOUDENV_VERSION   # <-- Dockerfile ENV that holds the main software version
+      DATE_VERSION: true
     secrets: inherit
