@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20260918-slim
+FROM debian:trixie-20261005-slim
 
 WORKDIR /usr/bin/
 
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.37.9
+ENV AWS_CLI_VERSION 2.37.12
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 6b3a6a3d7bb3997928f0bdf7b866914224abf242c2e54e1dcebbe84bee64f356
+ENV AWS_CLI_SHA256 e6d3c672fb36ed4b12c354c39a993eee2b34da1437cafb10bac4480840cfa83f
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -363,7 +363,7 @@ RUN echo "Test Layer" \
   && terragrunt -h
 
 # Version variable for published image
-ENV CLOUDENV_VERSION 2026-10-04
+ENV CLOUDENV_VERSION 2026-10-11
 ENV CLOUDENV_UPGRADE false
 
 COPY bashrc /etc/bashrc
