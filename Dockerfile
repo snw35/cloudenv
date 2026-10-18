@@ -68,10 +68,10 @@ RUN wget $KUBECTL_URL/$KUBECTL_FILENAME \
 
 # Install HELM
 # From https://github.com/helm/helm/releases
-ENV HELM_VERSION 4.3.0
+ENV HELM_VERSION 4.3.1
 ENV HELM_URL https://get.helm.sh
 ENV HELM_FILENAME helm-v${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_SHA256 86584a54def73570558f66f5111cc53dfed56689637ae32c1201205d494f54fb
+ENV HELM_SHA256 0403a88ae20913d11b10a2467b50087721fea7581736da6b9d3992f5357fe54b
 
 RUN wget $HELM_URL/$HELM_FILENAME \
   && echo "$HELM_SHA256  ./$HELM_FILENAME" | sha256sum -c - \
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.16.5
+ENV TERRAFORM_VERSION 1.16.6
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 2bc2fcfff033265c9e02ca0351f01794eb122f62a9b2a49a3294b9e49eaab5e4
+ENV TERRAFORM_SHA256 38034b38d03096399a7a1264a14561a8029b2b496fd1f169452656e53968f1b7
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.20
+ENV AWS_IAM_AUTH_VERSION 0.7.22
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 a60921d38d2b51bc998f37eb1eba81c92aed21d9315a35a01b283ac398c43f87
+ENV AWS_IAM_AUTH_SHA256 8dd446886d6f48019362b0b9b1a2f605589923d35faf506d7c53e8c8eeffbe65
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.37.12
+ENV AWS_CLI_VERSION 2.38.1
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 e6d3c672fb36ed4b12c354c39a993eee2b34da1437cafb10bac4480840cfa83f
+ENV AWS_CLI_SHA256 b11ed416d91f4251da363a17706938eeaf0e520745754c104c0c1890dd8363c7
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -363,7 +363,7 @@ RUN echo "Test Layer" \
   && terragrunt -h
 
 # Version variable for published image
-ENV CLOUDENV_VERSION 2026-10-11
+ENV CLOUDENV_VERSION 2026-10-18
 ENV CLOUDENV_UPGRADE false
 
 COPY bashrc /etc/bashrc
