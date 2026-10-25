@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20261005-slim
+FROM debian:trixie-20261020-slim
 
 WORKDIR /usr/bin/
 
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.16.6
+ENV TERRAFORM_VERSION 1.17.0
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 38034b38d03096399a7a1264a14561a8029b2b496fd1f169452656e53968f1b7
+ENV TERRAFORM_SHA256 c168cab7c637a8769fdb90089ddd19de701bc6ff8aca64dc2e2185fe46f59f67
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -99,10 +99,10 @@ RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
 
 # Install terragrunt
 # From https://github.com/gruntwork-io/terragrunt/releases
-ENV TERRAGRUNT_VERSION 1.1.6
+ENV TERRAGRUNT_VERSION 1.2.1
 ENV TERRAGRUNT_URL https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION
 ENV TERRAGRUNT_FILENAME terragrunt_linux_amd64
-ENV TERRAGRUNT_SHA256 d75a80bb264758ba00dabcb17f4b507fcdab4ca90d9e41f96750df036bf69b04
+ENV TERRAGRUNT_SHA256 f2f6238ad2348855a4e876b90fd31f3f5d106bb234794202a00b2bcc139fa753
 
 RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
   && echo "$TERRAGRUNT_SHA256  ./$TERRAGRUNT_FILENAME" | sha256sum -c - \
@@ -112,10 +112,10 @@ RUN wget $TERRAGRUNT_URL/$TERRAGRUNT_FILENAME \
 
 # Install packer
 # From https://www.packer.io/downloads.html
-ENV PACKER_VERSION 1.16.1
+ENV PACKER_VERSION 1.16.2
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION
 ENV PACKER_FILENAME packer_${PACKER_VERSION}_linux_amd64.zip
-ENV PACKER_SHA256 af38a9e93e4ed1b9ca68206ae969c64c300c82a3dde46a780dfa629f0867f651
+ENV PACKER_SHA256 abbfe0cf74985084112659b53e3565f264f70a20914c3b7c4f789f54f61c2414
 
 RUN wget $PACKER_URL/$PACKER_FILENAME \
   && echo "$PACKER_SHA256  ./$PACKER_FILENAME" | sha256sum -c - \
@@ -127,10 +127,10 @@ RUN wget $PACKER_URL/$PACKER_FILENAME \
 # Install aws-iam-authenticator
 # From https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 # https://github.com/kubernetes-sigs/aws-iam-authenticator/releases
-ENV AWS_IAM_AUTH_VERSION 0.7.22
+ENV AWS_IAM_AUTH_VERSION 0.7.24
 ENV AWS_IAM_AUTH_URL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTH_VERSION}
 ENV AWS_IAM_AUTH_FILENAME aws-iam-authenticator_${AWS_IAM_AUTH_VERSION}_linux_amd64
-ENV AWS_IAM_AUTH_SHA256 8dd446886d6f48019362b0b9b1a2f605589923d35faf506d7c53e8c8eeffbe65
+ENV AWS_IAM_AUTH_SHA256 136e41012ee248d1949ec7b512ac37ec79830f2ab196484f8e650e29e57ad853
 
 RUN wget $AWS_IAM_AUTH_URL/$AWS_IAM_AUTH_FILENAME \
   && echo "$AWS_IAM_AUTH_SHA256  ./$AWS_IAM_AUTH_FILENAME" | sha256sum -c - \
@@ -244,10 +244,10 @@ RUN wget $AWSSMP_URL/$AWSSMP_FILENAME \
 
 
 # Install cloud-nuke
-ENV CLOUD_NUKE_VERSION 0.52.0
+ENV CLOUD_NUKE_VERSION 0.53.0
 ENV CLOUD_NUKE_URL https://github.com/gruntwork-io/cloud-nuke/releases/download/v${CLOUD_NUKE_VERSION}
 ENV CLOUD_NUKE_FILENAME cloud-nuke_linux_amd64
-ENV CLOUD_NUKE_SHA256 c9ed50ab0bd14e7694d1fef52e33d57d5079624d381b56fe34c289d989fda656
+ENV CLOUD_NUKE_SHA256 7e47ec383855eb3e0111335d9c73a7f09b942e4f78fcf3c3e297cf375272dbf0
 ENV DISABLE_TELEMETRY TRUE
 
 RUN wget $CLOUD_NUKE_URL/$CLOUD_NUKE_FILENAME \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.38.1
+ENV AWS_CLI_VERSION 2.38.5
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 b11ed416d91f4251da363a17706938eeaf0e520745754c104c0c1890dd8363c7
+ENV AWS_CLI_SHA256 5def7d1b7e55d892f9a381bb2cb2081a685712464be0d36d5d706af0ac48d0d3
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -363,7 +363,7 @@ RUN echo "Test Layer" \
   && terragrunt -h
 
 # Version variable for published image
-ENV CLOUDENV_VERSION 2026-10-18
+ENV CLOUDENV_VERSION 2026-10-25
 ENV CLOUDENV_UPGRADE false
 
 COPY bashrc /etc/bashrc
