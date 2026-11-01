@@ -1,7 +1,7 @@
 # Cloud environment container
 # Provides a suite of cloud tools for AWS, GCP and Kubernetes
 
-FROM debian:trixie-20261020-slim
+FROM debian:trixie-20261027-slim
 
 WORKDIR /usr/bin/
 
@@ -85,10 +85,10 @@ RUN wget $HELM_URL/$HELM_FILENAME \
 
 # Install terraform
 # From https://www.terraform.io/downloads.html
-ENV TERRAFORM_VERSION 1.17.0
+ENV TERRAFORM_VERSION 1.17.1
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION
 ENV TERRAFORM_FILENAME terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-ENV TERRAFORM_SHA256 c168cab7c637a8769fdb90089ddd19de701bc6ff8aca64dc2e2185fe46f59f67
+ENV TERRAFORM_SHA256 4638628058e71a55212b1c563712eac03b902128f40740f3dc8174df12135061
 
 RUN wget $TERRAFORM_URL/$TERRAFORM_FILENAME \
   && echo "$TERRAFORM_SHA256  ./$TERRAFORM_FILENAME" | sha256sum -c - \
@@ -190,10 +190,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.9.6
+ENV FLUX2_VERSION 2.10.0
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 b4d22673e9246cbd628881f1a9ef3b090085dced291e42d804555cee8e8d42c5
+ENV FLUX2_SHA256 208dd7012c04fedeed5b2d0b6e63df3b15b1c34a381527811685c098bc9f8659
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.38.5
+ENV AWS_CLI_VERSION 2.39.3
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 5def7d1b7e55d892f9a381bb2cb2081a685712464be0d36d5d706af0ac48d0d3
+ENV AWS_CLI_SHA256 14cb35809ad7547dd3c69fa9899a3975fbd850b6a6791f3fe264856490cd9a63
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -363,7 +363,7 @@ RUN echo "Test Layer" \
   && terragrunt -h
 
 # Version variable for published image
-ENV CLOUDENV_VERSION 2026-10-25
+ENV CLOUDENV_VERSION 2026-11-01
 ENV CLOUDENV_UPGRADE false
 
 COPY bashrc /etc/bashrc
