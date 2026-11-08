@@ -2,13 +2,18 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.39.3",
-      "gitref": "refs/tags/2.39.3",
-      "revision": "9fcfbf50f296e8a059d88f59c47d65fba999e677",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.39.3"
+      "version": "2.39.6",
+      "gitref": "refs/tags/2.39.6",
+      "revision": "a2b81add5413e14e955ba8b5745284d6891a582b",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.39.6"
+    },
+    "AWS_IAM_AUTH": {
+      "version": "0.7.24",
+      "gitref": "refs/tags/v0.7.24",
+      "url": "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/tag/v0.7.24"
     },
     "BASE": {
-      "version": "trixie-20261027-slim"
+      "version": "trixie-20261104-slim"
     },
     "CLOUD_NUKE": {
       "version": "0.53.0",
