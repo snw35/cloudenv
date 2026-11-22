@@ -2,10 +2,10 @@
   "version": 2,
   "data": {
     "AWS_CLI": {
-      "version": "2.40.3",
-      "gitref": "refs/tags/2.40.3",
-      "revision": "8ae6deee2595130f20a492aeb7005bf4bbf8f436",
-      "url": "https://github.com/aws/aws-cli/releases/tag/2.40.3"
+      "version": "2.42.1",
+      "gitref": "refs/tags/2.42.1",
+      "revision": "6604ee8b4abe2b0885cfe1353f3cdf137b6483e8",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.42.1"
     },
     "AWS_IAM_AUTH": {
       "version": "0.7.24",
@@ -27,15 +27,15 @@
       "url": "https://github.com/kelseyhightower/confd/releases/tag/v0.16.0"
     },
     "EKSCTL": {
-      "version": "0.231.0",
-      "gitref": "refs/tags/v0.231.0",
-      "revision": "30fa527c066699d96a92163bf2133eea862114be",
-      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.231.0"
+      "version": "0.232.0",
+      "gitref": "refs/tags/v0.232.0",
+      "revision": "f1835e4111b4050b19442d19cfa641527421e3af",
+      "url": "https://github.com/eksctl-io/eksctl/releases/tag/v0.232.0"
     },
     "FLUX2": {
-      "version": "2.10.0",
-      "gitref": "refs/tags/v2.10.0",
-      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.10.0"
+      "version": "2.10.1",
+      "gitref": "refs/tags/v2.10.1",
+      "url": "https://github.com/fluxcd/flux2/releases/tag/v2.10.1"
     },
     "HELM": {
       "version": "4.3.2",

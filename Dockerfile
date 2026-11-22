@@ -190,10 +190,10 @@ RUN wget $K9S_URL/$K9S_FILENAME \
 
 # Install flux2
 # From https://github.com/fluxcd/flux2/releases
-ENV FLUX2_VERSION 2.10.0
+ENV FLUX2_VERSION 2.10.1
 ENV FLUX2_URL https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}
 ENV FLUX2_FILENAME flux_${FLUX2_VERSION}_linux_amd64.tar.gz
-ENV FLUX2_SHA256 208dd7012c04fedeed5b2d0b6e63df3b15b1c34a381527811685c098bc9f8659
+ENV FLUX2_SHA256 967365ff84aabc97871827ff33713ef0c09f62dd83c18759e3a5e39adcea9285
 
 RUN wget $FLUX2_URL/$FLUX2_FILENAME \
   && echo "$FLUX2_SHA256  ./$FLUX2_FILENAME" | sha256sum -c - \
@@ -218,10 +218,10 @@ RUN wget $KUBESPY_URL/$KUBESPY_FILENAME \
 
 # Install eksctl
 # From https://github.com/eksctl-io/eksctl/releases
-ENV EKSCTL_VERSION 0.231.0
+ENV EKSCTL_VERSION 0.232.0
 ENV EKSCTL_URL https://github.com/eksctl-io/eksctl/releases/download/v${EKSCTL_VERSION}
 ENV EKSCTL_FILENAME eksctl_Linux_amd64.tar.gz
-ENV EKSCTL_SHA256 13cd1c4ae6ad3f74ea27aa1117c72e34ffa4ca8ff6d709261f7b1d7f411dc435
+ENV EKSCTL_SHA256 e71bc17ffbc177ff4c2bb0d844c81cd052420b5ea492f003120f1e73398f3373
 
 RUN wget $EKSCTL_URL/$EKSCTL_FILENAME \
   && echo "$EKSCTL_SHA256  ./$EKSCTL_FILENAME" | sha256sum -c - \
@@ -300,10 +300,10 @@ RUN wget $AWS_CONNECT_URL/$AWS_CONNECT_FILENAME \
 
 
 # Install AWS CLI v2
-ENV AWS_CLI_VERSION 2.40.3
+ENV AWS_CLI_VERSION 2.42.1
 ENV AWS_CLI_URL https://awscli.amazonaws.com
 ENV AWS_CLI_FILENAME awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip
-ENV AWS_CLI_SHA256 4770c06c4ecfc8ba94b60d89e6c7018ab7ea2cf5341b1ef05f6f93c5d6e8b705
+ENV AWS_CLI_SHA256 ff2631c32c5db291b099600f404bc493454ec66c125ff4604625da90480c1f47
 
 RUN wget $AWS_CLI_URL/$AWS_CLI_FILENAME \
   && echo "$AWS_CLI_SHA256  ./$AWS_CLI_FILENAME" | sha256sum -c - \
@@ -363,7 +363,7 @@ RUN echo "Test Layer" \
   && terragrunt -h
 
 # Version variable for published image
-ENV CLOUDENV_VERSION 2026-11-15
+ENV CLOUDENV_VERSION 2026-11-22
 ENV CLOUDENV_UPGRADE false
 
 COPY bashrc /etc/bashrc
